@@ -1,0 +1,38 @@
+label{
+    font-weight: bold;
+}
+table{
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    
+}
+
+.view-btn, .edit-btn, .deactivate-btn{    
+    color: white;
+    border: none;
+   height: 30px;
+   border-radius: 5px;
+   padding: 5px;
+   cursor: pointer;
+}
+.view-btn{
+    background-color: var(--color-success);
+}
+.edit-btn{
+    background-color: var(--color-primary);
+}
+.deactivate-btn{
+    background-color: var(--color-delete);
+}
+
+table p{
+    padding-top: 10px;
+}
+
+.events{
+    min-height: 450px;
+}

@@ -1,6 +1,6 @@
 <?php
 require 'session.php';
-
+require 'connection.php'
 
 ?>
 
@@ -12,6 +12,7 @@ require 'session.php';
     <title>Admin-contributions</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="contribution.css">
+    <link rel="stylesheet" href="members.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -63,25 +64,68 @@ require 'session.php';
     <!-- Main Content -->
     <main>
         <h1>Group Members</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Member Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    <th>Role</th>                                    
-                </tr>
-            </thead>
-            <tbody>
-           
+       
+    <?php
+            $query = "SELECT memberId, fName, lName, phone, email, role FROM members";
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                echo '<form action="" method="get">
+                <label for="search">Search:</label>
+                <input type="text" id="search" name="search">
+                <button type="submit">Search</button>
+              </form>';
+
+                echo '<table>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Role</th> 
+                                <th>Actions</th>                                   
+                            </tr>
+                        </thead>
+                        <tbody>';
             
-          
+                // Fetch data and populate the table
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<tr>';
+                    echo '<td>' . $row['memberId'] . '</td>';
+                    echo '<td>' . $row['fName'] . '</td>';
+                    echo '<td>' . $row['lName'] . '</td>';
+                    echo '<td>' . $row['phone'] . '</td>';
+                    echo '<td>' . $row['email'] . '</td>';
+                    echo '<td>' . $row['role'] . '</td>';
+                    echo '<td>
+                    <button class="view-btn" onclick="viewDetails(' . $row['memberId'] . ')">View Details</button>
+                    <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>
+                    <button class="deactivate-btn" onclick="deactivateMember(' . $row['memberId'] . ')">Deactivate</button>
+                  </td>';
+    
+                    echo '</tr>';
+                }
+            
+                echo '</tbody></table>';
                
-               
-            </tbody>
-        </table>
+                //getting total number of members
+                $totalMembers = mysqli_num_rows($result);
+                //showing number of entries being shown
+                $entriesShown = mysqli_num_rows($result);
+                echo '<p>Showing ' . $entriesShown . ' / ' . $totalMembers . '</p>';
+
+    
+                // Free the result set
+                mysqli_free_result($result);
+            } else {
+                // Display an error message if the query fails
+                echo "Error executing query: " . mysqli_error($conn);
+            }
+            
+            // Close the database connection
+            mysqli_close($conn);
+            ?>
 
       
     
@@ -98,7 +142,11 @@ require 'session.php';
       
         <div class="profile">
             <div class="info">
-                <p>Hi, <b><?php echo $user_name; ?></b></p>
+                <?php if (isset($_SESSION['user_name'])) : ?>
+                    <p>Hi, <b><?php echo $_SESSION['user_name']; ?></b></p>
+                <?php else : ?>
+                    <p>Hi, <b>Guest</b></p>
+                <?php endif; ?>
                 <small class="text-muted">Admin</small>
             </div>
             <div class="profile-photo">
@@ -110,32 +158,11 @@ require 'session.php';
 
 
 <div class="upcoming-events">
-<h2>Upcoming Events</h2>
+<h2>All Details</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+    
+    
+    
 </div>
 </div>
 
@@ -155,3 +182,35 @@ require 'session.php';
    <script src="admin.js"></script>
 </body>
 </html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchForm = document.querySelector('form');
+    const tableRows = document.querySelectorAll('tbody tr');
+    const noResultsMessage = document.createElement('p');
+    noResultsMessage.style.display = 'none';
+
+    searchForm.insertAdjacentElement('afterend', noResultsMessage);
+
+    searchForm.addEventListener('input', function (event) {
+      const searchTerm = event.target.value.trim().toLowerCase();
+
+      let resultsFound = false;
+
+      tableRows.forEach(function (row) {
+        const rowData = Array.from(row.children).map(cell => cell.textContent.toLowerCase());
+        const matchesSearch = rowData.some(data => data.includes(searchTerm));
+
+        row.style.display = matchesSearch ? '' : 'none';
+
+        if (matchesSearch) {
+          resultsFound = true;
+        }
+      });
+
+      noResultsMessage.style.display = resultsFound ? 'none' : '';
+      noResultsMessage.textContent = resultsFound ? '' : 'No data containing \'' + searchTerm + '\'';
+    });
+  });
+</script>
+

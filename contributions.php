@@ -141,7 +141,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       
         <div class="profile">
             <div class="info">
-                <p>Hi, <b><?php echo $user_name; ?></b></p>
+                <?php if (isset($_SESSION['user_name'])) : ?>
+                    <p>Hi, <b><?php echo $_SESSION['user_name']; ?></b></p>
+                <?php else : ?>
+                    <p>Hi, <b>Guest</b></p>
+                <?php endif; ?>
                 <small class="text-muted">Admin</small>
             </div>
             <div class="profile-photo">
