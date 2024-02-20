@@ -47,7 +47,7 @@ $result = mysqli_query($conn, $query);
            
             <a href="contributions.php">
                 <span class="material-icons-sharp">inventory</span>
-                <h3>Record Contributions</h3>
+                <h3>Events</h3>
             </a>
             <a href="reports.php">
                 <span class="material-icons-sharp">report_gmailerrorred</span>

@@ -1,5 +1,16 @@
+form{
+    padding:var(--card-padding); ;
+}
 label{
     font-weight: bold;
+    
+}
+input{
+    background: var(--color-white);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    min-height: 20px;
+    width: 50%;
 }
 table{
     background: var(--color-white);
@@ -33,6 +44,3 @@ table p{
     padding-top: 10px;
 }
 
-.events{
-    min-height: 450px;
-}

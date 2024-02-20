@@ -10,9 +10,9 @@ require 'connection.php'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-contributions</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="contribution.css">
     <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="contribution.css">   
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -47,7 +47,7 @@ require 'connection.php'
            
             <a href="contributions.php">
                 <span class="material-icons-sharp">inventory</span>
-                <h3>Record Contributions</h3>
+                <h3>Events</h3>
             </a>
             <a href="reports.php">
                 <span class="material-icons-sharp">report_gmailerrorred</span>
@@ -158,16 +158,39 @@ require 'connection.php'
 
 
 <div class="upcoming-events">
-<h2>All Details</h2>
-<div class="events">
-    
-    
-    
-</div>
+    <h2 class="details-heading">More Details</h2>
+    <div class="events">
+        <div class="detail">
+            <h3>Date Joined</h3>
+            <p class="date">2/5/2000</p>
+        </div>
+        <div class="detail">
+            <h3>Contributions made Upto Date</h3>
+            <p class="amount">10000</p>
+        </div>
+        <div class="detail">
+            <h3>Last Contribution Made</h3>
+            <p class="amount">3000</p>
+        </div>
+        <div class="detail">
+            <h3>Loans Borrowed Upto date</h3>
+            <p class="amount">40000</p>
+        </div>
+        <div class="detail">
+            <h3>Loans Repayed Upto Date</h3>
+            <p class="amount">30000</p>
+        </div>
+        <div class="detail">
+            <h3>Loan Limit</h3>
+            <p class="amount">50000</p>
+        </div>
+        <div class="detail">
+            <h3>Loan Balance</h3>
+            <p class="amount">6000</p>
+        </div>
+    </div>
 </div>
 
-</div>
-    
    </div>  
 
 
