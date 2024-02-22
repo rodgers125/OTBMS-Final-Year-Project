@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT); //hashing the password
 
         // Use prepared statements to prevent SQL injection
-        $query = "INSERT INTO members (fName, lName, email, phone, password) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO members (fName, lName, email, phone, password, registration_date) VALUES (?, ?, ?, ?, ?, NOW())";
 
         $preparedSql = mysqli_prepare($conn, $query);
 

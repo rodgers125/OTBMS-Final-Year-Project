@@ -1,6 +1,6 @@
 <?php
 require 'session.php';
-require 'connection.php'
+require 'connection.php';
 
 ?>
 
@@ -66,13 +66,13 @@ require 'connection.php'
         <h1>Group Members</h1>
        
     <?php
-            $query = "SELECT memberId, fName, lName, phone, email, role FROM members";
+            $query = "SELECT memberId, fName, lName, phone, email, role, registration_date FROM members";
             $result = mysqli_query($conn, $query);
             if ($result) {
                 echo '<form action="" method="get">
                 <label for="search">Search:</label>
                 <input type="text" id="search" name="search">
-                <button type="submit">Search</button>
+                <button class="form-btn" type="submit">Search</button>
               </form>';
 
                 echo '<table>
@@ -89,26 +89,26 @@ require 'connection.php'
                         </thead>
                         <tbody>';
             
-                // Fetch data and populate the table
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<tr>';
-                    echo '<td>' . $row['memberId'] . '</td>';
-                    echo '<td>' . $row['fName'] . '</td>';
-                    echo '<td>' . $row['lName'] . '</td>';
-                    echo '<td>' . $row['phone'] . '</td>';
-                    echo '<td>' . $row['email'] . '</td>';
-                    echo '<td>' . $row['role'] . '</td>';
-                    echo '<td>
-                    <button class="view-btn" onclick="viewDetails(' . $row['memberId'] . ')">View Details</button>
-                    <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>
-                    <button class="deactivate-btn" onclick="deactivateMember(' . $row['memberId'] . ')">Deactivate</button>
-                  </td>';
-    
-                    echo '</tr>';
-                }
+             // Fetch data and populate the table
+             while ($row = mysqli_fetch_assoc($result)) {
+              echo '<tr>';
+              echo '<td>' . $row['memberId'] . '</td>';
+              echo '<td>' . $row['fName'] . '</td>';
+              echo '<td>' . $row['lName'] . '</td>';
+              echo '<td>' . $row['phone'] . '</td>';
+              echo '<td>' . $row['email'] . '</td>';
+              echo '<td>' . $row['role'] . '</td>';
+              echo '<td>
+                  <button class="view-btn" onclick="viewDetails(' . $row['memberId'] . ')">View Details</button>
+                  <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>
+                  <button class="deactivate-btn" onclick="deactivateMember(' . $row['memberId'] . ')">Deactivate</button>
+              </td>';
+          
+              echo '</tr>';}
+
             
-                echo '</tbody></table>';
-               
+                echo '</tbody></table>';                
+
                 //getting total number of members
                 $totalMembers = mysqli_num_rows($result);
                 //showing number of entries being shown
@@ -157,42 +157,43 @@ require 'connection.php'
 <!--end of top-->
 
 
-<div class="upcoming-events">
+<div class="all-details" style="display:none;">
     <h2 class="details-heading">More Details</h2>
-    <div class="events">
+    <div class="events" id="memberDetails">       <!--style="display:none;" -->
         <div class="detail">
-            <h3>Date Joined</h3>
-            <p class="date">2/5/2000</p>
+            <h3>Date Joined:</h3>
+            <p class="date" id="dateJoined">3/3/2014</p>
+            </div> 
+        
+        <div class="detail">
+            <h3>Total Contributions made Upto Date:</h3>
+            <p class="amount" id="totalContributions">KSH 10000 </p>
         </div>
         <div class="detail">
-            <h3>Contributions made Upto Date</h3>
-            <p class="amount">10000</p>
+            <h3>Last Contribution Made:</h3>
+            <p class="amount" id="lastContribution">KSH 3000</p>
         </div>
         <div class="detail">
-            <h3>Last Contribution Made</h3>
-            <p class="amount">3000</p>
+            <h3>Total Loans Borrowed Upto date:</h3>
+            <p class="amount" id="totalLoansBorrowed">KSH 40000</p>
         </div>
         <div class="detail">
-            <h3>Loans Borrowed Upto date</h3>
-            <p class="amount">40000</p>
+            <h3>Total Loans Repayed Upto Date:</h3>
+            <p class="amount" id="totalLoansRepaid">KSH 30000</p>
         </div>
         <div class="detail">
-            <h3>Loans Repayed Upto Date</h3>
-            <p class="amount">30000</p>
+            <h3>Loan Limit:</h3>
+            <p class="amount" id="loanLimit">KSH 50000</p>
         </div>
         <div class="detail">
-            <h3>Loan Limit</h3>
-            <p class="amount">50000</p>
-        </div>
-        <div class="detail">
-            <h3>Loan Balance</h3>
-            <p class="amount">6000</p>
+            <h3>Loan Balance:</h3>
+            <p class="amount" id="loanBalance">KSH 6000</p>
         </div>
     </div>
+ </div>
+
+ </div>
 </div>
-
-   </div>  
-
 
    <div class="footer">
     <div class="row">
@@ -201,39 +202,10 @@ require 'connection.php'
         </div>
     </div>
    </div>
-
+                
    <script src="admin.js"></script>
+   <script src="members.js"></script>
+   
 </body>
 </html>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const searchForm = document.querySelector('form');
-    const tableRows = document.querySelectorAll('tbody tr');
-    const noResultsMessage = document.createElement('p');
-    noResultsMessage.style.display = 'none';
-
-    searchForm.insertAdjacentElement('afterend', noResultsMessage);
-
-    searchForm.addEventListener('input', function (event) {
-      const searchTerm = event.target.value.trim().toLowerCase();
-
-      let resultsFound = false;
-
-      tableRows.forEach(function (row) {
-        const rowData = Array.from(row.children).map(cell => cell.textContent.toLowerCase());
-        const matchesSearch = rowData.some(data => data.includes(searchTerm));
-
-        row.style.display = matchesSearch ? '' : 'none';
-
-        if (matchesSearch) {
-          resultsFound = true;
-        }
-      });
-
-      noResultsMessage.style.display = resultsFound ? 'none' : '';
-      noResultsMessage.textContent = resultsFound ? '' : 'No data containing \'' + searchTerm + '\'';
-    });
-  });
-</script>
 
