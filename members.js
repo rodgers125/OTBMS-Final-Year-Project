@@ -75,3 +75,25 @@ function editMember(memberId) {
   alert('Edit member with ID: ' + memberId);
   window.location.href = 'edit_member.php?memberId=' + memberId;
 }
+
+
+
+//deactivating a user
+// members.js
+
+function deactivateMember(memberId) {
+  if (confirm("Are you sure you want to deactivate this account?")) {
+      // Send AJAX request
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              // Handle the response, e.g., display a success message
+              alert(xhr.responseText);
+          }
+      };
+      xhr.open("POST", "deactivate_user.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.send("memberId=" + memberId);
+  }
+}
+

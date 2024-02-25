@@ -38,7 +38,6 @@ button{
     margin-left: 400px;
 }
 .back{
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    padding-left: 0;
+    background-color: var(--color-primary);    
+    margin-left: 5px;
 }
