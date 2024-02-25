@@ -79,7 +79,7 @@ function editMember(memberId) {
 
 
 //deactivating a user
-// members.js
+
 
 function deactivateMember(memberId) {
   if (confirm("Are you sure you want to deactivate this account?")) {
@@ -97,3 +97,23 @@ function deactivateMember(memberId) {
   }
 }
 
+
+//Activating a User
+
+function toggleStatus(memberId, action) {
+  if (confirm("Are you sure you want to " + action + " this account?")) {
+      // Send AJAX 
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              // Handle the response, e.g., display a success message
+              alert(xhr.responseText);
+              // Reload the page to reflect the updated status
+              location.reload();
+          }
+      };
+      xhr.open("POST", "activate_user.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.send("memberId=" + memberId + "&action=" + action);
+  }
+}

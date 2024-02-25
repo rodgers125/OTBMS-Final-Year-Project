@@ -65,67 +65,74 @@ require 'connection.php';
     <main>
         <h1>Group Members</h1>
        
-    <?php
-            $query = "SELECT memberId, fName, lName, phone, email, role, registration_date FROM members";
-            $result = mysqli_query($conn, $query);
-            if ($result) {
-                echo '<form action="" method="get">
-                <label for="search">Search:</label>
-                <input type="text" id="search" name="search">
-                <button class="form-btn" type="submit">Search</button>
-              </form>';
+        <?php
+$query = "SELECT memberId, fName, lName, phone, email, role, status FROM members";
+$result = mysqli_query($conn, $query);
 
-                echo '<table>
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Role</th> 
-                                <th>Actions</th>                                   
-                            </tr>
-                        </thead>
-                        <tbody>';
-            
-             // Fetch data and populate the table
-             while ($row = mysqli_fetch_assoc($result)) {
-              echo '<tr>';
-              echo '<td>' . $row['memberId'] . '</td>';
-              echo '<td>' . $row['fName'] . '</td>';
-              echo '<td>' . $row['lName'] . '</td>';
-              echo '<td>' . $row['phone'] . '</td>';
-              echo '<td>' . $row['email'] . '</td>';
-              echo '<td>' . $row['role'] . '</td>';
-              echo '<td>
-                  <button class="view-btn" onclick="viewDetails(' . $row['memberId'] . ')">View Details</button>
-                  <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>
-                  <button class="deactivate-btn" onclick="deactivateMember(' . $row['memberId'] . ')">Deactivate</button>
-              </td>';
-          
-              echo '</tr>';}
+if ($result) {
+    echo '<form action="" method="get">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search">
+            <button class="form-btn" type="submit">Search</button>
+          </form>';
 
-            
-                echo '</tbody></table>';                
+    echo '<table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Role</th> 
+                    <th>Actions</th>                                   
+                </tr>
+            </thead>
+            <tbody>';
 
-                //getting total number of members
-                $totalMembers = mysqli_num_rows($result);
-                //showing number of entries being shown
-                $entriesShown = mysqli_num_rows($result);
-                echo '<p>Showing ' . $entriesShown . ' / ' . $totalMembers . '</p>';
+    // Fetch data and populate the table
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<tr>';
+        echo '<td>' . $row['memberId'] . '</td>';
+        echo '<td>' . $row['fName'] . '</td>';
+        echo '<td>' . $row['lName'] . '</td>';
+        echo '<td>' . $row['phone'] . '</td>';
+        echo '<td>' . $row['email'] . '</td>';
+        echo '<td>' . $row['role'] . '</td>';
+        echo '<td>
+                <button class="view-btn" onclick="viewDetails(' . $row['memberId'] . ')">View Details</button>
+                <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>';
 
-    
-                // Free the result set
-                mysqli_free_result($result);
-            } else {
-                // Display an error message if the query fails
-                echo "Error executing query: " . mysqli_error($conn);
-            }
-            
-            // Close the database connection
-            mysqli_close($conn);
-            ?>
+        if ($row['status'] === 'active') {
+            echo '<button class="deactivate-btn" onclick="toggleStatus(' . $row['memberId'] . ', \'deactivate\')">Deactivate</button>';
+        } else {
+            echo '<button class="deactivate-btn" onclick="toggleStatus(' . $row['memberId'] . ', \'activate\')">Activate</button>';
+        }
+
+        echo '</td>';
+
+        echo '</tr>';
+    }
+
+    echo '</tbody></table>';
+
+    //getting total number of members
+    $totalMembers = mysqli_num_rows($result);
+    //showing number of entries being shown
+    $entriesShown = mysqli_num_rows($result);
+    echo '<p>Showing ' . $entriesShown . ' / ' . $totalMembers . '</p>';
+
+    // Free the result set
+    mysqli_free_result($result);
+} else {
+    // Display an error message if the query fails
+    echo "Error executing query: " . mysqli_error($conn);
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
 
       
     
