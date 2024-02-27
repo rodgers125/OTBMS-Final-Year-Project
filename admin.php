@@ -44,8 +44,11 @@ $result = mysqli_query($conn, $query);
                 <span class="material-icons-sharp">insights</span>
                 <h3>Analytics</h3>
             </a>
-           
-            <a href="contributions.php">
+            <a href="loans.php">
+                <span class="material-icons-sharp">insights</span>
+                <h3>Loans</h3>
+            </a>
+            <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>

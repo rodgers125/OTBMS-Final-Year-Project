@@ -9,7 +9,7 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contributions</title>
+    <title>Admin-members</title>
     <link rel="stylesheet" href="members.css">
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="contribution.css">   
@@ -40,12 +40,17 @@ require 'connection.php';
                 <h3>Members</h3>
             </a>
            
+           
             <a href="analytics.php">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Analytics</h3>
             </a>
+            <a href="loans.php">
+                <span class="material-icons-sharp">insights</span>
+                <h3>Loans</h3>
+            </a>
            
-            <a href="contributions.php">
+            <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
@@ -79,7 +84,7 @@ if ($result) {
     echo '<table>
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>#Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Phone Number</th>

@@ -5,50 +5,46 @@ require 'connection.php';
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $memberId = $_POST['memberId'];
-    $fName = $_POST['fName'];
-    $lName = $_POST['lName'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $role = $_POST['role'];
+    $event_id = $_POST['event_id'];
+    $event_title = $_POST['event_title'];
+    $event_description = $_POST['event_description'];
+    $event_type = $_POST['event_type'];
+    $event_date = $_POST['event_date'];
 
-   
-    // Update member information in the database
-    $query = "UPDATE members SET fName = '$fName', lName = '$lName', phone = '$phone', email = '$email', role = '$role' WHERE memberId = $memberId";
+    // Update 'events' table in db
+    $query = "UPDATE events SET event_title = '$event_title', event_description = '$event_description', event_type = '$event_type', event_date = '$event_date' WHERE event_id = '$event_id'";
 
     // Execute the query
     $result = mysqli_query($conn, $query);
 
     // Display a success or error message
     if ($result) {
-        $message = 'User information updated successfully!';
+        $message = 'Event updated successfully!';
         $color = 'var(--color-success)';
     } else {
-        $message = 'Error updating member: ' . mysqli_error($conn);
+        $message = 'Error updating event: ' . mysqli_error($conn);
         $color = 'red';
     }
 }
 
-// Fetch member details from the database based on memberId
-if (isset($_GET['memberId'])) {
-    $memberId = $_GET['memberId'];
+// Fetching event details from the database based on event_id
+if (isset($_GET['event_id'])) {
+    $event_id = $_GET['event_id'];
 
-    // Replace the following with your actual database connection and query logic
-    $query = "SELECT * FROM members WHERE memberId = $memberId";
+    $query = "SELECT * FROM events WHERE event_id = $event_id";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
-        $memberData = mysqli_fetch_assoc($result);
+        $eventData = mysqli_fetch_assoc($result);
     } else {
-        echo "Member not found.";
+        echo "The Event wasn't found";
         exit();
     }
 } else {
-    echo "Member ID not provided.";
+    echo "The Event wasn't found";
     exit();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +83,7 @@ if (isset($_GET['memberId'])) {
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="members.php" class="active">
+            <a href="members.php">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
@@ -100,8 +96,7 @@ if (isset($_GET['memberId'])) {
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
-           
-            <a href="events.php">
+            <a href="events.php" class="active">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
@@ -126,30 +121,27 @@ if (isset($_GET['memberId'])) {
     
     <!-- Form to edit member information -->
     <form action="" method="post">
-        <input type="hidden" name="memberId" value="<?php echo $memberData['memberId']; ?>">
-        <label for="fName">First Name:</label>
-        <input type="text" id="fName" name="fName" value="<?php echo $memberData['fName']; ?>" required><br>
+        <input type="hidden" name="event_id" value="<?php echo $eventData['event_id']; ?>">
+        <label for="event_title">Title</label>
+        <input type="text" id="event_title" name="event_title" value="<?php echo $eventData['event_title']; ?>" required><br>
 
-        <label for="lName">Last Name:</label>
-        <input type="text" id="lName" name="lName" value="<?php echo $memberData['lName']; ?>" required><br>
+        <label for="event_description">Description</label>
+        <input type="text" id="event_description" name="event_description" value="<?php echo $eventData['event_description']; ?>" required><br>
 
-        <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" value="<?php echo $memberData['phone']; ?>" required><br>
+        <label for="event_type">Event Type</label>
+        <input type="text" id="event_type" name="event_type" value="<?php echo $eventData['event_type']; ?>" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo $memberData['email']; ?>" required><br>
+        <label for="event_date">When?</label>
+        <input type="date" id="event_date" name="event_date" value="<?php echo $memberData['event_date']; ?>" required><br>
 
-        <label for="role">Role:</label>
-        <input type="text" id="role" name="role" value="<?php echo $memberData['role']; ?>" required><br>
-
-        
+       
         <button type="submit">Update</button>
         <?php if (isset($message)) : ?>
         <p class="message"><?php echo $message; ?></p>
     <?php endif; ?>
     </form>
     <button class="back">
-        <a href="members.php">Back</a>
+        <a href="events.php">Back</a>
     </button> 
    
     </main>
@@ -196,4 +188,3 @@ if (isset($_GET['memberId'])) {
    
 </body>
 </html>
-
