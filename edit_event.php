@@ -90,7 +90,7 @@ if (isset($_GET['event_id'])) {
            
             <a href="analytics.php">
                 <span class="material-icons-sharp">insights</span>
-                <h3>Analytics</h3>
+                <h3>Contributions</h3>
             </a>
             <a href="loans.php">
                 <span class="material-icons-sharp">insights</span>

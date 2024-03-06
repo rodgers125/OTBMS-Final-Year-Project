@@ -40,6 +40,9 @@ table{
 .deactivate-btn{
     background-color: var(--color-delete);
 }
+.activate-btn{
+    background-color: var(--color-success);
+}
 
 table p{
     padding-top: 10px;

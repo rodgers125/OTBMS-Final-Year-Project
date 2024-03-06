@@ -71,7 +71,7 @@ require 'connection.php';
         <h1>Group Members</h1>
        
         <?php
-$query = "SELECT memberId, fName, lName, phone, email, role, status FROM members";
+$query = "SELECT memberId, fName, lName, phone, email, status FROM members";
 $result = mysqli_query($conn, $query);
 
 if ($result) {
@@ -89,7 +89,7 @@ if ($result) {
                     <th>Last Name</th>
                     <th>Phone Number</th>
                     <th>Email</th>
-                    <th>Role</th> 
+                 
                     <th>Actions</th>                                   
                 </tr>
             </thead>
@@ -103,7 +103,7 @@ if ($result) {
         echo '<td>' . $row['lName'] . '</td>';
         echo '<td>' . $row['phone'] . '</td>';
         echo '<td>' . $row['email'] . '</td>';
-        echo '<td>' . $row['role'] . '</td>';
+       
         echo '<td>
                 <button class="view-btn" onclick="viewDetails(' . $row['memberId'] . ')">View Details</button>
                 <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>';
@@ -168,10 +168,13 @@ mysqli_close($conn);
     </div>
 <!--end of top-->
 
-
 <div class="all-details" style="display:none;">
     <h2 class="details-heading">More Details</h2>
-    <div class="events" id="memberDetails">       <!--style="display:none;" -->
+    <div class="events" id="memberDetails"> 
+    <div class="detail">
+            <h3>Full Name:</h3>
+            <p class="full-name" id="fullName">Rodgers Korir</p>
+            </div>      
         <div class="detail">
             <h3>Date Joined:</h3>
             <p class="date" id="dateJoined">3/3/2014</p>

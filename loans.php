@@ -13,7 +13,8 @@ $result = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-dashboard</title>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet" href="icons.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
 
 </head>
 <body>
@@ -31,7 +32,7 @@ $result = mysqli_query($conn, $query);
         </div>
 
         <div class="sidebar">
-            <a href="admin.php" class="active">
+            <a href="admin.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
@@ -44,7 +45,7 @@ $result = mysqli_query($conn, $query);
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
-            <a href="loans.php">
+            <a href="loans.php" class="active">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
@@ -66,102 +67,84 @@ $result = mysqli_query($conn, $query);
 
     <!-- Main Content -->
     <main>
-        <h1>Dashboard</h1>
+        <h1>Loans</h1>
 
         <div class="insights">
 
-            <!--groups-->
-            <div class="groups">
-                <span class="material-icons-sharp">analytics</span>
+            <!--loan requests-->
+            <div class="groups">               
+                <img src="images/loan-request.png" alt="Request Icon" class="icon">   
+               
                 <div class="middle">
                     <div class="left">
-                        <h3>Total Group Members</h3>
-                        <h1>25</h1>
+                        <a href="loan_request.php"><h3>View Loan Requests</h3>
+                        <img src="images/view.png" alt="Request Icon" class="view-icon">
+                        </a>
+                        <small class="text-muted">25 pending requests</small>
                     </div>
                    
                 </div>
                 <br>
-                <small class="text-muted">All Time</small>
+             
             </div>
             
-            <!--members-->
-            <div class="group_members">
-                <span class="material-icons-sharp">bar_chart</span>
+            <!--view loan details-->
+            <div class="groups">               
+                <img src="images/loan-list.png" alt="Request Icon" class="icon">   
+               
                 <div class="middle">
                     <div class="left">
-                        <h3>Total Amount of Loaned Issued</h3>
-                        <h1>KSh72,500</h1>
+                        <a href="loan_list.php"><h3>View Loan List and Details</h3>
+                        <img src="images/view.png" alt="Request Icon" class="view-icon">
+                        </a>
+                        <small class="text-muted">25 Total Active Loans</small>
+                      
                     </div>
-                 
+                   
                 </div>
-                <small class="text-muted">Last 1 Month</small>
+                <br>
+             
+            </div>
+            
+            <!--loan analytics-->
+            <div class="groups">               
+                <img src="images/loan-analytics.png" alt="Request Icon" class="icon">   
+               
+                <div class="middle">
+                    <div class="left">
+                        <a href="loan_analytics.php"><h3>View Loan Analytics</h3>
+                        <img src="images/view.png" alt="Request Icon" class="view-icon">
+                        </a>
+                        <small class="text-muted">loan insights</small>
+                    </div>
+                   
+                </div>
+                <br>
+             
             </div>
 
-            
-            <!--contributions-->
-            <div class="group_contributions">
-                <span class="material-icons-sharp">stacked_line_chart</span>
+            <!--loan history-->
+            <div class="groups">               
+                <img src="images/loan-history.png" alt="Request Icon" class="icon">   
+               
                 <div class="middle">
                     <div class="left">
-                        <h3>Total Contributions</h3>
-                        <h1>KSh20,000</h1>
+                        <a href="loan_history.php"><h3>View Loan History</h3>
+                        <img src="images/view.png" alt="Request Icon" class="view-icon">
+                        </a>
+                        <small class="text-muted">25 Total all time Loans</small>
                     </div>
-                    <div class="progress">
-                        <svg>
-                            <circle cx='38' cy='38' r='36'></circle>
-                        </svg>
-                        <div class="number">
-                            <p>80%</p>
-                        </div>
-                    </div>
+                   
                 </div>
-                <small class="text-muted">This Month Alone</small>
+                <br>
+             
             </div>
 
 
         </div>
-        <!--table of transactions-->
+       
 
-    <div class="recent-transactions">
-        <h2>Contributions</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Contribution ID</th>
-                    <th>Member Name</th>
-                    <th>Date of Payment</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Delete Record</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-           
-            <?php
-                    // Check if there are any records
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['contid'] . "</td>";
-                            echo "<td>" . $row['fullname'] . "</td>";
-                            echo "<td>" . $row['date'] . "</td>";
-                            echo "<td>" . $row['amount'] . "</td>";
-                            echo "<td>" . $row['description'] . "</td>";
-                            echo "<td><button class='delete-btn' onclick=\"deleteContribution(" . $row['contid'] . ")\">Delete</button></td>";
-                          
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>No records found.</td></tr>";
-                    }
-                    ?>
-               
-               
-            </tbody>
-        </table>
-        <a href="analytics.php">Show All</a>
-    </div>
+   
     </main>
 <!--this ends main-->
 

@@ -48,6 +48,7 @@ if (isset($_POST["submit"])) {
     <title>Register</title>
 </head>
 <body>
+  
     <form action ="" method="post">
     
     <div class="login-container">
@@ -72,7 +73,8 @@ if (isset($_POST["submit"])) {
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number<span>*</span></label>
-                    <input type="number" id="phone" name="phone" placeholder="e.g 0712345678" required>
+                    <input type="text" id="phone" name="phone" pattern="07\d{8}" placeholder="e.g 0712345678" required>
+                    <small class="text-muted">Please enter a 10-digit phone number starting with '07'.</small>
                 </div>
                 <div class="form-group">
                     <label for="password">Password<span>*</span></label>
@@ -95,7 +97,6 @@ if (isset($_POST["submit"])) {
     </div>
 
     </form>
-
 
     <script>
         function validateForm() {
