@@ -2,6 +2,7 @@
 require 'session.php';
 require 'connection.php';
 
+
 ?>
 
 <!DOCTYPE html>
@@ -9,10 +10,11 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-Loans</title>
+    <title>Admin-Loan-Analytics</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
+    <link rel="stylesheet" href="loan_analytics.css">
 
 </head>
 <body>
@@ -65,7 +67,9 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Loans</h1>
+       
+        <h1>Loan Analytics</h1>
+        <button class="btn-back"><a href="loans.php">Go Back</a></button>
 
         <div class="insights">
 
