@@ -68,85 +68,104 @@ require 'connection.php';
     <!-- Main Content -->
     <main>
        
-        <h1>Loan Analytics</h1>
+               
+    <h1>Loan Analytics</h1>
         <button class="btn-back"><a href="loans.php">Go Back</a></button>
 
         <div class="insights">
 
-            <!--loan requests-->
-            <div class="groups">               
-                <img src="images/loan-request.png" alt="Request Icon" class="icon">   
-               
+            <!--pie chart-->
+            <div class="groups">
                 <div class="middle">
                     <div class="left">
-                        <a href="loan_request.php"><h3>View Loan Requests</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">25 pending requests</small>
+                        <h2>Total Amount Disbursed</h2>
+                        <div class="pie-chart">
+                            <canvas id="pieChart"></canvas>
+                            <div class="legend">
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #FFD700;"></div>
+                                    <div>
+                                        <p>Personal Loans</p>
+                                        <p>Amount: <b>KSH 35000</b></p>
+                                    </div>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background-color: #00FFFF;"></div>
+                                    <div>
+                                        <p>Business Loans</p>
+                                        <p>Amount: <b>KSH 60000</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
                     </div>
-                   
                 </div>
-                <br>
-             
-            </div>
-            
-            <!--view loan details-->
-            <div class="groups">               
-                <img src="images/loan-list.png" alt="Request Icon" class="icon">   
-               
-                <div class="middle">
-                    <div class="left">
-                        <a href="loan_list.php"><h3>View Loan List and Details</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">25 Total Active Loans</small>
-                      
-                    </div>
-                   
-                </div>
-                <br>
-             
-            </div>
-            
-            <!--loan analytics-->
-            <div class="groups">               
-                <img src="images/loan-analytics.png" alt="Request Icon" class="icon">   
-               
-                <div class="middle">
-                    <div class="left">
-                        <a href="loan_analytics.php"><h3>View Loan Analytics</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">loan insights</small>
-                    </div>
-                   
-                </div>
-                <br>
-             
             </div>
 
-            <!--loan history-->
-            <div class="groups">               
-                <img src="images/loan-history.png" alt="Request Icon" class="icon">   
-               
-                <div class="middle">
-                    <div class="left">
-                        <a href="loan_history.php"><h3>View Loan History</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">25 Total all time Loans</small>
-                    </div>
-                   
-                </div>
-                <br>
-             
-            </div>
-
+            
 
         </div>
-       
 
+        <!--top borrowers table-->
+        <div class="table">
+        <h2>Top Borrowers</h2>
+        <table>
+          
+        <thead>
+       
+            <tr>
+           
+                <th>Member ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Total Amount Borrowed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be dynamically generated here based on data from the database -->
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td>KSH5,000.00</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+        </div>
+
+        <!--Frequent Borrowers  table-->
+
+        <div class="table">
+        <h2>Frequent Borrowers</h2>
+        <table>
+          
+        <thead>
+       
+            <tr>
+           
+                <th>Member ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Times Borrowed</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td>KSH5,000.00</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+        </div>
    
+
     </main>
 <!--this ends main-->
 
@@ -173,36 +192,25 @@ require 'connection.php';
                     
 <!--end of top-->
 
-
 <div class="upcoming-events">
-<h2>Upcoming Events</h2>
+<h2>What is in the page</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+    <ul>
+        <li>Total Amount Disbursed Chart</li>
+        <li>Top Borrowers Table</li>
+        <li>Frequent Borrowers Table</li>
+        <li>Outstanding Loans Table</li>
+        
+    </ul>
+   
+    
+    
+    
 </div>
-</div>
+                </div>
+            
+<!--end of upcoming events-->
+
 
 </div>
     
@@ -217,6 +225,8 @@ require 'connection.php';
     </div>
    </div>
 
+   
+   <script src="chart.js"></script>
    <script src="admin.js"></script>
 </body>
 </html>

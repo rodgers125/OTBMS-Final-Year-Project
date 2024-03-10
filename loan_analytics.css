@@ -3,5 +3,71 @@
     border-radius: 10px;
     height: 20px;
     width: 60px;
+    font-weight: bold;
     color: var(--color-white);     
+}
+main{
+   
+    width: 100%;
+    
+    
+}
+
+.middle{
+   min-width: 600px;
+   
+
+}
+
+.pie-chart{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    padding: 29px;  
+    
+   
+   
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+table{
+    margin-top: 20px;
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    
+}
+.table h2{
+    padding-top: 30px;
+}
+.events li{
+    padding: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+.upcoming-events{
+    width: 300px;
+   height: auto;
+
+
 }
