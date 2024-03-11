@@ -92,7 +92,7 @@ require 'connection.php';
                
                 <div class="middle">
                     <div class="left">
-                        <a href="loan_list.php"><h3>View Loan List and Details</h3>
+                        <a href="loan_list.php"><h3>View Active Loan List and Details</h3>
                         <img src="images/view.png" alt="Request Icon" class="view-icon">
                         </a>
                         <small class="text-muted">25 Total Active Loans</small>

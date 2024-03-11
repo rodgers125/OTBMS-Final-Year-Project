@@ -10,11 +10,13 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-Loan-Analytics</title>
+    <title>Admin-Loan-History</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
     <link rel="stylesheet" href="loan_analytics.css">
+    <link rel="stylesheet" href="loan_request.css">
+
 
 </head>
 <body>
@@ -69,46 +71,12 @@ require 'connection.php';
     <main>
        
                
-    <h1>Loan Analytics</h1>
+    <h1>Loan History</h1>
         <button class="btn-back"><a href="loans.php">Go Back</a></button>
 
-        <div class="insights">
-
-            <!--pie chart-->
-            <div class="groups">
-                <div class="middle">
-                    <div class="left">
-                        <h2>Total Amount Disbursed</h2>
-                        <div class="pie-chart">
-                            <canvas id="pieChart"></canvas>
-                            <div class="legend">
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background-color: #FFD700;"></div>
-                                    <div>
-                                        <p>Personal Loans</p>
-                                        <p>Amount: <b>KSH 35000</b></p>
-                                    </div>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background-color: #00FFFF;"></div>
-                                    <div>
-                                        <p>Business Loans</p>
-                                        <p>Amount: <b>KSH 60000</b></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>            
-                    </div>
-                </div>
-            </div>
-
-            
-
-        </div>
-
-        <!--top borrowers table-->
+        <!--Loan List Table table-->
         <div class="table">
-        <h2>Top Borrowers</h2>
+        <h2>Loan History</h2>
         <table>
           
         <thead>
@@ -117,8 +85,10 @@ require 'connection.php';
            
                 <th>Member ID</th>
                 <th>Full Name</th>
-                <th>Email</th>
-                <th>Total Amount Borrowed</th>
+                <th>Loan Amount</th>
+                <th>Loan Type</th>
+                <th>Date</th>
+                <th>Action</th>                
             </tr>
         </thead>
         <tbody>
@@ -126,44 +96,45 @@ require 'connection.php';
             <tr>
                 <td>1</td>
                 <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>KSH5,000.00</td>
+                <td>KSH 5000</td>
+                <td>Personal</td>
+                <td>22/3/2025</td>                
+                <td>
+                        <button class="btn-approve" onclick="approveLoan(<?= $loanRequest['id'] ?>)">Approve</button>
+                        <button class="btn-decline" onclick="declineLoan(<?= $loanRequest['id'] ?>)">Decline</button>
+                    </td>
+                
             </tr>
-            <!-- Add more rows as needed -->
-        </tbody>
-    </table>
-
-        </div>
-
-        <!--Frequent Borrowers  table-->
-
-        <div class="table">
-        <h2>Frequent Borrowers</h2>
-        <table>
-          
-        <thead>
-       
-            <tr>
-           
-                <th>Member ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Times Borrowed</th>
-            </tr>
-        </thead>
-        <tbody>
-           
             <tr>
                 <td>1</td>
                 <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>KSH5,000.00</td>
+                <td>KSH 5000</td>
+                <td>Business</td>
+                <td>22/3/2025</td>                
+                <td>
+                        <button class="btn-approve" onclick="approveLoan(<?= $loanRequest['id'] ?>)">Approve</button>
+                        <button class="btn-decline" onclick="declineLoan(<?= $loanRequest['id'] ?>)">Decline</button>
+                    </td>
+                
             </tr>
-            <!-- Add more rows as needed -->
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>KSH 5000</td>
+                <td>Personal</td>
+                <td>22/3/2025</td>                
+                <td>
+                        <button class="btn-approve" onclick="approveLoan(<?= $loanRequest['id'] ?>)">Approve</button>
+                        <button class="btn-decline" onclick="declineLoan(<?= $loanRequest['id'] ?>)">Decline</button>
+                    </td>
+                
+            </tr>
         </tbody>
     </table>
 
         </div>
+
+     
    
 
     </main>
@@ -197,8 +168,8 @@ require 'connection.php';
 <div class="events">
     <ul>
         <li><a href="loan_request.php">View Loan Request</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
-        <li><a href="loan_list.php">View Loans List and Details</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
-        <li><a href="loan_history.php">View Loans History</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>       
+        <li><a href="loan_analytics.php">View Loan Analytics</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="loan_history.php">View Loan History</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>       
     </ul>
    
     
