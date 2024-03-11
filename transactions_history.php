@@ -11,8 +11,11 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-dashboard</title>
+    <title>Admin-contributions</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="contribution.css">
+    <link rel="stylesheet" href="loan_analytics.css">
+    <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -31,7 +34,7 @@ $result = mysqli_query($conn, $query);
         </div>
 
         <div class="sidebar">
-            <a href="admin.php" class="active">
+        <a href="admin.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
@@ -39,6 +42,7 @@ $result = mysqli_query($conn, $query);
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
+           
            
             <a href="contributions.php">
                 <span class="material-icons-sharp">insights</span>
@@ -48,15 +52,15 @@ $result = mysqli_query($conn, $query);
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
-            <a href="transactions.php">
+            <a href="transactions.php" class="active">
                 <span class="material-icons-sharp">report_gmailerrorred</span>
                 <h3>Transactions</h3>
             </a>
+           
             <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
-          
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -67,72 +71,20 @@ $result = mysqli_query($conn, $query);
 
     <!-- Main Content -->
     <main>
-        <h1>Dashboard</h1>
+        <h1>Transactions</h1>
 
-        <div class="insights">
-
-            <!--groups-->
-            <div class="groups">
-                <span class="material-icons-sharp">analytics</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3>Total Group Members</h3>
-                        <h1>25</h1>
-                    </div>
-                   
-                </div>
-                <br>
-                <small class="text-muted">All Time</small>
-            </div>
-            
-            <!--members-->
-            <div class="group_members">
-                <span class="material-icons-sharp">bar_chart</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3>Total Amount of Loaned Issued</h3>
-                        <h1>KSh72,500</h1>
-                    </div>
-                 
-                </div>
-                <small class="text-muted">Last 1 Month</small>
-            </div>
-
-            
-            <!--contributions-->
-            <div class="group_contributions">
-                <span class="material-icons-sharp">stacked_line_chart</span>
-                <div class="middle">
-                    <div class="left">
-                        <h3>Total Contributions</h3>
-                        <h1>KSh20,000</h1>
-                    </div>
-                    <div class="progress">
-                        <svg>
-                            <circle cx='38' cy='38' r='36'></circle>
-                        </svg>
-                        <div class="number">
-                            <p>80%</p>
-                        </div>
-                    </div>
-                </div>
-                <small class="text-muted">This Month Alone</small>
-            </div>
-
-
-        </div>
-        <!--table of transactions-->
-
+      
     <div class="recent-transactions">
-        <h2>Contributions</h2>
+        <h2>Transaction Records</h2>  
+        
         <table>
             <thead>
                 <tr>
-                    <th>Contribution ID</th>
-                    <th>Member Name</th>
-                    <th>Date of Payment</th>
+                    <th>Transaction ID</th>
+                    <th>Full Name</th>
+                    <th>Date and Time</th>
                     <th>Amount</th>
-                    <th>Description</th>
+                    <th>Payment Method</th>
                     <th>Delete Record</th>
                     
                 </tr>
@@ -160,8 +112,9 @@ $result = mysqli_query($conn, $query);
                
                
             </tbody>
-        </table>
-        <a href="transactions.php">Show All</a>
+            </table>
+        
+        
     </div>
     </main>
 <!--this ends main-->
@@ -186,37 +139,15 @@ $result = mysqli_query($conn, $query);
             </div>
         </div>
     </div>
-                    
 <!--end of top-->
 
 
 <div class="upcoming-events">
-<h2>Upcoming Events</h2>
+<h2>Related Pages</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+<ul>
+        <li><a href="record_transaction.php">Record Transactions</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+      </ul>
 </div>
 </div>
 

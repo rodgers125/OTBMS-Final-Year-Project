@@ -41,7 +41,7 @@ require 'connection.php';
                 <h3>Members</h3>
             </a>
            
-            <a href="analytics.php">
+            <a href="contributions.php">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
@@ -49,14 +49,15 @@ require 'connection.php';
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
+            <a href="transactions.php">
+                <span class="material-icons-sharp">report_gmailerrorred</span>
+                <h3>Transactions</h3>
+            </a>
             <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
-            <a href="reports.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Reports</h3>
-            </a>
+           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -70,7 +71,7 @@ require 'connection.php';
        
                
     <h1>Active Loan List and Details</h1>
-        <button class="btn-back"><a href="loans.php">Go Back</a></button>
+        <button class="btn-back"><a href="loans.php">Back</a></button>
 
 
         <!--Loan List Table table-->

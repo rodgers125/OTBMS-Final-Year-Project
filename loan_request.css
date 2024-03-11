@@ -1,4 +1,4 @@
-.details-btn, .btn-approve, .btn-reject{
+.view-btn, .btn-approve, .btn-reject{
     color: white;
     border: none;
    height: 30px;
@@ -12,7 +12,7 @@
 .btn-reject{
     background-color: var(--color-danger);
 }
-.details-btn{
+.view-btn{
     background-color: var(--color-primary);
 }
 
@@ -23,10 +23,27 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: var(--color-info-light);
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-width: 30%;
+    box-shadow: var(--box-shadow);
     z-index: 1000;
+}
+
+.details-modal h2{
+    margin-bottom: 0.8rem;
+}
+.detail h3{
+    color: var(--color-info-dark);
+   
+    font-size: 15px;
+    padding: 10px;
+    padding-left: 0;
+    
+}
+.detail p{
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
 }
 
 /* Styles for the close button in the modal */
@@ -37,4 +54,5 @@
     color: #fff;
     border: none;
     cursor: pointer;
+    float: right;
 }

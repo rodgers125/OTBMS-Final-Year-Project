@@ -1,6 +1,39 @@
 <?php
 require 'session.php';
-require 'connection.php';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve form data
+    $member = $_POST['member'];
+    $date = $_POST['date'];
+    $amount = $_POST['amount'];
+    $description = $_POST['description'];
+
+    // SQL query to insert data into the "contributions" table
+    $query = "INSERT INTO contributions (fullname, date, amount, description) VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $query);
+
+    if ($stmt) {
+        // Bind parameters and execute the statement
+        mysqli_stmt_bind_param($stmt, "ssds", $member, $date, $amount, $description);
+        mysqli_stmt_execute($stmt);
+
+        // Check for success
+        if (mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "<script>alert('Contribution recorded successfully');</script>";
+        } else {
+            echo "<script>alert('Failed to record contribution');</script>";
+        }
+
+        // Close the statement
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "<script>alert('Error in prepared statement');</script>";
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
 
 ?>
 
@@ -9,10 +42,11 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-Loans</title>
+    <title>Admin-contributions</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="contribution.css">
     <link rel="stylesheet" href="icons.css"> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
 <body>
@@ -30,7 +64,7 @@ require 'connection.php';
         </div>
 
         <div class="sidebar">
-            <a href="admin.php">
+        <a href="admin.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
@@ -39,23 +73,24 @@ require 'connection.php';
                 <h3>Members</h3>
             </a>
            
+           
             <a href="contributions.php">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
-            <a href="loans.php" class="active">
+            <a href="loans.php">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
-            <a href="transactions.php">
+            <a href="transactions.php" class="active">
                 <span class="material-icons-sharp">report_gmailerrorred</span>
                 <h3>Transactions</h3>
             </a>
+           
             <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
-           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -66,84 +101,46 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Loans</h1>
+        <h1>Transactions</h1>
 
+      
         <div class="insights">
 
-            <!--loan requests-->
-            <div class="groups">               
-                <img src="images/loan-request.png" alt="Request Icon" class="icon">   
-               
-                <div class="middle">
-                    <div class="left">
-                        <a href="loan_request.php"><h3>View Loan Requests</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">25 pending requests</small>
-                    </div>
-                   
-                </div>
-                <br>
-             
-            </div>
-            
-            <!--view loan details-->
-            <div class="groups">               
-                <img src="images/loan-list.png" alt="Request Icon" class="icon">   
-               
-                <div class="middle">
-                    <div class="left">
-                        <a href="loan_list.php"><h3>View Active Loan List and Details</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">25 Total Active Loans</small>
-                      
-                    </div>
-                   
-                </div>
-                <br>
-             
-            </div>
-            
-            <!--loan analytics-->
-            <div class="groups">               
-                <img src="images/loan-analytics.png" alt="Request Icon" class="icon">   
-               
-                <div class="middle">
-                    <div class="left">
-                        <a href="loan_analytics.php"><h3>View Loan Analytics</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">loan insights</small>
-                    </div>
-                   
-                </div>
-                <br>
-             
-            </div>
-
-            <!--loan history-->
-            <div class="groups">               
-                <img src="images/loan-history.png" alt="Request Icon" class="icon">   
-               
-                <div class="middle">
-                    <div class="left">
-                        <a href="loan_history.php"><h3>View Loan History</h3>
-                        <img src="images/view.png" alt="Request Icon" class="view-icon">
-                        </a>
-                        <small class="text-muted">25 Total all time Loans</small>
-                    </div>
-                   
-                </div>
-                <br>
-             
-            </div>
-
-
+<!--record a transaction-->
+<div class="groups">               
+    <img src="images/transaction-record.png" alt="Request Icon" class="icon">   
+   
+    <div class="middle">
+        <div class="left">
+            <a href="record_transaction.php"><h3>Record a Transaction</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted">Loans and Contribution</small>
         </div>
        
+    </div>
+    <br>
+ 
+</div>
 
+<!--view Transaction history-->
+<div class="groups">               
+    <img src="images/transaction-history.png" alt="Request Icon" class="icon">   
    
+    <div class="middle">
+        <div class="left">
+            <a href="transactions_history.php"><h3>View Transactions</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted">25 Total Transactions</small>
+          
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
+</div>
     </main>
 <!--this ends main-->
 
@@ -167,7 +164,6 @@ require 'connection.php';
             </div>
         </div>
     </div>
-                    
 <!--end of top-->
 
 

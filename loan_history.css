@@ -1,0 +1,12 @@
+.btn-download button{
+    color: white;
+    border: none;
+   height: 30px;
+   border-radius: 5px;
+   padding: 5px;
+   cursor: pointer;   
+   background-color: var(--color-success);
+   float: right;
+   margin-top: 20px;
+   min-width: 50px;
+}

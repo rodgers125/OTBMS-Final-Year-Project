@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Members</h3>
             </a>
            
-            <a href="analytics.php">
+            <a href="contributions.php">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
@@ -79,14 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
+            <a href="transactions.php">
+                <span class="material-icons-sharp">report_gmailerrorred</span>
+                <h3>Transactions</h3>
+            </a>
             <a href="events.php" class="active">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
-            <a href="reports.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Reports</h3>
-            </a>
+           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>

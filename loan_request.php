@@ -44,7 +44,7 @@ require 'connection.php';
                 <h3>Members</h3>
             </a>
            
-            <a href="analytics.php">
+            <a href="contributions.php">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
@@ -52,14 +52,15 @@ require 'connection.php';
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
+            <a href="transactions.php">
+                <span class="material-icons-sharp">report_gmailerrorred</span>
+                <h3>Transactions</h3>
+            </a>
             <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
-            <a href="reports.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Reports</h3>
-            </a>
+          
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -73,7 +74,7 @@ require 'connection.php';
        
                
     <h1>Loan Requests</h1>
-        <button class="btn-back"><a href="loans.php">Go Back</a></button>
+        <button class="btn-back"><a href="loans.php">Back</a></button>
 
 
         <!--Loan List Table table-->
@@ -141,6 +142,7 @@ require 'connection.php';
     </table>
 
         </div>
+
 
      
    <!-- Details Modal -->
@@ -211,7 +213,7 @@ require 'connection.php';
 <h2>Related Pages</h2>
 <div class="events">
     <ul>
-        <li><a href="loan_request.php">View Loan Request</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="loan_list.php">View Loan List and Details</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
         <li><a href="loan_analytics.php">View Loan Analytics</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
         <li><a href="loan_history.php">View Loan History</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>       
     </ul>
@@ -239,7 +241,8 @@ require 'connection.php';
    </div>
 
    
-   <script src="chart.js"></script>
+   <script src="loan_request.js"></script>
    <script src="admin.js"></script>
+   
 </body>
 </html>
