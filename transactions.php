@@ -1,40 +1,6 @@
 <?php
+require 'connection.php';
 require 'session.php';
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $member = $_POST['member'];
-    $date = $_POST['date'];
-    $amount = $_POST['amount'];
-    $description = $_POST['description'];
-
-    // SQL query to insert data into the "contributions" table
-    $query = "INSERT INTO contributions (fullname, date, amount, description) VALUES (?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
-
-    if ($stmt) {
-        // Bind parameters and execute the statement
-        mysqli_stmt_bind_param($stmt, "ssds", $member, $date, $amount, $description);
-        mysqli_stmt_execute($stmt);
-
-        // Check for success
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "<script>alert('Contribution recorded successfully');</script>";
-        } else {
-            echo "<script>alert('Failed to record contribution');</script>";
-        }
-
-        // Close the statement
-        mysqli_stmt_close($stmt);
-    } else {
-        echo "<script>alert('Error in prepared statement');</script>";
-    }
-
-    // Close the database connection
-    mysqli_close($conn);
-}
-
 ?>
 
 <!DOCTYPE html>

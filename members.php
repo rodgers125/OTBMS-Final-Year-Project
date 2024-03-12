@@ -1,7 +1,6 @@
 <?php
-require 'session.php';
 require 'connection.php';
-
+require 'session.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,10 +8,10 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-members</title>
-    <link rel="stylesheet" href="members.css">
+    <title>Admin-contributions</title>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="contribution.css">   
+    <link rel="stylesheet" href="contribution.css">
+    <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -31,11 +30,11 @@ require 'connection.php';
         </div>
 
         <div class="sidebar">
-            <a href="admin.php">
+        <a href="admin.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="members.php" class="active">
+            <a href="members.php"  class="active">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
@@ -58,7 +57,6 @@ require 'connection.php';
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
-           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -69,81 +67,46 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Group Members</h1>
-       
-        <?php
-$query = "SELECT memberId, fName, lName, phone, email, status FROM members";
-$result = mysqli_query($conn, $query);
-
-if ($result) {
-    echo '<form action="" method="get">
-            <label for="search">Search:</label>
-            <input type="text" id="search" name="search">
-            <button class="form-btn" type="submit">Search</button>
-          </form>';
-
-    echo '<table>
-            <thead>
-                <tr>
-                    <th>#Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                 
-                    <th>Actions</th>                                   
-                </tr>
-            </thead>
-            <tbody>';
-
-    // Fetch data and populate the table
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr>';
-        echo '<td>' . $row['memberId'] . '</td>';
-        echo '<td>' . $row['fName'] . '</td>';
-        echo '<td>' . $row['lName'] . '</td>';
-        echo '<td>' . $row['phone'] . '</td>';
-        echo '<td>' . $row['email'] . '</td>';
-       
-        echo '<td>
-                <button class="view-btn" onclick="viewDetails(' . $row['memberId'] . ')">View Details</button>
-                <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>';
-
-        if ($row['status'] === 'active') {
-            echo '<button class="deactivate-btn" onclick="toggleStatus(' . $row['memberId'] . ', \'deactivate\')">Deactivate</button>';
-        } else {
-            echo '<button class="deactivate-btn" onclick="toggleStatus(' . $row['memberId'] . ', \'activate\')">Activate</button>';
-        }
-
-        echo '</td>';
-
-        echo '</tr>';
-    }
-
-    echo '</tbody></table>';
-
-    //getting total number of members
-    $totalMembers = mysqli_num_rows($result);
-    //showing number of entries being shown
-    $entriesShown = mysqli_num_rows($result);
-    echo '<p>Showing ' . $entriesShown . ' / ' . $totalMembers . '</p>';
-
-    // Free the result set
-    mysqli_free_result($result);
-} else {
-    // Display an error message if the query fails
-    echo "Error executing query: " . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-
+        <h1>Transactions</h1>
 
       
-    
-        
+        <div class="insights">
+
+<!--add member-->
+<div class="groups">               
+    <img src="images/member.png" alt="Request Icon" class="icon">   
    
+    <div class="middle">
+        <div class="left">
+            <a href="add_members.php"><h3>Add a Member</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted">members added to a group</small>
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
+
+<!--view Transaction history-->
+<div class="groups">               
+    <img src="images/transaction-history.png" alt="Request Icon" class="icon">   
+   
+    <div class="middle">
+        <div class="left">
+            <a href="members_list.php"><h3>View Members List</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted">25 Total Group Members</small>
+          
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
+</div>
     </main>
 <!--this ends main-->
 
@@ -169,47 +132,41 @@ mysqli_close($conn);
     </div>
 <!--end of top-->
 
-<div class="all-details" style="display:none;">
-    <h2 class="details-heading">More Details</h2>
-    <div class="events" id="memberDetails"> 
-    <div class="detail">
-            <h3>Full Name:</h3>
-            <p class="full-name" id="fullName">Rodgers Korir</p>
-            </div>      
-        <div class="detail">
-            <h3>Date Joined:</h3>
-            <p class="date" id="dateJoined">3/3/2014</p>
-            </div> 
-        
-        <div class="detail">
-            <h3>Total Contributions made Upto Date:</h3>
-            <p class="amount" id="totalContributions">KSH 10000 </p>
+
+<div class="upcoming-events">
+<h2>Upcoming Events</h2>
+<div class="events">
+    <div class="event">
+        <div class="event-photo">
+            <img src="./images/event.png" alt="">
         </div>
-        <div class="detail">
-            <h3>Last Contribution Made:</h3>
-            <p class="amount" id="lastContribution">KSH 3000</p>
-        </div>
-        <div class="detail">
-            <h3>Total Loans Borrowed Upto date:</h3>
-            <p class="amount" id="totalLoansBorrowed">KSH 40000</p>
-        </div>
-        <div class="detail">
-            <h3>Total Loans Repayed Upto Date:</h3>
-            <p class="amount" id="totalLoansRepaid">KSH 30000</p>
-        </div>
-        <div class="detail">
-            <h3>Loan Limit:</h3>
-            <p class="amount" id="loanLimit">KSH 50000</p>
-        </div>
-        <div class="detail">
-            <h3>Loan Balance:</h3>
-            <p class="amount" id="loanBalance">KSH 6000</p>
+        <div class="event-about">
+            <p><b>2/1/2024</b> Group Meeting</p>
         </div>
     </div>
- </div>
-
- </div>
+    <div class="event">
+        <div class="event-photo">
+            <img src="./images/event.png" alt="">
+        </div>
+        <div class="event-about">
+            <p><b>17/2/2024</b> Group Meeting</p>
+        </div>
+    </div>
+    <div class="event">
+        <div class="event-photo">
+            <img src="./images/event.png" alt="">
+        </div>
+        <div class="event-about">
+            <p><b>20/3/2024</b> Group Meeting</p>
+        </div>
+    </div>
 </div>
+</div>
+
+</div>
+    
+   </div>  
+
 
    <div class="footer">
     <div class="row">
@@ -218,10 +175,7 @@ mysqli_close($conn);
         </div>
     </div>
    </div>
-                
+
    <script src="admin.js"></script>
-   <script src="members.js"></script>
-   
 </body>
 </html>
-

@@ -1,6 +1,8 @@
-document.getElementById('date').addEventListener('input', function() {
-    // Update the value with the current date and time in the local time zone
+function getCurrentDateTime() {
     const now = new Date();
     const localISOString = new Date(now - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
-    this.value = localISOString;
-});
+    return localISOString;
+}
+
+// Set the default value to the current date and time
+document.getElementById('date').defaultValue = getCurrentDateTime();

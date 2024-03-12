@@ -1,49 +1,13 @@
-<?php
-require 'session.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $event_title = $_POST['event_title'];
-    $event_description = $_POST['event_description'];
-    $event_type = $_POST['event_type'];
-    $event_date = $_POST['event_date'];
-
-    // SQL query to insert data into the "events" table
-    $query = "INSERT INTO events (event_title, event_description, event_type, event_date) VALUES (?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
-
-    if ($stmt) {
-        // Bind parameters and execute the statement
-        mysqli_stmt_bind_param($stmt, "ssss", $event_title, $event_description, $event_type, $event_date);
-        mysqli_stmt_execute($stmt);
-
-        // Check for success
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "<script>alert('Event has been scheduled successfully');</script>";
-        } else {
-            echo "<script>alert('Failed to Schedule the event');</script>";
-        }
-
-        // Close the statement
-        mysqli_stmt_close($stmt);
-    } else {
-        echo "<script>alert('Error in prepared statement');</script>";
-    }
-
-    // Close the database connection
-    mysqli_close($conn);
-}
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-events</title>
+    <title>Admin-contributions</title>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="event.css">
+    <link rel="stylesheet" href="contribution.css">
+    <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -62,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="sidebar">
-            <a href="admin.php">
+        <a href="admin.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
@@ -70,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
+           
            
             <a href="contributions.php">
                 <span class="material-icons-sharp">insights</span>
@@ -83,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="material-icons-sharp">report_gmailerrorred</span>
                 <h3>Transactions</h3>
             </a>
+           
             <a href="events.php" class="active">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
-           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -98,103 +63,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <main>
-        <h1>Events</h1>
-        <div class="events">
-            <h3>Schedule an Event</h3>
-            <div class="form-container">
-            <div class="events-form">                
-                <form action="" method="post">
-                <div class="form-group">
-                    <label for="member">Title</label>
-                    <input type="text" id="event_title" name="event_title" required>                    
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" id="event_description" name="event_description" required>                    
-                </div>
-                <div class="form-group">
-                    <label for="eventType">Event Type</label>
-                    <select name="event_type" id="event_type" required>
-                        <option value="virtual">Virtual</option>
-                        <option value="physical">Physical</option>                        
-                    </select>
-                </div>
-    
-                <div class="form-group">
-                    <label for="date">When?</label>
-                    <input type="date" id="event_date" name="event_date" required>                    
-                </div>
-             
-               
-                <div class="form-group">
-                    <button type="submit" name="submit">Schedule</button>
-                </div>
-                </form>
-                
-            </div>
-           
-    </div>
+        <h1>Transactions</h1>
 
-        </div>
-
-        <div class="all-events">
-            <h3>All  Events</h3>
-        <?php
-// Include your database connection logic or any necessary files
-require 'connection.php';
-
-// Fetch events from the database and order them by date in ascending order
-$query = "SELECT * FROM events ORDER BY event_date ASC";
-$result = mysqli_query($conn, $query);
-
-if ($result) {
-    echo '<div class="all-events">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>';
-
-    // Loop through the result set and display each event's details
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr>';
-        echo '<td>' . $row['event_id'] . '</td>';
-        echo '<td>' . $row['event_title'] . '</td>';
-        echo '<td>' . $row['event_description'] . '</td>';
-        echo '<td>' . $row['event_type'] . '</td>';
-        echo '<td>' . $row['event_date'] . '</td>';
-        echo '<td>
-                <button class="editEvent" onclick="editEvent(' . $row['event_id'] . ')">Edit</button>
-                <button class="removeEvent" onclick="removeEvent(' . $row['event_id'] . ')">Remove</button>
-                </td>';
-            
-        echo '</tr>';
-    }
-
-    echo '</tbody></table></div>';
-
-    // Free the result set
-    mysqli_free_result($result);
-} else {
-    // Display an error message if the query fails
-    echo "Error executing query: " . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-
-    
-         </div>
       
+        <div class="insights">
+
+<!--schedule an event-->
+<div class="groups">               
+    <img src="images/meeting.png" alt="Request Icon" class="icon">   
    
+    <div class="middle">
+        <div class="left">
+            <a href="schedule_event.php"><h3>Schedule an Event</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted">Meeting and Events</small>
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
+
+<!--view events-->
+<div class="groups">               
+    <img src="images/event-schedule.png" alt="Request Icon" class="icon">   
+   
+    <div class="middle">
+        <div class="left">
+            <a href="all_events.php"><h3>View Scheduled Events</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted">25 Total Events and Meetings</small>
+          
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
+</div>
     </main>
 <!--this ends main-->
 
@@ -224,51 +132,36 @@ mysqli_close($conn);
 <div class="upcoming-events">
 <h2>Upcoming Events</h2>
 <div class="events">
-<?php
-
-require 'connection.php';
-
-// Fetch events from the database, ordered by the most upcoming date
-$query = "SELECT event_date, event_title FROM events ORDER BY event_date ASC";
-$result = mysqli_query($conn, $query);
-
-if ($result) {
-    // Loop through the events and generate HTML for each
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="event">';
-        echo '    <div class="event-photo">';
-        echo '        <img src="./images/event.png" alt="">';
-        echo '    </div>';
-        echo '    <div class="event-about">';
-        echo '        <p><b>' . $row['event_date'] . '</b> ' . $row['event_title'] . '</p>';
-        echo '    </div>';
-        echo '</div>';
-    }
-
-    // Free the result set
-    mysqli_free_result($result);
-} else {
-    // Display an error message if the query fails
-    echo "Error executing query: " . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-
-    
-    
+    <div class="event">
+        <div class="event-photo">
+            <img src="./images/event.png" alt="">
+        </div>
+        <div class="event-about">
+            <p><b>2/1/2024</b> Group Meeting</p>
+        </div>
+    </div>
+    <div class="event">
+        <div class="event-photo">
+            <img src="./images/event.png" alt="">
+        </div>
+        <div class="event-about">
+            <p><b>17/2/2024</b> Group Meeting</p>
+        </div>
+    </div>
+    <div class="event">
+        <div class="event-photo">
+            <img src="./images/event.png" alt="">
+        </div>
+        <div class="event-about">
+            <p><b>20/3/2024</b> Group Meeting</p>
+        </div>
+    </div>
 </div>
 </div>
 
 </div>
     
    </div>  
-
-   
-
-
-<!--footer starts here-->
 
 
    <div class="footer">
@@ -278,8 +171,7 @@ mysqli_close($conn);
         </div>
     </div>
    </div>
-   <script src="events.js"></script>
+
    <script src="admin.js"></script>
-  
 </body>
 </html>

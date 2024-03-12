@@ -10,11 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lName = $_POST['lName'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    $role = $_POST['role'];
+   
 
    
     // Update member information in the database
-    $query = "UPDATE members SET fName = '$fName', lName = '$lName', phone = '$phone', email = '$email', role = '$role' WHERE memberId = $memberId";
+    $query = "UPDATE members SET fName = '$fName', lName = '$lName', phone = '$phone', email = '$email' WHERE memberId = $memberId";
 
     // Execute the query
     $result = mysqli_query($conn, $query);
@@ -139,8 +139,7 @@ if (isset($_GET['memberId'])) {
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="<?php echo $memberData['email']; ?>" required><br>
 
-        <label for="role">Role:</label>
-        <input type="text" id="role" name="role" value="<?php echo $memberData['role']; ?>" required><br>
+       
 
         
         <button type="submit">Update</button>

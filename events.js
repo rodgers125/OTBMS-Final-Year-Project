@@ -1,4 +1,16 @@
 
+//default date and time
+function getCurrentDateTime() {
+    const now = new Date();
+    const localISOString = new Date(now - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+    return localISOString;
+}
+
+// Set the default value to the current date and time
+document.getElementById('event_date').defaultValue = getCurrentDateTime();
+
+
+
 function removeEvent(events_id) {
     if (confirm('Are you sure you want to remove this Event?')) {
         var url = 'delete_event.php?id=' + events_id;

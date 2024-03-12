@@ -1,43 +1,42 @@
 <?php
+require 'connection.php';
 require 'session.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $member = $_POST['member'];
-    $date = $_POST['date'];
-    $amount = $_POST['amount'];
-    $payment_method = $_POST['payment_method'];
+if (isset($_POST["submit"])) {    
+    $fName = $_POST["fName"];
+    $lName = $_POST["lName"];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
 
-    // SQL query to insert data into the "contributions" table
-    $query = "INSERT INTO contributions (fullname, date, amount, description) VALUES (?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
+    
+    if ($password !== $confirmPassword) {               //checking if passwords really march
+        echo "<script>alert('Passwords do not match');</script>";
+    } else {
+        
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); //hashing the password
 
-    if ($stmt) {
-        // Bind parameters and execute the statement
-        mysqli_stmt_bind_param($stmt, "ssds", $member, $date, $amount, $payment_method);
-        mysqli_stmt_execute($stmt);
+        // Use prepared statements to prevent SQL injection
+        $query = "INSERT INTO members (fName, lName, email, phone, password, registration_date) VALUES (?, ?, ?, ?, ?, NOW())";
 
-        // Check for success
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "<script>alert('Transaction recorded successfully');</script>";
+        $preparedSql = mysqli_prepare($conn, $query);
+
+        if ($preparedSql) {
+            mysqli_stmt_bind_param($preparedSql, 'sssss', $fName, $lName, $email, $phone, $hashedPassword);
+            mysqli_stmt_execute($preparedSql);
+
+            echo "<script>alert(' Member has been Added Successfully');</script>";
+           
+           
         } else {
-            echo "<script>alert('Failed to record Transaction');</script>";
-            
+            echo "<script>alert('Error in prepared statement');</script>";
         }
 
-        // Close the statement
-        mysqli_stmt_close($stmt);
-    } else {
-        echo "<script>alert('Error in prepared statement');</script>";
-        // Add more detailed error message for development purposes
-        // echo "<script>alert('".mysqli_error($conn)."');</script>";
+        mysqli_stmt_close($preparedSql);
     }
-
-    // Close the database connection
-    mysqli_close($conn);
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="record_transaction.css">
     <link rel="stylesheet" href="loan_analytics.css">
+    <link rel="stylesheet" href="members.css"> 
     <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="members.php">
+            <a href="members.php"  class="active">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
-            <a href="transactions.php" class="active">
+            <a href="transactions.php">
                 <span class="material-icons-sharp">report_gmailerrorred</span>
                 <h3>Transactions</h3>
             </a>
@@ -104,35 +104,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <main>
-        <h1>Transactions</h1>
+        <h1>Members Form</h1>
 
       
     <div class="recent-transactions">
-        <h2>Record a Transaction</h2>               
+        <h2>Add Member</h2>               
         <div class="form-container">
             <div class="contribution-form">                
                 <form action="" method="post">
                 <div class="form-group">
-                    <label for="member">Full Name</label>
-                    <input type="text" id="member" name="member" required>                    
+                    <label for="firstname">First Name<span>*</span></label>
+                    <input type="text" id="fName" name="fName" placeholder="e.g Andrew" required>
                 </div>
                 <div class="form-group">
-                    <label for="date">Date  of transaction:</label><br>
-                    <input type="datetime-local" id="date" name="date"/>                 
-                                       
+                    <label for="lastname">Last Name<span>*</span></label>
+                    <input type="text" id="lName" name="lName" placeholder="e.g maina" required>
                 </div>
                 <div class="form-group">
-                    <label for="amount">Amount:</label>
-                    <input type="number" id="amount" name="amount" step="0.01" required>
-                    
+                    <label for="email">Email<span>*</span></label>
+                    <input type="email" id="email" name="email" placeholder="e.g abc@gmail.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="payment_method">Payment Method:</label><br>
-                    <select id="payment_method" name="payment_method" required>
-                        <option value="Mpesa">Mpesa</option>
-                        <option value="Bank Payment">Bank Payment</option>                        
-                        <option value="Cash Payment">Cash Payment</option>
-                    </select>
+                    <label for="phone">Phone Number<span>*</span></label>
+                    <input type="text" id="phone" name="phone" pattern="07\d{8}" placeholder="e.g 0712345678" required>
+                    <small class="text-muted">Please enter a 10-digit phone number starting with '07'.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password<span>*</span></label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" id="ConfirmPassword" name="confirmPassword" required>
+                    <p class="error-message" id="passwordError"></p>
                 </div>
 
                 <div class="form-group">
@@ -175,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h2>Related Pages</h2>
 <div class="events">
 <ul>
-        <li><a href="transactions_history.php">View Transactions</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="members_list.php">View Members List</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
       </ul>
 </div>
 </div>

@@ -141,7 +141,7 @@ if (isset($_GET['event_id'])) {
     <?php endif; ?>
     </form>
     <button class="back">
-        <a href="events.php">Back</a>
+        <a href="all_events.php">Back</a>
     </button> 
    
     </main>

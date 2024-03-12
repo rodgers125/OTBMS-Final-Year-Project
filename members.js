@@ -76,6 +76,16 @@ function editMember(memberId) {
   window.location.href = 'edit_member.php?memberId=' + memberId;
 }
 
+// Function to open the details modal
+function openDetailsModal() {
+  document.getElementById('detailsModal').style.display = 'block';
+}
+
+// Function to close the details modal
+function closeDetailsModal() {
+  document.getElementById('detailsModal').style.display = 'none';
+}
+
 
 
 //deactivating a user

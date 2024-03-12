@@ -1,54 +1,49 @@
 <?php
 require 'session.php';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
-    $member = $_POST['member'];
-    $date = $_POST['date'];
-    $amount = $_POST['amount'];
-    $payment_method = $_POST['payment_method'];
+    $event_title = $_POST['event_title'];
+    $event_description = $_POST['event_description'];
+    $event_type = $_POST['event_type'];
+    $event_date = $_POST['event_date'];
 
-    // SQL query to insert data into the "contributions" table
-    $query = "INSERT INTO contributions (fullname, date, amount, description) VALUES (?, ?, ?, ?)";
+    // SQL query to insert data into the "events" table
+    $query = "INSERT INTO events (event_title, event_description, event_type, event_date) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
         // Bind parameters and execute the statement
-        mysqli_stmt_bind_param($stmt, "ssds", $member, $date, $amount, $payment_method);
+        mysqli_stmt_bind_param($stmt, "ssss", $event_title, $event_description, $event_type, $event_date);
         mysqli_stmt_execute($stmt);
 
         // Check for success
         if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "<script>alert('Transaction recorded successfully');</script>";
+            echo "<script>alert('Event has been scheduled successfully');</script>";
         } else {
-            echo "<script>alert('Failed to record Transaction');</script>";
-            
+            echo "<script>alert('Failed to Schedule the event');</script>";
         }
 
         // Close the statement
         mysqli_stmt_close($stmt);
     } else {
         echo "<script>alert('Error in prepared statement');</script>";
-        // Add more detailed error message for development purposes
-        // echo "<script>alert('".mysqli_error($conn)."');</script>";
     }
 
     // Close the database connection
     mysqli_close($conn);
 }
-?>
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contributions</title>
+    <title>Admin-events</title>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="record_transaction.css">
-    <link rel="stylesheet" href="loan_analytics.css">
-    <link rel="stylesheet" href="icons.css"> 
+    <link rel="stylesheet" href="event.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -67,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="sidebar">
-        <a href="admin.php">
+            <a href="admin.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
@@ -75,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
-           
            
             <a href="contributions.php">
                 <span class="material-icons-sharp">insights</span>
@@ -85,15 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
-            <a href="transactions.php" class="active">
+            <a href="transactions.php">
                 <span class="material-icons-sharp">report_gmailerrorred</span>
                 <h3>Transactions</h3>
             </a>
-           
-            <a href="events.php">
+            <a href="events.php" class="active">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
+           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -104,47 +98,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <main>
-        <h1>Transactions</h1>
-
-      
-    <div class="recent-transactions">
-        <h2>Record a Transaction</h2>               
-        <div class="form-container">
-            <div class="contribution-form">                
+        <h1>Events</h1>
+        <button class="btn-back"><a href="events.php">Back</a></button>
+        <div class="events">
+            <h3>Schedule an Event</h3>
+            <div class="form-container">
+            <div class="events-form">                
                 <form action="" method="post">
                 <div class="form-group">
-                    <label for="member">Full Name</label>
-                    <input type="text" id="member" name="member" required>                    
+                    <label for="member">Title</label>
+                    <input type="text" id="event_title" name="event_title" required>                    
                 </div>
                 <div class="form-group">
-                    <label for="date">Date  of transaction:</label><br>
-                    <input type="datetime-local" id="date" name="date"/>                 
-                                       
+                    <label for="description">Description</label>
+                    <input type="text" id="event_description" name="event_description" required>                    
                 </div>
                 <div class="form-group">
-                    <label for="amount">Amount:</label>
-                    <input type="number" id="amount" name="amount" step="0.01" required>
-                    
-                </div>
-                <div class="form-group">
-                    <label for="payment_method">Payment Method:</label><br>
-                    <select id="payment_method" name="payment_method" required>
-                        <option value="Mpesa">Mpesa</option>
-                        <option value="Bank Payment">Bank Payment</option>                        
-                        <option value="Cash Payment">Cash Payment</option>
+                    <label for="eventType">Event Type</label>
+                    <select name="event_type" id="event_type" required>
+                        <option value="virtual">Virtual</option>
+                        <option value="physical">Physical</option>                        
                     </select>
                 </div>
-
+    
                 <div class="form-group">
-                    <button type="submit" name="submit">Record</button>
+                    <label for="date">When?</label>
+                    <input type="datetime-local" id="event_date" name="date"/>                     
+                </div>
+             
+               
+                <div class="form-group">
+                    <button type="submit" name="submit">Schedule</button>
                 </div>
                 </form>
                 
             </div>
            
     </div>
-        
-    </div>
+
+        </div>
+
+      
+   
     </main>
 <!--this ends main-->
 
@@ -172,17 +167,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <div class="upcoming-events">
-<h2>Related Pages</h2>
+<h2>Upcoming Events</h2>
 <div class="events">
-<ul>
-        <li><a href="transactions_history.php">View Transactions</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
-      </ul>
+<?php
+
+require 'connection.php';
+
+// Fetch events from the database, ordered by the most upcoming date
+$query = "SELECT event_date, event_title FROM events ORDER BY event_date ASC";
+$result = mysqli_query($conn, $query);
+
+if ($result) {
+    // Loop through the events and generate HTML for each
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<div class="event">';
+        echo '    <div class="event-photo">';
+        echo '        <img src="./images/event.png" alt="">';
+        echo '    </div>';
+        echo '    <div class="event-about">';
+        echo '        <p><b>' . $row['event_date'] . '</b> ' . $row['event_title'] . '</p>';
+        echo '    </div>';
+        echo '</div>';
+    }
+
+    // Free the result set
+    mysqli_free_result($result);
+} else {
+    // Display an error message if the query fails
+    echo "Error executing query: " . mysqli_error($conn);
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
+    
+    
 </div>
 </div>
 
 </div>
     
    </div>  
+
+   
+
+
+<!--footer starts here-->
 
 
    <div class="footer">
@@ -192,9 +223,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
    </div>
-
+   <script src="events.js"></script>
    <script src="admin.js"></script>
-   <script src="record_transaction.js"></script>
-
+  
 </body>
 </html>

@@ -17,6 +17,7 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="loan_analytics.css">
     <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet" href="members.css"> 
 
 </head>
 <body>
@@ -75,8 +76,12 @@ $result = mysqli_query($conn, $query);
 
       
     <div class="recent-transactions">
-        <h2>Transaction Records</h2>  
-        
+        <h2>Transaction Records</h2>      
+        <form action="" method="get">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search">
+            <button class="form-btn" type="submit">Search</button>
+          </form>
         <table>
             <thead>
                 <tr>
@@ -165,5 +170,6 @@ $result = mysqli_query($conn, $query);
    </div>
 
    <script src="admin.js"></script>
+   <script src="members.js"></script>
 </body>
 </html>
