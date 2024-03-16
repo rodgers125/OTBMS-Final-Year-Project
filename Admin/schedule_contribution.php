@@ -1,13 +1,16 @@
+<?php
+require 'session.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contributions</title>
+    <title>Admin-events</title>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="contribution.css">
-    <link rel="stylesheet" href="icons.css"> 
+    <link rel="stylesheet" href="event.css">
+    <link rel="stylesheet" href="icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -26,7 +29,7 @@
         </div>
 
         <div class="sidebar">
-        <a href="admin.php">
+            <a href="admin.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
@@ -35,8 +38,7 @@
                 <h3>Members</h3>
             </a>
            
-           
-            <a href="contributions.php">
+            <a href="contributions.php"  class="active">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
@@ -48,11 +50,11 @@
                 <span class="material-icons-sharp">report_gmailerrorred</span>
                 <h3>Transactions</h3>
             </a>
-           
-            <a href="events.php" class="active">
+            <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
             </a>
+           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -63,46 +65,48 @@
 
     <!-- Main Content -->
     <main>
-        <h1>Transactions</h1>
+        <h1> Schedule Contribution</h1>
+        <button class="btn-back"><a href="contributions.php">Back</a></button>
+        <div class="events">
+            <h3>Schedule Member Contribution</h3>
+            <div class="form-container">
+            <div class="events-form">                
+                <form action="" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="memberName" name="memberName" required>                    
+                </div>
+                <div class="form-group">
+                    <label for="id">Member's ID</label>
+                    <input type="number" id="memberId" name="memberId" required>                    
+                </div>
+
+                <div class="form-group">
+                    <label for="id">Contribution Amount From Each Member</label>
+                    <input type="number" id="contributionAmount" name="contributionAmount" required>                    
+                </div>
+              
+              
+    
+                <div class="form-group">
+                    <label for="date">Contribution Dateline</label>
+                    <input type="date" id="contribution_date" name="contribution_date"/>                     
+                </div>
+             
+               
+                <div class="form-group">
+                    <button type="submit" name="submit">Schedule</button>
+                </div>
+                </form>
+                
+            </div>
+           
+    </div>
+
+        </div>
 
       
-        <div class="insights">
-
-<!--schedule an event-->
-<div class="groups">               
-    <img src="images/meeting.png" alt="Request Icon" class="icon">   
    
-    <div class="middle">
-        <div class="left">
-            <a href="schedule_event.php"><h3>Schedule an Event</h3>
-            <img src="images/view.png" alt="Request Icon" class="view-icon">
-            </a>
-            <small class="text-muted">Meeting and Events</small>
-        </div>
-       
-    </div>
-    <br>
- 
-</div>
-
-<!--view events-->
-<div class="groups">               
-    <img src="images/event-schedule.png" alt="Request Icon" class="icon">   
-   
-    <div class="middle">
-        <div class="left">
-            <a href="all_events.php"><h3>View Scheduled Events</h3>
-            <img src="images/view.png" alt="Request Icon" class="view-icon">
-            </a>
-            <small class="text-muted">25 Total Events and Meetings</small>
-          
-        </div>
-       
-    </div>
-    <br>
- 
-</div>
-</div>
     </main>
 <!--this ends main-->
 
@@ -129,39 +133,24 @@
 <!--end of top-->
 
 
+
 <div class="upcoming-events">
-<h2>Upcoming Events</h2>
+<h2>Related Pages</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+<ul>
+        <li><a href="contribution_history.php">View Contribution Records</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+      </ul>
 </div>
 </div>
 
 </div>
     
    </div>  
+
+   
+
+
+<!--footer starts here-->
 
 
    <div class="footer">
@@ -171,7 +160,8 @@
         </div>
     </div>
    </div>
-
+   <script src="events.js"></script>
    <script src="admin.js"></script>
+  
 </body>
 </html>

@@ -8,7 +8,7 @@ require 'session.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contributions</title>
+    <title>Admin-Contributions</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="contribution.css">
     <link rel="stylesheet" href="icons.css"> 
@@ -34,13 +34,13 @@ require 'session.php';
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="members.php"  class="active">
+            <a href="members.php">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
            
            
-            <a href="contributions.php">
+            <a href="contributions.php"   class="active">
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
@@ -67,21 +67,21 @@ require 'session.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Transactions</h1>
+        <h1>Contributions</h1>
 
       
         <div class="insights">
 
 <!--add member-->
 <div class="groups">               
-    <img src="images/member.png" alt="Request Icon" class="icon">   
+    <img src="images/contribution-schedule.png" alt="Request Icon" class="icon">   
    
     <div class="middle">
         <div class="left">
-            <a href="add_members.php"><h3>Add a Member</h3>
+            <a href="schedule_contribution.php"><h3>Schedule  Contribution</h3></a> 
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
-            <small class="text-muted">members added to a group</small>
+            <small class="text-muted">schedule a contribution for future date and amount.</small>
         </div>
        
     </div>
@@ -91,14 +91,14 @@ require 'session.php';
 
 <!--view Transaction history-->
 <div class="groups">               
-    <img src="images/transaction-history.png" alt="Request Icon" class="icon">   
+    <img src="images/contribution-history.png" alt="Request Icon" class="icon">   
    
     <div class="middle">
         <div class="left">
-            <a href="members_list.php"><h3>View Members List</h3>
+            <a href="contribution_history.php"><h3>View Contribution Records</h3>
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
-            <small class="text-muted">25 Total Group Members</small>
+            <small class="text-muted"> contributions made by members are shown here.</small>
           
         </div>
        

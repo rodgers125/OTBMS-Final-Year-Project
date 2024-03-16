@@ -148,7 +148,7 @@ if (isset($_GET['memberId'])) {
     <?php endif; ?>
     </form>
     <button class="back">
-        <a href="members.php">Back</a>
+        <a href="members_list.php">Back</a>
     </button> 
    
     </main>
