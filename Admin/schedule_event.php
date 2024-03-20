@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <main>
-        <h1>Events</h1>
+        <h1>► Events</h1>
         <button class="btn-back"><a href="events.php">Back</a></button>
         <div class="events">
             <h3>Schedule an Event</h3>

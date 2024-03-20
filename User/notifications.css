@@ -1,0 +1,23 @@
+.unread-notification-about{
+    border: 1px solid #ffffff;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10px;
+    padding: 10px;
+    font-weight: bolder;   
+}
+.notification-about{  
+    border: 1px solid #ffffff;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.clear-btn{
+    float: right;
+    cursor: pointer;
+}
+.clear-btn img{
+    width: 20px;
+    height: 20px;
+   
+}

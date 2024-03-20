@@ -72,7 +72,7 @@ $result = mysqli_query($conn, $query);
 
     <!-- Main Content -->
     <main>
-        <h1>Transactions</h1>
+        <h1>► Transactions</h1>
 
       
     <div class="recent-transactions">

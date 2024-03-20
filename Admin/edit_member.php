@@ -121,7 +121,7 @@ if (isset($_GET['memberId'])) {
     <main>    
 
 <!-- edit member information fom-->
-<h2>Edit User Details</h2>
+<h2>► Edit User Details</h2>
 
     
     <!-- Form to edit member information -->

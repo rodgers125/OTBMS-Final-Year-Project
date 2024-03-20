@@ -70,7 +70,7 @@ require 'connection.php';
     <main>
        
                
-    <h1>Loan Analytics</h1>
+    <h1>► Loan Analytics</h1>
         <button class="btn-back"><a href="loans.php">Back</a></button>
 
         <div class="insights">

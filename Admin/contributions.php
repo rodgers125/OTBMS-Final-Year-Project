@@ -67,7 +67,7 @@ require 'session.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Contributions</h1>
+        <h1>► Contributions</h1>
 
       
         <div class="insights">

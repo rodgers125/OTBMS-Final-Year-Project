@@ -1,0 +1,9 @@
+.btn-paid{
+    background-color: var(--color-primary-variant);
+    color: var(--color-white);
+    outline: none;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.7rem;
+    cursor: pointer;
+}

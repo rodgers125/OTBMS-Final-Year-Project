@@ -19,6 +19,7 @@
     --card-padding: 1.8rem;
     --padding-1: 1.2rem;
     --box-shadow: 0 2rem 3rem var(--color-light);
+    
 }
 *{
     margin: 0;
@@ -30,6 +31,7 @@
     list-style: none;
     box-sizing: border-box;
 }
+
 body{
     width: 100vw;
     height: 100vh;
@@ -39,6 +41,7 @@ body{
     overflow-x: hidden;
     color: var(--color-dark);
 }
+
 .container{
     display: grid;
     width: 96%;
@@ -113,7 +116,7 @@ b{
 
 aside{
     height: 100vh;
-    
+   
     
 }
 aside .top{
@@ -146,6 +149,7 @@ aside .sidebar{
     height: 86vh;
     position: relative;
     top: 3rem;
+   
 }
 
 aside h3{
@@ -296,70 +300,61 @@ main .insights .group_contributions svg circle{
     stroke-dasharray: 80;
 }
 
-main .insights .progress .number{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-main .insights small {
-    margin-top: 1.6rem;
-    display: block;
+
+.user-details{
+    padding: var(--card-padding);
 }
 
-main .recent-transactions{
-    margin-top: 2rem;
-}
-main .recent-transactions h2{
-    margin-bottom: 0.8rem;
+
+
+
+main .details-card{
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
     
+    box-shadow: var(--box-shadow);
 }
-main .recent-transactions table{
+main .details-card ul{
+    padding: 10px;
+}
+main .details-card li{
+    padding: 8px;
+}
+.btn-edit{
+    padding: 8px 16px;
+    background-color:var(--color-success);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+main .table {
     background: var(--color-white);
     width: 100%;
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
     text-align: center;
     box-shadow: var(--box-shadow);
-    transition: all 300ms ease;
-}
-main .recent-transactions table:hover{
-    box-shadow: none;
 }
 
-main table tbody td{
+.table th,
+.table td {
+    padding: 10px;
+}
+
+.table tbody td {
     height: 2.8rem;
     border-bottom: 1px solid var(--color-light);
     color: var(--color-dark-variant);
 }
 
-main table tbody tr:last-child td{
+main table tbody tr:last-child td {
     border: none;
 }
 
-.delete-btn{
-    background: var(--color-delete);
-    font-size: 15px;
-    cursor: pointer;
-    color: white;
-    outline: none;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.7rem;
-    transition: all 300ms ease;
 
-}
-
-main .recent-transactions a{
-    text-align: center;
-    display: block;
-    margin: 1rem auto;
-    color: var(--color-primary);
-}
 .right{
     margin-top: 1.4rem;
     
@@ -405,6 +400,33 @@ main .recent-transactions a{
     text-align: right;
 }
 
+.right .side-card{
+    margin-top: 1rem;
+}
+
+.right .side-card h2{
+    margin-bottom: 0.8rem;
+}
+
+.right .side-card{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+.card-detail{
+    padding: 5px;
+    font-weight: bold;
+}
+
+.card-detail h3{
+    font-size: 14px;
+}
+
+
+/* events */
+
 .right .upcoming-events{
     margin-top: 1rem;
 }
@@ -421,15 +443,19 @@ main .recent-transactions a{
     transition: all 300ms ease;
 }
 
-.right .upcoming-events .events:hover{
-    box-shadow: none;
+.events{  
+    background: var(--color-white);   
+   
+    transition: all 300ms ease;
+    
 }
-.right .upcoming-events .events .event{
-    display: grid;
-    grid-template-columns: 2.6rem auto;
-    gap: 1rem;
-    margin-bottom: 1rem;
-
+.events h3{
+    font-weight: bold;
+    font-size: 15px;
+}
+.event-photo{
+    height: 30px;
+    width: 30px;
 }
 
 /*footer*/

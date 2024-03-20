@@ -66,7 +66,7 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Loans</h1>
+        <h1>► Loans</h1>
 
         <div class="insights">
 

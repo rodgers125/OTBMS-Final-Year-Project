@@ -73,7 +73,7 @@ require 'connection.php';
     <main>
        
                
-    <h1>Loan Requests</h1>
+    <h1>► Loan Requests</h1>
         <button class="btn-back"><a href="loans.php">Back</a></button>
 
 

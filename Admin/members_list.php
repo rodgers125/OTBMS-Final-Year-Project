@@ -72,7 +72,7 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Group Members</h1>
+        <h1>► Group Members</h1>
         <button class="btn-back"><a href="members.php">Back</a></button>
 
        

@@ -73,7 +73,7 @@ require 'connection.php';
     <main>
        
                
-    <h1>Contribution History</h1>
+    <h1>► Contribution History</h1>
         <button class="btn-back"><a href="contributions.php">Back</a></button>
 
         <!--Loan List Table table-->

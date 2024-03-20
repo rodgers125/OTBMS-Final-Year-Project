@@ -85,6 +85,36 @@ require 'session.php';
                     <label for="id">Contribution Amount From Each Member</label>
                     <input type="number" id="contributionAmount" name="contributionAmount" required>                    
                 </div>
+                <div class="form-group">
+                <label for="payment_options">Payment Options:</label>
+                <select id="payment_options">
+                <option value="">Select Payment Option</option>
+                <option value="mpesa">M-Pesa</option>
+                <option value="bank_deposit">Bank Deposit</option>
+               </select>
+                </div>
+
+            <div class = "form-group" id="mpesa_options" style="display: none;">
+                     <label for="mpesa_sub_options">Select M-Pesa Options:</label>
+                     <select id="mpesa_sub_options">
+                        <option value="">Select M-Pesa Option</option>
+                        <option value="till_number">Till Number</option>
+                        <option value="send_money">Send Money</option>
+                     </select>
+                     <div id="mpesa_input" style="display: none;">
+                        <label for="mpesa_input_field">Enter Number:</label>
+                   <input type="text" id="mpesa_input_field">
+                 </div>
+                </div>
+
+                    <div  class = "form-group" id="bank_deposit_options" style="display: none;">
+               <label for="account_holder">Account Holder:</label>
+              <input type="text" id="account_holder">
+                 <label for="bank">Bank:</label>
+             <input type="text" id="bank">
+             <label for="account_number">Account Number:</label>
+             <input type="text" id="account_number">
+                </div>
               
               
     
@@ -160,7 +190,7 @@ require 'session.php';
         </div>
     </div>
    </div>
-   <script src="events.js"></script>
+   <script src="contribution.js"></script>
    <script src="admin.js"></script>
   
 </body>

@@ -66,7 +66,7 @@ require 'session.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Transactions</h1>
+        <h1>► Events</h1>
 
       
         <div class="insights">

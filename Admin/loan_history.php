@@ -73,7 +73,7 @@ require 'connection.php';
     <main>
        
                
-    <h1>Loan History</h1>
+    <h1>► Loan History</h1>
         <button class="btn-back"><a href="loans.php">Back</a></button>
 
         <!--Loan List Table table-->
@@ -90,7 +90,7 @@ require 'connection.php';
                 <th>Loan Amount</th>
                 <th>Loan Type</th>
                 <th>Date Borrowed</th>
-                <th>Status</th>     
+                <th>Overdue Days</th>     
                 <th>Transaction Details</th>           
             </tr>
         </thead>
@@ -102,7 +102,7 @@ require 'connection.php';
                 <td>KSH 5000</td>
                 <td>Personal</td>
                 <td>22/3/2025</td> 
-                <td>Paid</td>                
+                <td>2</td>                
                 <td>
                 <button class="view-btn" onclick="openDetailsModal()">View Details</button>
                     </td>
@@ -114,7 +114,7 @@ require 'connection.php';
                 <td>KSH 5000</td>
                 <td>Business</td>
                 <td>22/3/2025</td> 
-                <td>Pending</td>                
+                <td>3</td>                
 
                 <td>
                 <button class="view-btn" onclick="openDetailsModal()">View Details</button>
@@ -127,7 +127,7 @@ require 'connection.php';
                 <td>KSH 5000</td>
                 <td>Personal</td>
                 <td>22/3/2025</td>
-                <td>Overdue</td>                
+                <td>4</td>                
 
                 <td>
                 <button class="view-btn" onclick="openDetailsModal()">View Details</button>
