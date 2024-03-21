@@ -9,9 +9,10 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-dashboard</title>
+    <title>ONLINE CHAMA - profile</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="loan.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -70,28 +71,42 @@ require 'connection.php';
     <!-- Main Content -->
     <main>
         <h1>► Personal Details</h1>
-        <div class="user-details">
-            <div class="details-card">
-                <h3><b>Personal Details:</b></h3>
+        <br>
+        <div class="loan-details">
+            <div class="loan-card">
+                <h2><b>Personal Details:</b></h2>
                 <form action="update_profile.php" method="POST">
                     <ul>            
-                        <li><b>Member ID :</b> 4</li>
-                        <li>
-                            <label for="full_name">Full Name :</label>
+                        <p><b>Member ID :</b> 4</p>
+                        <p>
+                            <label for="full_name"><b>Full Name :</b></label>
                             <input type="text" id="full_name" name="full_name" value="John Doe" required>
-                        </li>
-                        <li><b>Date Joined :</b> 1987/05/23</li>
-                        <li><b>Email :</b> fhdf@gmail.com</li>                  
-                        <li>
-                            <label for="phone_number">Phone Number :</label>
+</p>
+                        <p><b>Date Joined :</b> 1987/05/23</p>
+                        <p><b>Email :</b> fhdf@gmail.com</p>                  
+                        <p>
+                            <label for="phone_number"><b>Phone Number :</b></label>
                             <input type="tel" id="phone_number" name="phone_number" value="0701163576" required>
-                        </li>
-                        <li><b>Gender :</b> Male</li>
+</p>
+                        <p><b>Gender :</b> Male</p>
                         <small>Note: You can only edit your Name and Phone Number</small>
                         <button type="submit" class="btn-edit">Update Personal Details</button>
                     </ul>
                 </form>
             </div>
+            </div>
+<br>
+            <!--group details-->
+            <div class="loan-details">
+            <div class="loan-card">
+            <h2><b>Group Details:</b></h2>
+                       <br>                
+                <p><b>Group Name : </b> Roywea</p>
+                <p><b>Date You Joined : </b> 1/2/2023</p>
+                <p><b>Total Members : </b>55</p>
+                <p><b>Total Amount Contributed to Date : </b>100000</p>
+            
+        </div>
         </div>
     </main>
 

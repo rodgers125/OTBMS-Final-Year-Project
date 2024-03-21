@@ -13,6 +13,7 @@ $result = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-dashboard</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -73,50 +74,47 @@ $result = mysqli_query($conn, $query);
 
             <!--groups-->
             <div class="groups">
-                <span class="material-icons-sharp">analytics</span>
+            <img src="images/total-members.png" alt="Request Icon" class="icon"> 
                 <div class="middle">
                     <div class="left">
-                        <h3>Total Group Members</h3>
+                        <h3>Total Group Members Upto Date</h3>
                         <h1>25</h1>
                     </div>
                    
                 </div>
-                <br>
-                <small class="text-muted">All Time</small>
+                
+                <small class="text-muted">view</small>
+                <a href="members.php"><img src="images/view.png" alt="Request Icon" class="view-icon"></a> 
+            
             </div>
             
             <!--members-->
             <div class="group_members">
-                <span class="material-icons-sharp">bar_chart</span>
+            <img src="images/total-loans.png" alt="Request Icon" class="icon"> 
                 <div class="middle">
                     <div class="left">
-                        <h3>Total Amount of Loaned Issued</h3>
+                        <h3>Total Amount of Loaned Issued Out</h3>
                         <h1>KSh72,500</h1>
                     </div>
                  
                 </div>
-                <small class="text-muted">Last 1 Month</small>
+                <small class="text-muted">view</small>
+                <a href="loans.php"><img src="images/view.png" alt="Request Icon" class="view-icon"></a>
             </div>
 
             
             <!--contributions-->
             <div class="group_contributions">
-                <span class="material-icons-sharp">stacked_line_chart</span>
+            <img src="images/total-contributions.png" alt="Request Icon" class="icon"> 
                 <div class="middle">
                     <div class="left">
-                        <h3>Total Contributions</h3>
+                        <h3>Total Contributions for Current Contribution</h3>
                         <h1>KSh20,000</h1>
                     </div>
-                    <div class="progress">
-                        <svg>
-                            <circle cx='38' cy='38' r='36'></circle>
-                        </svg>
-                        <div class="number">
-                            <p>80%</p>
-                        </div>
-                    </div>
+                    
                 </div>
-                <small class="text-muted">This Month Alone</small>
+                <small class="text-muted">view</small>
+                <a href="contributions.php"><img src="images/view.png" alt="Request Icon" class="view-icon"></a>
             </div>
 
 

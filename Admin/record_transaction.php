@@ -105,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Main Content -->
     <main>
         <h1>► Transactions</h1>
+        <button class="btn-back"><a href="transactions.php">Back</a></button>
 
       
     <div class="recent-transactions">
@@ -112,10 +113,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-container">
             <div class="contribution-form">                
                 <form action="" method="post">
+
                 <div class="form-group">
-                    <label for="member">Full Name</label>
-                    <input type="text" id="member" name="member" required>                    
+                    <label for="memberId">Member Id</label>
+                    <input type="number" id="memberId" name="memberId" required>                    
                 </div>
+               
                 <div class="form-group">
                     <label for="date">Date  of transaction:</label><br>
                     <input type="datetime-local" id="date" name="date"/>                 
@@ -125,6 +128,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="amount">Amount:</label>
                     <input type="number" id="amount" name="amount" step="0.01" required>
                     
+                </div>
+                <div class="form-group">
+                    <label for="purpose">Purpose</label>
+                    <select id="purpose" name="purpose" required> 
+                    <option value="loanRepayment">Loan Repayment</option>
+                        <option value="contribution">Contribution Payment</option>                       
+</select>                  
                 </div>
                 <div class="form-group">
                     <label for="payment_method">Payment Method:</label><br>

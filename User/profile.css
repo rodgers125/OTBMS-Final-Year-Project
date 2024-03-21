@@ -5,11 +5,11 @@ small{
     text-align:left;
     color:#000000;
 }
-.details-card label{
+.loan-card label{
     font-weight: bold;
 }
 
-.details-card input{
+.loan-card input{
     width: 50%;
     background-color: var( --color-info-light);
     color: var(--color-dark);

@@ -73,6 +73,7 @@ $result = mysqli_query($conn, $query);
     <!-- Main Content -->
     <main>
         <h1>► Transactions</h1>
+        <button class="btn-back"><a href="transactions.php">Back</a></button>
 
       
     <div class="recent-transactions">

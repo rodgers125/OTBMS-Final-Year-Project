@@ -1,5 +1,5 @@
-.payment-options{   
+.payment-options li {
         list-style-type: disc; 
         padding-left: 20px;    
-
-}
+    }
+    

@@ -9,10 +9,10 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-dashboard</title>
+    <title>ONLINE CHAMA - Contribution</title>
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="contribution.css">
+    <link rel="stylesheet" href="loan.css"> 
+    <link rel="stylesheet" href="contribution.css">    
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -70,38 +70,59 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>► Contribution</h1>
-        <div class="user-details">
-            <div class="details-card">
-                <h3><b>Current Member Being Contributed:</b></h3>
-               
-                <ul>            
-              <li><b>Member ID :</b>1234</li>
-              <li><b>Full Name :</b> Rodgers Kipkurui</li>
-              <li><b>Email :</b> dfkjfdk@gmail.com</li>
-              <li><b>Phone Number :</b> 0701163576</li>
-             
-            </ul>
-</div>
-
-            <br>
-            <br>
-            <div class="details-card">
-    <h3><b>Contribution Details:</b></h3>
-    <ul>
-        <li><b>Total Amount To Be Contributed By Each Member :</b> 2000</li>
-        <li><b>Payment Details :</b>
-            <ul class="payment-options">
-                <li>Mpesa Send Money - 0701163576</li>
-                <li>Bank Deposit -  Account Holder: John Doe, Bank:  Barclays, Account No.: 1234567890123456</li>
-            </ul>
-        </li>
-        <li><b>DateLine :</b> 1987/05/23</li>
-    </ul>
-</div>
-
+    <h1>► Contribution</h1>
+    <br>
+    <div class="loan-details">
+        <!-- Loan Balance Card -->
+        <div class="loan-card">
+        <h2>Your Total Contributions</h2> 
+        <br>
+                        <p>KSH 50,600.50</p>  
+                        
+                        
         </div>
-    </main>
+
+        <!-- Loan Limit Card -->
+        <div class="loan-card">
+        <h2>Your Next Contribution</h2> 
+        <br>
+                        <p>Not yet scheduled</p>
+                        
+        </div>
+        
+    </div>
+<br>
+    <div class="loan-details">
+     
+        <div class="loan-card">
+            <h2>Current Member Being Contributed:</h2>
+                       <br>
+                <p><b>Member ID :</b>1234</li>
+                <p><b>Full Name :</b> Rodgers Kipkurui</p>
+                <p><b>Email :</b> dfkjfdk@gmail.com</p>
+                <p><b>Phone Number :</b> 0701163576</p>
+            
+        </div>
+
+        <div class="loan-card">
+            <h2>Contribution Details:</h2>
+            <br>
+                <p><b>Total Amount To Be Contributed By Each Member :</b> 2000</p>
+                <p><b>Payment Details :</p>
+                <li>
+                    <ul class="payment-options">
+                        <h3>Option 1</h3>
+                        <p>Mpesa Send Money - 0701163576</p>
+                        <h3>Option 2</h3>
+                        <p>Bank Deposit -  Account Holder: John Doe, Bank:  Barclays, Account No.: 1234567890123456</p>
+                    </ul>
+                </li>
+                <p><b>DateLine :</b> 1987/05/23</p>
+            
+        </div>
+    </div>
+</main>
+
 
 <!--this ends main-->
 
@@ -134,9 +155,9 @@ require 'connection.php';
     <div class="card-detail">
        
         <ul>
-            <li><b>Next Member:</b> korir kipkurui</li>
+            <p><b>Next Member:</b> korir kipkurui</p>
             <br>
-            <li><b>Contribution Date:</b>12/5/2025 </li>
+            <p><b>Contribution Date:</b>12/5/2025 </p>
         </ul>
        
        
