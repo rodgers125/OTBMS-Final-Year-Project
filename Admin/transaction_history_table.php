@@ -2,9 +2,11 @@
 require 'connection.php';
 
 // SQL query to select data from the transactions table
-$query = "SELECT transaction_id, member_id, transaction_date, transaction_amount,
-          transaction_method, transaction_purpose
-          FROM transactions ORDER BY transaction_date DESC";
+$query = "SELECT ts.transaction_id, ts.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, ts.transaction_date, ts.transaction_amount,
+          ts.transaction_method, ts.transaction_purpose
+          FROM transactions ts
+          JOIN members m ON ts.member_id = m.memberId
+          ORDER BY transaction_date DESC";
 
 $result = mysqli_query($conn, $query);
 
@@ -27,7 +29,7 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
         echo "<td>" . $row['transaction_id'] . "</td>";
-        echo "<td>" . $row['member_id'] . "</td>";
+        echo "<td>" . $row['fullName'] . "</td>";
         echo "<td>" . $row['transaction_date'] . "</td>";
         echo "<td>KSH " . number_format($row['transaction_amount'], 2) . "</td>";
         echo "<td>" . $row['transaction_method'] . "</td>";

@@ -10,7 +10,7 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contribution-progress</title>
+    <title>Admin-contribution-schedule</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
@@ -73,70 +73,22 @@ require 'connection.php';
     <main>
        
                
-    <h1>► Contribution Progress</h1>
+    <h1>► Contribution Schedule</h1>
         <button class="btn-back"><a href="contributions.php">Back</a></button>
-<br>
-<!--contribution progress bar-->
-
-        <div class="progress-container">
-  <div class="progress-bar" id="progress-bar">0%</div>  
-</div>
-<small><b> <i>Contribution Progress Bar</i></b></small>
 
         <!--Loan List Table table-->
         <div class="table">
-        <h2>List of contributions made so far</h2>
+        <h2>List of Scheduled Contributions</h2>
         <form action="" method="get">
             <label for="search">Search:</label>
             <input type="text" id="search" name="search">
             <button class="form-btn" type="submit">Search</button>
           </form>
-       
+        
+
           <?php
-// Get the current month and year
-$current_month = date('m');
-$current_year = date('Y');
-
-// SQL query to retrieve data from the transaction table for contributions made in the current month and year
-$query = "SELECT t.member_id, m.fName, t.transaction_date, t.transaction_amount
-          FROM transactions t
-          JOIN members m ON t.member_id = m.memberId
-          WHERE t.transaction_purpose = 'contribution'
-          AND MONTH(t.transaction_date) = $current_month
-          AND YEAR(t.transaction_date) = $current_year";
-$result = mysqli_query($conn, $query);
-
-// Check if there are any rows returned
-if ($result && mysqli_num_rows($result) > 0) {
-    // Output the fetched data in a table
-    echo '<table>';
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>Member ID</th>';
-    echo '<th>Full Name</th>';
-    echo '<th>Total Amount Paid</th>';
-    echo '<th>Date</th>';
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-
-    // Loop through the fetched data and output each row in the table
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr>';
-        echo '<td>' . $row['member_id'] . '</td>';
-        echo '<td>' . $row['fName'] . '</td>';
-        echo '<td>KSH ' . number_format($row['transaction_amount'], 2) . '</td>';
-        echo '<td>' . $row['transaction_date'] . '</td>';
-        echo '</tr>';
-    }
-
-    echo '</tbody>';
-    echo '</table>';
-} else {
-    echo "No contributions found for the current month and year.";
-}
-?>
-
+          include 'contribution_schedule_table_db.php'
+          ?>
 
      
    
@@ -171,7 +123,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 <div class="events">
     <ul>
         <li><a href="schedule_contribution.php">Schedule Contribution</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
-        <li><a href="contribution_history.php">View Contribution History</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="contribution_progress.php">Contribution Progress</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
         <li><a href="contribution_schedule.php">Contribution Schedule</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
           </ul>
           </ul>
@@ -200,7 +152,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 
    
    <script src="members.js"></script>
-   <script src="progress.js"></script>
    <script src="admin.js"></script>
 </body>
 </html>

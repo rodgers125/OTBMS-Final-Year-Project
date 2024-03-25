@@ -165,7 +165,10 @@ require 'session.php';
 <h2>Related Pages</h2>
 <div class="events">
 <ul>
-        <li><a href="contribution_history.php">View Contribution Records</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="contribution_history.php">View Contribution History</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="contribution_progress.php">Contribution Progress</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="contribution_schedule.php">Contribution Schedule</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+       
       </ul>
 </div>
 </div>

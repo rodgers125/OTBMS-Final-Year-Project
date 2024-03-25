@@ -117,7 +117,7 @@ require 'session.php';
             <a href="contribution_schedule.php"><h3>View Contribution Schedule</h3>
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
-            <small class="text-muted"> 12 schedules</small>
+            <small class="text-muted">List of Scheduled Contributions</small>
           
         </div>
        
@@ -132,7 +132,7 @@ require 'session.php';
    
     <div class="middle">
         <div class="left">
-            <a href="contribution_history.php"><h3>View Contribution Records</h3>
+            <a href="contribution_history.php"><h3>View Contribution History</h3>
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
             <small class="text-muted"> contributions made by members are shown here.</small>

@@ -78,7 +78,7 @@ require 'connection.php';
 
         <!--Loan List Table table-->
         <div class="table">
-        <h2>Showing Recent  Contributions Details:</h2>
+        <h2>Showing Contribution History:</h2>
         <form action="" method="get">
             <label for="search">Search:</label>
             <input type="text" id="search" name="search">
@@ -93,7 +93,7 @@ require 'connection.php';
                 <th>Contribution ID</th>
                 <th>Member ID</th>
                 <th>Full Name</th>
-                <th>Total Contributions Amount</th>               
+                <th>Total Contributions Made</th>               
                 <th>Date Contributed</th>
                            
             </tr>
@@ -161,6 +161,9 @@ require 'connection.php';
 <div class="events">
     <ul>
         <li><a href="schedule_contribution.php">Schedule Contribution</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="contribution_progress.php">Contribution Progress</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="contribution_schedule.php">Contribution Schedule</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+          </ul>
           </ul>
    
     

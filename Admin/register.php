@@ -45,6 +45,7 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="record_transaction.css">
     <title>Register</title>
 </head>
 <body>
@@ -80,6 +81,13 @@ if (isset($_POST["submit"])) {
                     <label for="password">Password<span>*</span></label>
                     <input type="password" id="password" name="password" required>
                 </div>
+                <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
                 <div class="form-group">
                     <label for="password">Confirm Password</label>
                     <input type="password" id="ConfirmPassword" name="confirmPassword" required>
