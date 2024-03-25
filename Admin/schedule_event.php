@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
                 <div class="form-group">
                     <label for="date">When?</label>
-                    <input type="datetime-local" id="event_date" name="date"/>                     
+                    <input type="datetime-local" id="event_date" name="event_date"/>                     
                 </div>
              
                
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 require 'connection.php';
 
 // Fetch events from the database, ordered by the most upcoming date
-$query = "SELECT event_date, event_title FROM events ORDER BY event_date ASC";
+$query = "SELECT event_date, event_title FROM events ORDER BY event_date ASC LIMIT 3";
 $result = mysqli_query($conn, $query);
 
 if ($result) {
@@ -200,7 +200,7 @@ if ($result) {
 // Close the database connection
 mysqli_close($conn);
 ?>
-
+<a href="all_events.php">View All</a>
     
     
 </div>

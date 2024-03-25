@@ -138,7 +138,7 @@ require 'connection.php';
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Loan Application</h2>
-    <form id="loanApplicationForm">
+    <form id="loanApplicationForm" action="send_loan_application.php" method="post">
       <div class="form-group">
         <label for="loanType">Loan Type:</label>
         <select id="loanType" name="loanType">
@@ -153,10 +153,9 @@ require 'connection.php';
         </select>
       </div>
       <div class="form-group">
-        <label for="loanAmount">Enter The Amount</label>
-        <input type="number"></input>
-      
-      </div>
+    <label for="loanAmount">Enter The Amount</label>
+    <input type="number" id="loanAmount" name="loanAmount">
+</div>
       <button type="submit">Apply</button>
     </form>
   </div>

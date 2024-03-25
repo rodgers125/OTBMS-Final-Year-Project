@@ -341,8 +341,8 @@ main table tbody tr:last-child td{
     border: none;
 }
 
-.delete-btn{
-    background: var(--color-delete);
+.btn-view{
+    background: var(--color-success);
     font-size: 15px;
     cursor: pointer;
     color: white;

@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contributions</title>
+    <title>Admin-record-transactions</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="record_transaction.css">
     <link rel="stylesheet" href="loan_analytics.css">
@@ -112,16 +112,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Record a Transaction</h2>               
         <div class="form-container">
             <div class="contribution-form">                
-                <form action="" method="post">
+                <form action="record_transaction_db.php" method="post">
 
                 <div class="form-group">
                     <label for="memberId">Member Id</label>
-                    <input type="number" id="memberId" name="memberId" required>                    
+                    <input type="number" id="member_id" name="member_id" required>                    
                 </div>
                
                 <div class="form-group">
-                    <label for="date">Date  of transaction:</label><br>
-                    <input type="datetime-local" id="date" name="date"/>                 
+                    <label for="date">Date of Transaction:</label><br>
+                    <input type="date" id="date" name="date"/>                 
                                        
                 </div>
                 <div class="form-group">

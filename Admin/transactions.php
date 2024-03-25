@@ -8,7 +8,7 @@ require 'session.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contributions</title>
+    <title>Admin-transactions</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="contribution.css">
     <link rel="stylesheet" href="icons.css"> 
@@ -136,30 +136,10 @@ require 'session.php';
 <div class="upcoming-events">
 <h2>Upcoming Events</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+<?php
+include 'upcoming_events_db.php'
+?>
+
 </div>
 </div>
 

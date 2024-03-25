@@ -2,8 +2,6 @@
 require 'session.php';
 require 'connection.php';
 
-$query = "SELECT * FROM contributions ORDER BY date DESC";
-$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -76,11 +74,10 @@ $result = mysqli_query($conn, $query);
             <div class="groups">
             <img src="images/total-members.png" alt="Request Icon" class="icon"> 
                 <div class="middle">
-                    <div class="left">
-                        <h3>Total Group Members Upto Date</h3>
-                        <h1>25</h1>
-                    </div>
-                   
+                <div class="left">
+                   <h3>Total Group Members Upto Date</h3>
+                  <h1><?php include 'admin_total_members_db.php'; ?></h1>
+                </div>
                 </div>
                 
                 <small class="text-muted">view</small>
@@ -93,8 +90,8 @@ $result = mysqli_query($conn, $query);
             <img src="images/total-loans.png" alt="Request Icon" class="icon"> 
                 <div class="middle">
                     <div class="left">
-                        <h3>Total Amount of Loaned Issued Out</h3>
-                        <h1>KSh72,500</h1>
+                        <h3>Total Amount of Loans Issued Out</h3>
+                        <h1>KSH<?php include 'admin_total_loan_db.php'; ?></h1>
                     </div>
                  
                 </div>
@@ -109,7 +106,7 @@ $result = mysqli_query($conn, $query);
                 <div class="middle">
                     <div class="left">
                         <h3>Total Contributions for Current Contribution</h3>
-                        <h1>KSh20,000</h1>
+                        <h1>KSh<?php require 'admin_total_contribution_log_db.php'?></h1>
                     </div>
                     
                 </div>
@@ -122,44 +119,13 @@ $result = mysqli_query($conn, $query);
         <!--table of transactions-->
 
     <div class="recent-transactions">
-        <h2>Contributions</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Contribution ID</th>
-                    <th>Member Name</th>
-                    <th>Date of Payment</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Delete Record</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
+        
+
+    <?php include 'loan_requests_table.php'; ?>
+         
+               
            
-            <?php
-                    // Check if there are any records
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['contid'] . "</td>";
-                            echo "<td>" . $row['fullname'] . "</td>";
-                            echo "<td>" . $row['date'] . "</td>";
-                            echo "<td>" . $row['amount'] . "</td>";
-                            echo "<td>" . $row['description'] . "</td>";
-                            echo "<td><button class='delete-btn' onclick=\"deleteContribution(" . $row['contid'] . ")\">Delete</button></td>";
-                          
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>No records found.</td></tr>";
-                    }
-                    ?>
-               
-               
-            </tbody>
-        </table>
-        <a href="transactions.php">Show All</a>
+        <a href="loan_request.php">Show All</a>
     </div>
     </main>
 <!--this ends main-->
@@ -191,30 +157,11 @@ $result = mysqli_query($conn, $query);
 <div class="upcoming-events">
 <h2>Upcoming Events</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+    
+<?php
+include 'upcoming_events_db.php'
+?>
+
 </div>
 </div>
 

@@ -136,30 +136,11 @@ require 'session.php';
 <div class="upcoming-events">
 <h2>Upcoming Events</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+    
+<?php
+include 'upcoming_events_db.php'
+?>
+
 </div>
 </div>
 

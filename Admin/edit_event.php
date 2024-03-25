@@ -115,8 +115,8 @@ if (isset($_GET['event_id'])) {
     <!-- Main Content -->
     <main>    
 
-<!-- edit member information fom-->
-<h2>► Edit User Details</h2>
+<!-- edit event-->
+<h2>► Edit Event</h2>
 
     
     <!-- Form to edit member information -->

@@ -85,23 +85,25 @@ require 'connection.php';
         <thead>
        
             <tr>
-           
-                <th>Member ID</th>
-                <th>Full Name</th>
-                <th>Loan Amount</th>
-                <th>Loan Type</th>
                 <th>Date</th>
+                <th>Request ID</th>
+                <th>Member ID</th>                
+                <th>Loan Amount</th>
+                <th>Loan Type</th>               
+                <th>Period</th>
                 <th>Action</th>                
             </tr>
         </thead>
         <tbody>
             <!-- Table rows will be dynamically generated here based on data from the database -->
             <tr>
+            <td>22/3/2025</td>   
                 <td>1</td>
-                <td>John Doe</td>
+                <td>2323</td>
                 <td>KSH 5000</td>
                 <td>Personal</td>
-                <td>22/3/2025</td>                
+                <td>3 Months</td>
+                              
                 <td>
                         
                         <button class="view-btn" onclick="openDetailsModal()">View Details</button>
@@ -111,11 +113,13 @@ require 'connection.php';
                 
             </tr>
             <tr>
+            <td>22/3/2025</td>   
                 <td>1</td>
-                <td>John Doe</td>
+                <td>32</td>
                 <td>KSH 5000</td>
                 <td>Business</td>
-                <td>22/3/2025</td>                
+                <td>6 Months</td>
+                             
                 <td>
                         
                         <button class="view-btn" onclick="openDetailsModal()">View Details</button>
@@ -125,11 +129,13 @@ require 'connection.php';
                 
             </tr>
             <tr>
+            <td>22/3/2025</td> 
                 <td>1</td>
-                <td>John Doe</td>
+                <td>32</td>
                 <td>KSH 5000</td>
                 <td>Personal</td>
-                <td>22/3/2025</td>                
+                <td>12 Months</td>
+                               
                 <td>
                         
                         <button class="view-btn" onclick="openDetailsModal()">View Details</button>

@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <main>
-        <h1>► Events</h1>
+        <h1>► All Events</h1>
         <button class="btn-back"><a href="events.php">Back</a></button>
         
         <form action="" method="get">
@@ -109,63 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </form>
 
         <div class="all-events">
-            <h3>All  Events</h3>
+            
           
-            
-        <?php
-
-
-
-// Fetch events from the database and order them by date in ascending order
-$query = "SELECT * FROM events ORDER BY event_date ASC";
-$result = mysqli_query($conn, $query);
-
-if ($result) {
-    echo '<div class="all-events">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>Date and Time</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>';
-
-    // Loop through the result set and display each event's details
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr>';
-        echo '<td>' . $row['event_id'] . '</td>';
-        echo '<td>' . $row['event_title'] . '</td>';
-        echo '<td>' . $row['event_description'] . '</td>';
-        echo '<td>' . $row['event_type'] . '</td>';
-        echo '<td>' . $row['event_date'] . '</td>';
-        echo '<td>
-                <button class="editEvent" onclick="editEvent(' . $row['event_id'] . ')">Edit</button>
-                <button class="removeEvent" onclick="removeEvent(' . $row['event_id'] . ')">Remove</button>
-                </td>';
-            
-        echo '</tr>';
-    }
-
-    echo '</tbody></table></div>';
-
-    // Free the result set
-    mysqli_free_result($result);
-} else {
-    // Display an error message if the query fails
-    echo "Error executing query: " . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-
-    
-         </div>
+            <?php
+            include 'all_events_db.php'
+            ?>
+   
+</div>
       
    
     </main>
@@ -198,35 +148,7 @@ mysqli_close($conn);
 <h2>Upcoming Events</h2>
 <div class="events">
 <?php
-
-require 'connection.php';
-
-// Fetch events from the database, ordered by the most upcoming date
-$query = "SELECT event_date, event_title FROM events ORDER BY event_date ASC";
-$result = mysqli_query($conn, $query);
-
-if ($result) {
-    // Loop through the events and generate HTML for each
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="event">';
-        echo '    <div class="event-photo">';
-        echo '        <img src="./images/event.png" alt="">';
-        echo '    </div>';
-        echo '    <div class="event-about">';
-        echo '        <p><b>' . $row['event_date'] . '</b> ' . $row['event_title'] . '</p>';
-        echo '    </div>';
-        echo '</div>';
-    }
-
-    // Free the result set
-    mysqli_free_result($result);
-} else {
-    // Display an error message if the query fails
-    echo "Error executing query: " . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
+include 'upcoming_events_db.php'
 ?>
 
     

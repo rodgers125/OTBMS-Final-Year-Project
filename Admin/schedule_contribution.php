@@ -7,7 +7,7 @@ require 'session.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-events</title>
+    <title>Admin-schedule-contribution</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="event.css">
     <link rel="stylesheet" href="icons.css">
@@ -71,11 +71,8 @@ require 'session.php';
             <h3>Schedule Member Contribution</h3>
             <div class="form-container">
             <div class="events-form">                
-                <form action="" method="post">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="memberName" name="memberName" required>                    
-                </div>
+                <form action="schedule_contribution_db.php" method="post">
+               
                 <div class="form-group">
                     <label for="id">Member's ID</label>
                     <input type="number" id="memberId" name="memberId" required>                    
@@ -87,7 +84,7 @@ require 'session.php';
                 </div>
                 <div class="form-group">
                 <label for="payment_options">Payment Options:</label>
-                <select id="payment_options">
+                <select id="payment_options" name="payment_options">
                 <option value="">Select Payment Option</option>
                 <option value="mpesa">M-Pesa</option>
                 <option value="bank_deposit">Bank Deposit</option>
@@ -96,24 +93,24 @@ require 'session.php';
 
             <div class = "form-group" id="mpesa_options" style="display: none;">
                      <label for="mpesa_sub_options">Select M-Pesa Options:</label>
-                     <select id="mpesa_sub_options">
+                     <select id="mpesa_sub_options" name="mpesa_sub_options">
                         <option value="">Select M-Pesa Option</option>
                         <option value="till_number">Till Number</option>
                         <option value="send_money">Send Money</option>
                      </select>
                      <div id="mpesa_input" style="display: none;">
                         <label for="mpesa_input_field">Enter Number:</label>
-                   <input type="text" id="mpesa_input_field">
+                   <input type="text" id="mpesa_input_field" name = "mpesa_input_field">
                  </div>
                 </div>
 
                     <div  class = "form-group" id="bank_deposit_options" style="display: none;">
                <label for="account_holder">Account Holder:</label>
-              <input type="text" id="account_holder">
+              <input type="text" id="account_holder" name = "account_holder">
                  <label for="bank">Bank:</label>
-             <input type="text" id="bank">
+             <input type="text" id="bank" name = "bank">
              <label for="account_number">Account Number:</label>
-             <input type="text" id="account_number">
+             <input type="text" id="account_number" name ="account_number">
                 </div>
               
               

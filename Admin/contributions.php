@@ -72,7 +72,26 @@ require 'session.php';
       
         <div class="insights">
 
-<!--add member-->
+        <!--current contribution progress-->        
+
+        <div class="groups">               
+    <img src="images/cont-progress.png" alt="Request Icon" class="icon">   
+   
+    <div class="middle">
+        <div class="left">
+            <a href="contribution_progress.php"><h3>View Current Contribution Progress</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted"> view members who have paid.</small>
+          
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
+
+<!--schedule contribution-->
 <div class="groups">               
     <img src="images/contribution-schedule.png" alt="Request Icon" class="icon">   
    
@@ -82,6 +101,24 @@ require 'session.php';
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
             <small class="text-muted">schedule a contribution for future date and amount.</small>
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
+
+<!--view contribution schedule-->
+<div class="groups">               
+    <img src="images/cont-schedule.png" alt="Request Icon" class="icon">   
+   
+    <div class="middle">
+        <div class="left">
+            <a href="contribution_schedule.php"><h3>View Contribution Schedule</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted"> 12 schedules</small>
+          
         </div>
        
     </div>
@@ -136,30 +173,10 @@ require 'session.php';
 <div class="upcoming-events">
 <h2>Upcoming Events</h2>
 <div class="events">
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>2/1/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>17/2/2024</b> Group Meeting</p>
-        </div>
-    </div>
-    <div class="event">
-        <div class="event-photo">
-            <img src="./images/event.png" alt="">
-        </div>
-        <div class="event-about">
-            <p><b>20/3/2024</b> Group Meeting</p>
-        </div>
-    </div>
+<?php
+include 'upcoming_events_db.php'
+?>
+
 </div>
 </div>
 

@@ -2,8 +2,7 @@
 require 'session.php';
 require 'connection.php';
 
-$query = "SELECT * FROM contributions ORDER BY date DESC";
-$result = mysqli_query($conn, $query);
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +10,7 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-contributions</title>
+    <title>Admin-transactions-history</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="contribution.css">
     <link rel="stylesheet" href="loan_analytics.css">
@@ -83,42 +82,9 @@ $result = mysqli_query($conn, $query);
             <input type="text" id="search" name="search">
             <button class="form-btn" type="submit">Search</button>
           </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Transaction ID</th>
-                    <th>Full Name</th>
-                    <th>Date and Time</th>
-                    <th>Amount</th>
-                    <th>Payment Method</th>
-                    <th>Delete Record</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-           
-            <?php
-                    // Check if there are any records
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['contid'] . "</td>";
-                            echo "<td>" . $row['fullname'] . "</td>";
-                            echo "<td>" . $row['date'] . "</td>";
-                            echo "<td>" . $row['amount'] . "</td>";
-                            echo "<td>" . $row['description'] . "</td>";
-                            echo "<td><button class='delete-btn' onclick=\"deleteContribution(" . $row['contid'] . ")\">Delete</button></td>";
-                          
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>No records found.</td></tr>";
-                    }
-                    ?>
-               
-               
-            </tbody>
-            </table>
+       <?php
+       include 'transaction_history_table.php';
+       ?>
         
         
     </div>
