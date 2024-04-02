@@ -23,3 +23,8 @@ document.getElementById('mpesa_sub_options').addEventListener('change', function
         mpesaInput.style.display = 'none';
     }
 });
+
+
+//delete contribution schedule fro db
+
+

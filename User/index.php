@@ -79,7 +79,7 @@ require 'connection.php';
                 <div class="middle">
                     <div class="left">
                         <h3>Your Contribution To Date</h3> 
-                        <p><b>KSH 10,000.00</b></p> 
+                        <p><b>--|--</b></p> 
                         <a href="loan.php"> 
                         <small>View More Details</Details></small>
                         <img src="images/view.png" alt="Request Icon" class="view-icon"> 
@@ -94,7 +94,7 @@ require 'connection.php';
                 <div class="middle">
                     <div class="left">
                         <h3>Loan Balance</h3> 
-                        <p><b>KSH 20,600.50</b></p>  
+                        <p><b>--|--</b></p>  
                         <a href="loan.php"> 
                         <small>View More Details</small>
                         <img src="images/view.png" alt="Request Icon" class="view-icon"> 
@@ -108,7 +108,7 @@ require 'connection.php';
                 <div class="middle">
                     <div class="left">
                         <h3>Loan Limit</h3> 
-                        <p><b>KSH 30,500.00</b></p>
+                        <p><b>--|--</b></p>
                         <a href="loan.php"> 
                         <small>Apply now</small>
                         <img src="images/view.png" alt="Request Icon" class="view-icon"> 
@@ -123,56 +123,15 @@ require 'connection.php';
 
         <!---personal details -->
 
-       <div class="user-details">
-        <div class="details-card">
-            <h3><b>Personal  Details:</b></h3>
-            <ul>            
-              <li><b>Member ID :</b> 4</li>
-              <li><b>Full Name :</b> John Doe</li>
-              <li><b>Date Joined :</b> 1987/05/23</li>
-              <li><b>Email :</b> sdjf@gmail.com</li>
-              <li><b>Phone Number :</b> 0701163576</li>
-              <li><b>Gender :</b> Male</li>
-               <button class="btn-edit">
-                <a href="profile.php">Update Personal Details</a>
-            </button>
-            </ul>
-           
-        </div>
-       </div>
+     <?php
+     include 'user_details_db.php'
+     ?>
        
 <!--Recent Transactions -->
 
-<div class="table">
-<h3><b>Recent Transactions</b></h3>
-   
-   <table>
-    <thead>
-        <tr>
-          <th>Transaction Id</th>
-          <th>Transaction Date and Time</th>
-          <th>Amount</th>
-          <th>Method</th>
-          <th>Purpose</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>1234</td>
-            <td>1/2/2023 11:23</td>
-            <td>20000</td>
-            <td>Mpesa</td>
-            <td>Loan repayment</td>
-        </tr>
-    </tbody>
-   </table>
-   <button class="btn-edit"> <a href="transaction.php">
-    View all Transactions
-    </a>
-</button>
-
-</div>
+<?php
+include 'recent_transactions_db.php'
+?>
    
     </main>
 <!--this ends main-->

@@ -90,8 +90,8 @@ require 'connection.php';
           include 'contribution_schedule_table_db.php'
           ?>
 
-     
-   
+     <!-- Modal for Editing Contribution Schedule -->
+
     </main>
 <!--this ends main-->
 
@@ -152,6 +152,7 @@ require 'connection.php';
 
    
    <script src="members.js"></script>
+   <script src="contribution.js"></script>
    <script src="admin.js"></script>
 </body>
 </html>

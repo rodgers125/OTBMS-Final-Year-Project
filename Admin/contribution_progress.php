@@ -85,7 +85,7 @@ require 'connection.php';
 
         <!--Loan List Table table-->
         <div class="table">
-        <h2>List of contributions made so far</h2>
+        <h2>List of contributions made so far for this month</h2>
         <form action="" method="get">
             <label for="search">Search:</label>
             <input type="text" id="search" name="search">
@@ -98,16 +98,19 @@ $current_month = date('m');
 $current_year = date('Y');
 
 // SQL query to retrieve data from the transaction table for contributions made in the current month and year
-$query = "SELECT t.member_id, m.fName, t.transaction_date, t.transaction_amount
+$query = "SELECT t.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, t.transaction_date, t.transaction_amount
           FROM transactions t
           JOIN members m ON t.member_id = m.memberId
           WHERE t.transaction_purpose = 'contribution'
           AND MONTH(t.transaction_date) = $current_month
           AND YEAR(t.transaction_date) = $current_year";
 $result = mysqli_query($conn, $query);
+$total_amount = 0;
 
 // Check if there are any rows returned
 if ($result && mysqli_num_rows($result) > 0) {
+
+   
     // Output the fetched data in a table
     echo '<table>';
     echo '<thead>';
@@ -124,16 +127,23 @@ if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo '<tr>';
         echo '<td>' . $row['member_id'] . '</td>';
-        echo '<td>' . $row['fName'] . '</td>';
+        echo '<td>' . $row['fullName'] . '</td>';
         echo '<td>KSH ' . number_format($row['transaction_amount'], 2) . '</td>';
         echo '<td>' . $row['transaction_date'] . '</td>';
         echo '</tr>';
+
+        // Add up the total amount paid by all members for
+        $total_amount += $row['transaction_amount'];
+
+        echo '<script>';
+        echo 'updateProgressBar(' . $total_amount . ');'; // Pass the total amount to the JavaScript function
+        echo '</script>';
     }
 
     echo '</tbody>';
     echo '</table>';
 } else {
-    echo "No contributions found for the current month and year.";
+    echo "No contributions found for the current month.";
 }
 ?>
 

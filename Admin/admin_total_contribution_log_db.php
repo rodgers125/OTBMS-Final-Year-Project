@@ -3,9 +3,14 @@ require 'connection.php';
 
 // Initialize total contribution amount
 $totalContribution = 0;
+$current_month = date('m');
+$current_year = date('Y');
 
 // SQL query to calculate the total contributions
-$query = "SELECT SUM(amount) AS total_contribution FROM contribution_log";
+$query = "SELECT SUM(transaction_amount) AS total_contribution FROM transactions
+          WHERE transaction_purpose = 'contribution'
+          AND MONTH(transaction_date) = $current_month
+          AND YEAR(transaction_date) = $current_year";
 $result = mysqli_query($conn, $query);
 
 if ($result) {
@@ -27,3 +32,4 @@ mysqli_close($conn);
 // Return the total contribution amount
 echo $totalContribution;
 ?>
+

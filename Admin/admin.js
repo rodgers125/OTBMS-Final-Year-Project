@@ -21,27 +21,3 @@ document.getElementById("logoutLink").addEventListener("click", function(event) 
     window.location.href = "logout.php";
 });
 
-
-//delete record from database
-
-function deleteContribution(contributionId) {
-    if (confirm('Are you sure you want to delete this record?')) {
-        var url = 'delete.php?id=' + contributionId;
-
-        fetch(url, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Failed to delete record');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to delete record');
-        });
-    }
-}

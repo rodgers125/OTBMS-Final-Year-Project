@@ -103,3 +103,15 @@
     color: blue;
 
 }
+
+
+/*contribution delete btn*/
+.btn-delete{
+    color: white;
+    border: none;
+   height: 30px;
+   border-radius: 5px;
+   padding: 5px;
+   cursor: pointer;
+   background-color: var(--color-delete);
+}

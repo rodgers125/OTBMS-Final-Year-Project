@@ -72,31 +72,9 @@ require 'connection.php';
         <h1>► Transactions</h1>
         <br>
       
-<div class="table">
-    
-   <table>
-    <thead>
-        <tr>
-          <th>Transaction Id</th>
-          <th>Transaction Date and Time</th>
-          <th>Amount</th>
-          <th>Method</th>
-          <th>Purpose</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>1234</td>
-            <td>1/2/2023 11:23</td>
-            <td>20000</td>
-            <td>Mpesa</td>
-            <td>Loan repayment</td>
-        </tr>
-    </tbody>
-   </table>
-            </div>
-        </div>
+<?php
+include 'recent_transactions_db.php'
+?>
     </main>
 
 <!--this ends main-->

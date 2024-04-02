@@ -79,8 +79,12 @@ require 'connection.php';
                     <ul>            
                         <p><b>Member ID :</b> 4</p>
                         <p>
-                            <label for="full_name"><b>Full Name :</b></label>
-                            <input type="text" id="full_name" name="full_name" value="John Doe" required>
+                            <label for="First Name"><b>First Name :</b></label>
+                            <input type="text" id="fName" name="fName" value="" required>
+</p>
+<p>
+                            <label for="Last Name"><b>Last Name :</b></label>
+                            <input type="text" id="lName" name="lName" value="" required>
 </p>
                         <p><b>Date Joined :</b> 1987/05/23</p>
                         <p><b>Email :</b> fhdf@gmail.com</p>                  
