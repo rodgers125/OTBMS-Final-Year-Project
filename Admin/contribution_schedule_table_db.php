@@ -3,6 +3,19 @@
 require_once 'connection.php';
 
 
+// get_contribution.php
+
+// Function to get contribution data by ID
+function getContributionData($conn, $contribution_id) {
+    $query = "SELECT * FROM contribution_schedule WHERE contribution_id = $contribution_id";
+    $result = mysqli_query($conn, $query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        return mysqli_fetch_assoc($result);
+    } else {
+        return null;
+    }
+}
+
 
 // SQL query to retrieve data from the contribution_schedule table
 $query = "SELECT cs.contribution_id, cs.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, cs.cont_amount, cs.cont_dateline
@@ -32,12 +45,12 @@ if (mysqli_num_rows($result) > 0) {
         echo '<td>' . $row['fullName'] . '</td>';
         echo '<td>KSH ' . number_format($row['cont_amount'], 2) . '</td>';   //format numbers with thousands separators and decimal points. It takes two parameters: the number to format and the number of decimal places. 
         echo '<td>' . $row['cont_dateline'] . '</td>';
-        
-        echo  '<td><button type="button" class="edit-btn" id='.$row["contribution_id"].' data-toggle
-        ="modal" data-target="#editModal">Edit</button></td>';
-
-        echo '<td> <button class="btn-delete" onclick="deleteContribution(' . $row['contribution_id'] . ')">Delete</button></td>';
-        
+        echo '<td>';        
+        echo '<button class="edit-btn" onclick="openEditModal(' . $row['contribution_id'] . ')">Edit</button>';
+        echo '<button class="btn-delete" onclick="deleteContribution(' . $row['contribution_id'] . ')">Delete</button>';
+        echo '</td>';
+       
+      
         echo '</tr>';
     }
 
@@ -49,7 +62,20 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 
+//delete contribution schedule record 
+// Function to delete a contribution
+// Function to delete a contribution
+if(isset($_GET['delete_contribution_id'])) {
+    $contribution_id = $_GET['delete_contribution_id'];
 
+    // Attempt to delete the contribution
+    $sql = "DELETE FROM contribution_schedule WHERE contribution_id = $contribution_id";
+    if (mysqli_query($conn, $sql)) {
+        echo "Contribution deleted successfully";
+    } else {
+        echo "Error deleting contribution: " . mysqli_error($conn);
+    }
+}
 // Close the database connection
 mysqli_close($conn);
 ?>

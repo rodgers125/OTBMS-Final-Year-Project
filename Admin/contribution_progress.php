@@ -93,6 +93,7 @@ require 'connection.php';
           </form>
        
           <?php
+
 // Get the current month and year
 $current_month = date('m');
 $current_year = date('Y');
@@ -105,12 +106,17 @@ $query = "SELECT t.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, t.trans
           AND MONTH(t.transaction_date) = $current_month
           AND YEAR(t.transaction_date) = $current_year";
 $result = mysqli_query($conn, $query);
+
+// Check for errors
+if (!$result) {
+    echo "Error: " . mysqli_error($conn);
+    exit;
+}
+
 $total_amount = 0;
 
 // Check if there are any rows returned
-if ($result && mysqli_num_rows($result) > 0) {
-
-   
+if (mysqli_num_rows($result) > 0) {
     // Output the fetched data in a table
     echo '<table>';
     echo '<thead>';
@@ -132,19 +138,24 @@ if ($result && mysqli_num_rows($result) > 0) {
         echo '<td>' . $row['transaction_date'] . '</td>';
         echo '</tr>';
 
-        // Add up the total amount paid by all members for
+        // Add up the total amount paid by all members
         $total_amount += $row['transaction_amount'];
-
-        echo '<script>';
-        echo 'updateProgressBar(' . $total_amount . ');'; // Pass the total amount to the JavaScript function
-        echo '</script>';
     }
 
     echo '</tbody>';
     echo '</table>';
+
+    // Output the total amount paid as a JavaScript variable
+    echo '<script>';
+    echo 'const totalAmount = ' . $total_amount . ';';
+    echo 'updateProgressBar(totalAmount);'; // Pass the total amount to the JavaScript function
+    echo '</script>';
 } else {
     echo "No contributions found for the current month.";
 }
+
+// Free result set
+mysqli_free_result($result);
 ?>
 
 

@@ -9,4 +9,3 @@ function updateProgressBar(contributedAmount) {
 }
 
 // Example: Update the progress bar with contributed amount (e.g., 15000)
-updateProgressBar(15000);

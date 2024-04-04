@@ -87,14 +87,14 @@ require 'connection.php';
                                     <div class="legend-color" style="background-color: #FFD700;"></div>
                                     <div>
                                         <p>Personal Loans</p>
-                                        <p>Amount: <b>KSH 35000</b></p>
+                                        <p>Amount: <b>KSH 0.00</b></p>
                                     </div>
                                 </div>
                                 <div class="legend-item">
                                     <div class="legend-color" style="background-color: #00FFFF;"></div>
                                     <div>
                                         <p>Business Loans</p>
-                                        <p>Amount: <b>KSH 60000</b></p>
+                                        <p>Amount: <b>KSH 0.00</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -107,64 +107,12 @@ require 'connection.php';
 
         </div>
 
-        <!--top borrowers table-->
-        <div class="table">
-        <h2>Top Borrowers</h2>
-        <table>
-          
-        <thead>
-       
-            <tr>
-           
-                <th>Member ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Total Amount Borrowed</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table rows will be dynamically generated here based on data from the database -->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>KSH5,000.00</td>
-            </tr>
-            <!-- Add more rows as needed -->
-        </tbody>
-    </table>
+        <!--top borrowers table and Frequent Borrowers  table-->
+       <?php include 'loan_analytics_table.php'; ?>  
 
-        </div>
+        <!---->
 
-        <!--Frequent Borrowers  table-->
-
-        <div class="table">
-        <h2>Frequent Borrowers</h2>
-        <table>
-          
-        <thead>
-       
-            <tr>
-           
-                <th>Member ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Times Borrowed</th>
-            </tr>
-        </thead>
-        <tbody>
-           
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>10 times</td>
-            </tr>
-            <!-- Add more rows as needed -->
-        </tbody>
-    </table>
-
-        </div>
+        
    
 
     </main>
