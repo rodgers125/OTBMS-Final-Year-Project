@@ -223,8 +223,8 @@ mysqli_close($conn);
         </div>
     </div>
    </div>
-   <script src="events.js"></script>
-   <script src="admin.js"></script>
+   <script src="js/events.js"></script>
+   <script src="js/admin.js"></script>
   
 </body>
 </html>

@@ -222,8 +222,8 @@ mysqli_free_result($result);
    </div>
 
    
-   <script src="members.js"></script>
-   <script src="progress.js"></script>
-   <script src="admin.js"></script>
+   <script src="js/members.js"></script>
+   <script src="js/progress.js"></script>
+   <script src="js/admin.js"></script>
 </body>
 </html>

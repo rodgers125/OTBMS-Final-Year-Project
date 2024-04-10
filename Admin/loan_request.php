@@ -247,8 +247,8 @@ require 'connection.php';
    </div>
 
    
-   <script src="loan_request.js"></script>
-   <script src="admin.js"></script>
+   <script src="js/loan_request.js"></script>
+   <script src="js/admin.js"></script>
    
 </body>
 </html>

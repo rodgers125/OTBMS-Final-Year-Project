@@ -173,9 +173,9 @@ include 'upcoming_events_db.php'
         </div>
     </div>
    </div>
-   <script src="events.js"></script>
-   <script src="admin.js"></script>
-   <script src="members.js"></script>
+   <script src="js/events.js"></script>
+   <script src="js/admin.js"></script>
+   <script src="js/members.js"></script>
 
   
 </body>

@@ -231,8 +231,8 @@ mysqli_close($conn);
     </div>
    </div>
                 
-   <script src="admin.js"></script>
-   <script src="members.js"></script>
+   <script src="js/admin.js"></script>
+   <script src="js/members.js"></script>
    
 </body>
 </html>

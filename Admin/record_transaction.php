@@ -203,8 +203,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
    </div>
 
-   <script src="admin.js"></script>
-   <script src="record_transaction.js"></script>
+   <script src="js/admin.js"></script>
+   <script src="js/record_transaction.js"></script>
 
 </body>
 </html>

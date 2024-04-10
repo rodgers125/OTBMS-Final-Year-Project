@@ -227,7 +227,7 @@ require 'connection.php';
    </div>
 
    
-   <script src="loan_history.js"></script>
-   <script src="admin.js"></script>
+   <script src="js/loan_history.js"></script>
+   <script src="js/admin.js"></script>
 </body>
 </html>

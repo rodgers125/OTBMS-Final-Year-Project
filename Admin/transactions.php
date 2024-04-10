@@ -156,6 +156,6 @@ include 'upcoming_events_db.php'
     </div>
    </div>
 
-   <script src="admin.js"></script>
+   <script src="js/admin.js"></script>
 </body>
 </html>

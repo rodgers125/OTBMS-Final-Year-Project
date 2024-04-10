@@ -151,8 +151,8 @@ require 'connection.php';
    </div>
 
    
-   <script src="members.js"></script>
-   <script src="contribution.js"></script>
-   <script src="admin.js"></script>
+   <script src="js/members.js"></script>
+   <script src="js/contribution.js"></script>
+   <script src="js/admin.js"></script>
 </body>
 </html>
