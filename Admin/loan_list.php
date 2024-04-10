@@ -11,11 +11,11 @@ require 'connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Loan-List-And-Details</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="icons.css">
-    <link rel="stylesheet" href="loan_list.css">  
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/loan_list.css">  
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
-    <link rel="stylesheet" href="loan_analytics.css">
+    <link rel="stylesheet" href="css/loan_analytics.css">
 
 </head>
 <body>
@@ -74,75 +74,9 @@ require 'connection.php';
     <h1>► Active Loan List and Details</h1>
         <button class="btn-back"><a href="loans.php">Back</a></button>
 
-
-        <!--Loan List Table table-->
-        <div class="table">
-        <h2>Loan Details</h2>
-        <table>
-          
-        <thead>
-       
-            <tr>
-           
-                <th>Loan ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Amount</th>                
-                <th>Repayment Period</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table rows will be dynamically generated here based on data from the database -->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>0701163576</td>
-                <td>KSH 5000</td>                
-                <td>2 months</td>
-                <td>Overdue</td>
-                <td>
-                    <button class="btn-paid">
-                        Mark Cleared
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>0701163576</td>
-                <td>KSH 5000</td>                
-                <td>2 months</td>
-                <td>Pending</td>
-                <td>
-                    <button class="btn-paid">
-                    Mark Cleared
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>johndoe@example.com</td>
-                <td>0701163576</td>
-                <td>KSH 25000</td>                
-                <td>2 months</td>
-                <td>Overdue</td>
-                <td>
-                    <button class="btn-paid">
-                    Mark Cleared
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-        </div>    
-   
+<?php
+include  'loan_list_db.php';
+?>
 
     </main>
 <!--this ends main-->

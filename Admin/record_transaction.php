@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-record-transactions</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="record_transaction.css">
-    <link rel="stylesheet" href="loan_analytics.css">
-    <link rel="stylesheet" href="icons.css"> 
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/record_transaction.css">
+    <link rel="stylesheet" href="css/loan_analytics.css">
+    <link rel="stylesheet" href="css/icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>

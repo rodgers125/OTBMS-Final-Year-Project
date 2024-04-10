@@ -11,12 +11,12 @@ require 'connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Loan-History</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="icons.css"> 
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
-    <link rel="stylesheet" href="loan_analytics.css">
-    <link rel="stylesheet" href="loan_request.css">
-    <link rel="stylesheet" href="loan_history.css">
+    <link rel="stylesheet" href="css/loan_analytics.css">
+    <link rel="stylesheet" href="css/loan_request.css">
+    <link rel="stylesheet" href="css/loan_history.css">
 
 
 

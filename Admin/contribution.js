@@ -45,27 +45,27 @@ function deleteContribution(contribution_id) {
     }
 }
 //edit contribution
-function openEditModal(contribution_id) {
-    // Get the contribution data
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'contribution_schedule_table_db.php?contribution_id=' + contribution_id, true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            populateEditForm(data);
-        } else {
-            alert('Error fetching contribution data');
-        }
-    };
-    xhr.send();
+// Function to open the edit modal
+function openEditModal(contributionId) {
+    // Get the modal element
+    var modal = document.getElementById('editModal');
+    
+    // Display the modal
+    modal.style.display = 'block';
+    
+    
 }
 
-function populateEditForm(data) {
-    // Populate the form fields with the contribution data
-    document.getElementById('memberId').value = data.member_id;
-    document.getElementById('contributionAmount').value = data.cont_amount;
-    document.getElementById('contribution_date').value = data.cont_dateline;
+// Function to close the modal when the close button is clicked
+document.getElementsByClassName('close')[0].onclick = function() {
+    var modal = document.getElementById('editModal');
+    modal.style.display = 'none';
+};
 
-    // Show the modal
-    document.getElementById('editModal').style.display = 'block';
-}
+// Close the modal if the user clicks outside of it
+window.onclick = function(event) {
+    var modal = document.getElementById('editModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+};

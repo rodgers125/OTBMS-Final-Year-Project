@@ -42,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-events</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="event.css">
-    <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/event.css">
+    <link rel="stylesheet" href="css/members.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>

@@ -11,12 +11,12 @@ require 'connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-contribution-progress</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="icons.css"> 
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"> 
-    <link rel="stylesheet" href="loan_analytics.css">
-    <link rel="stylesheet" href="event.css">
-    <link rel="stylesheet" href="members.css">
+    <link rel="stylesheet" href="css/loan_analytics.css">
+    <link rel="stylesheet" href="css/event.css">
+    <link rel="stylesheet" href="css/members.css">
 
 
 
@@ -145,11 +145,13 @@ if (mysqli_num_rows($result) > 0) {
     echo '</tbody>';
     echo '</table>';
 
-    // Output the total amount paid as a JavaScript variable
-    echo '<script>';
-    echo 'const totalAmount = ' . $total_amount . ';';
-    echo 'updateProgressBar(totalAmount);'; // Pass the total amount to the JavaScript function
-    echo '</script>';
+    
+     // Output the total amount paid as a JavaScript variable
+     echo '<script>';
+     echo 'const totalAmount = ' . $total_amount . ';';
+     echo 'updateProgressBar(totalAmount);'; // Pass the total amount to the JavaScript function
+     echo '</script>';
+
 } else {
     echo "No contributions found for the current month.";
 }
