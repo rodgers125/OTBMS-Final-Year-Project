@@ -69,3 +69,22 @@ window.onclick = function(event) {
         modal.style.display = 'none';
     }
 };
+
+//to mark complete
+
+function markComplete(contribution_id) {
+    console.log("markComplete function called with contribution_id:", contribution_id);
+
+    $.ajax({
+        url: 'contribution_history_db.php',
+        type: 'POST',
+        data: { contribution_id: contribution_id },
+        success: function(response) {
+            console.log("AJAX request successful. Response:", response);
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX request failed. Error:", error);
+        }
+    });
+}
+

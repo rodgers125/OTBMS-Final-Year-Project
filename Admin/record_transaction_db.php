@@ -29,7 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Error in prepared statement');</script>";
     }
 
-    // Close the database connection
-    mysqli_close($conn);
+
+    
 }
+
+
 ?>
