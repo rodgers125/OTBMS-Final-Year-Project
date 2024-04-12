@@ -6,3 +6,18 @@ function getCurrentDateTime() {
 
 // Set the default value to the current date and time
 document.getElementById('date').defaultValue = getCurrentDateTime();
+
+//member_id_for_contribution input firld
+function toggleMemberIdInput() {
+    var purposeSelect = document.getElementById("purpose");
+    var memberIdField = document.getElementById("memberIdField");
+    var memberIdInput = document.getElementById("member_id_for_contribution");
+
+    if (purposeSelect.value === "contribution") {
+        memberIdField.style.display = "block";
+        memberIdInput.required = true;
+    } else {
+        memberIdField.style.display = "none";
+        memberIdInput.required = false;
+    }
+}

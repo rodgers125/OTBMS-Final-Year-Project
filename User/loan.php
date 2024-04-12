@@ -2,6 +2,8 @@
 require 'session.php';
 require 'connection.php';
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -10,9 +12,9 @@ require 'connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONLINECHAMA-Loans</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="loan.css">
-    <link rel="stylesheet" href="contribution.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/loan.css">
+    <link rel="stylesheet" href="css/contribution.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -139,6 +141,9 @@ require 'connection.php';
     <span class="close">&times;</span>
     <h2>Loan Application</h2>
     <form id="loanApplicationForm" action="send_loan_application.php" method="post">
+    <div class="form-group">
+    <input type="hidden" id="memberId" name="memberId" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
+    </div>
       <div class="form-group">
         <label for="loanType">Loan Type:</label>
         <select id="loanType" name="loanType">
@@ -156,6 +161,7 @@ require 'connection.php';
     <label for="loanAmount">Enter The Amount</label>
     <input type="number" id="loanAmount" name="loanAmount">
 </div>
+
       <button type="submit">Apply</button>
     </form>
   </div>
@@ -204,7 +210,7 @@ require 'connection.php';
     </div>
    </div>
 
-   <script src="index.js"></script>
-   <script src="loan.js"></script>
+   <script src="js/index.js"></script>
+   <script src="js/loan.js"></script>
 </body>
 </html>

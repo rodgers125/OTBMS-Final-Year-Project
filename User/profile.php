@@ -10,9 +10,9 @@ require 'connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONLINE CHAMA - profile</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="loan.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/loan.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -155,6 +155,6 @@ require 'connection.php';
     </div>
    </div>
 
-   <script src="index.js"></script>
+   <script src="js/index.js"></script>
 </body>
 </html>

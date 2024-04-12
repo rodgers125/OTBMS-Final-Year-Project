@@ -71,20 +71,20 @@ if (mysqli_num_rows($result) > 0) {
 // Insert retrieved data into the contribution_log table
 
 
-$query = "SELECT t.member_id, t.transaction_id, t.transaction_date, t.transaction_amount
+$query = "SELECT t.member_id, t.transaction_id, t.transaction_date, t.transaction_amount, t.member_id_for_contribution
           FROM transactions t
           WHERE t.transaction_purpose = 'contribution'";
 $result = mysqli_query($conn, $query);
 
 while ($row = mysqli_fetch_assoc($result)) {   
     $member_id = $row["member_id"];
-    $transaction_id = $row["transaction_id"];
+    $member_id_for_contribution = $row["member_id_for_contribution"];
     $transaction_date = $row['transaction_date'];
     $transaction_amount = $row['transaction_amount'];
     
     // SQL query to insert data into the contribution_log table
-    $insert_query = "INSERT INTO contribution_log (memberId, transaction_id, contribution_date, amount) 
-                     VALUES ('$member_id', '$transaction_id', '$transaction_date', '$transaction_amount')";
+    $insert_query = "INSERT INTO contribution_log (memberId, contribution_id, contribution_date, amount) 
+                     VALUES ('$member_id', '$member_id_for_contribution', '$transaction_date', '$transaction_amount')";
     $insert_result = mysqli_query($conn, $insert_query);
     
     // Check for insertion errors

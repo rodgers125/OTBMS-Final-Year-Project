@@ -46,7 +46,7 @@ if (mysqli_num_rows($result) > 0) {
         echo '<td>KSH ' . number_format($row['cont_amount'], 2) . '</td>';   //format numbers with thousands separators and decimal points. It takes two parameters: the number to format and the number of decimal places. 
         echo '<td>' . $row['cont_dateline'] . '</td>';
         echo '<td>';
-        echo '<button class="btn-complete" onclick="markComplete(\'' . $row['contribution_id'] . '\')">Mark Complete</button>';
+        echo '<button class="btn-complete" onclick="markComplete(' . $row['contribution_id'] . ')">Mark Complete</button>';
         echo '<button class="edit-btn" onclick="openEditModal(' . $row['contribution_id'] . ')">Edit</button>';
         echo '<button class="btn-delete" onclick="deleteContribution(' . $row['contribution_id'] . ')">Delete</button>';
         echo '</td>';

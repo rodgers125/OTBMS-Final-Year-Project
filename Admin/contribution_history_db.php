@@ -1,48 +1,49 @@
 <?php
 require 'connection.php';
 
-// SQL query to retrieve member_id and contribution_id from contribution_schedule table
-$query = "SELECT member_id, contribution_id, cont_dateline
-          FROM contribution_schedule";
+$response = array(); // Initialize response array
 
-$result = mysqli_query($conn, $query);
+// Check if contribution_id is provided
+if (!isset($_POST['contribution_id'])) {
+    $response['error'] = "Contribution ID is missing.";
+} else {
+    $contribution_id = $_POST['contribution_id'];
 
-if (!$result) {
-    echo "Error: " . mysqli_error($conn);
-    exit;
-}
+    // SQL query to retrieve member_id, cont_dateline, and total contribution_amount for the given contribution_id
+    $query = "SELECT cs.member_id, cs.cont_dateline, SUM(cl.amount) AS contribution_amount
+              FROM contribution_schedule cs
+              INNER JOIN contribution_log cl ON cs.contribution_id = cl.contribution_id
+              WHERE cs.contribution_id = '$contribution_id'
+              AND MONTH(cs.cont_dateline) = MONTH(cl.contribution_date)
+              AND YEAR(cs.cont_dateline) = YEAR(cl.contribution_date)
+              GROUP BY cs.member_id, cs.cont_dateline";
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $member_id = $row['member_id'];
-    $contribution_id = $row['contribution_id'];
-    $cont_dateline = $row['cont_dateline'];
+    $result = mysqli_query($conn, $query);
 
-    // Get the month and year from cont_dateline
-    $cont_month = date('m', strtotime($cont_dateline));
-    $cont_year = date('Y', strtotime($cont_dateline));
+    if (!$result) {
+        $response['error'] = "Error: " . mysqli_error($conn);
+    } else {
+        // Fetch the first row only (assuming only one record is expected)
+        $row = mysqli_fetch_assoc($result);
 
-    // SQL query to calculate total contribution amount for the member and matched month
-    $total_query = "SELECT SUM(amount) AS total_amount
-                    FROM contribution_log
-                    WHERE MONTH(contribution_date) = $cont_month
-                    AND YEAR(contribution_date) = $cont_year";
-    
-    $total_result = mysqli_query($conn, $total_query);
-    $total_row = mysqli_fetch_assoc($total_result);
-    $contribution_amount = $total_row['total_amount'];
+        $member_id = $row['member_id'];
+        $cont_dateline = $row['cont_dateline'];
+        $contribution_amount = $row['contribution_amount'];
 
-    // Insert values into contribution_history table
-    $insert_query = "INSERT INTO contribution_history (member_id, contribution_id, contribution_date, contribution_amount) 
-                     VALUES ('$member_id', '$contribution_id', '$cont_dateline', '$contribution_amount')";
-    $insert_result = mysqli_query($conn, $insert_query);
+        // Insert values into contribution_history table
+        $insert_query = "INSERT INTO contribution_history (member_id, contribution_id, contribution_date, contribution_amount) 
+                         VALUES ('$member_id', '$contribution_id', '$cont_dateline', '$contribution_amount')";
+        $insert_result = mysqli_query($conn, $insert_query);
 
-    if (!$insert_result) {
-        echo "Error inserting data into contribution_history: " . mysqli_error($conn);
-        exit;
+        if (!$insert_result) {
+            $response['error'] = "Error inserting data into contribution_history: " . mysqli_error($conn);
+        } else {
+            $response['success'] = "Record added successfully into contribution_history table.";
+        }
     }
 }
 
-echo "Values inserted successfully into contribution_history table.";
+echo json_encode($response); // Output response as JSON
 
-mysqli_close($conn); // Close the database connection
+mysqli_close($conn);
 ?>

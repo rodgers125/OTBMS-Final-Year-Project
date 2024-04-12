@@ -76,71 +76,11 @@ require 'connection.php';
     <h1>► Loan History</h1>
         <button class="btn-back"><a href="loans.php">Back</a></button>
 
-        <!--Loan List Table table-->
-        <div class="table">
-        <h2>List of Loans Borrowed up to date</h2>
-        <table>
-          
-        <thead>
-       
-            <tr>
-           
-                <th>Loan ID</th>
-                <th>Full Name</th>
-                <th>Loan Amount</th>
-                <th>Loan Type</th>
-                <th>Date Borrowed</th>
-                <th>Overdue Days</th>     
-                <th>Transaction Details</th>           
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table rows will be dynamically generated here based on data from the database -->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>KSH 5000</td>
-                <td>Personal</td>
-                <td>22/3/2025</td> 
-                <td>2</td>                
-                <td>
-                <button class="view-btn" onclick="openDetailsModal()">View Details</button>
-                    </td>
-                
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>KSH 5000</td>
-                <td>Business</td>
-                <td>22/3/2025</td> 
-                <td>3</td>                
-
-                <td>
-                <button class="view-btn" onclick="openDetailsModal()">View Details</button>
-                    </td>
-                
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>KSH 5000</td>
-                <td>Personal</td>
-                <td>22/3/2025</td>
-                <td>4</td>                
-
-                <td>
-                <button class="view-btn" onclick="openDetailsModal()">View Details</button>
-                    </td>
-                
-            </tr>
-        </tbody>
-    </table>
-    <div class="btn-download">
-    <button onclick="printTable()">Print</button>
-    </div>
-
-        </div>
+        <!--Loan history Table table-->
+      
+ <?php 
+     include 'php_db/loan_history_db.php';
+     ?>
 
      
      

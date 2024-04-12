@@ -8,14 +8,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $loanType = $_POST["loanType"];
     $loanAmount = $_POST["loanAmount"];
     $loanPeriod = $_POST["repaymentPeriod"];
+    $memberId = $_POST["memberId"]; 
 
     // Prepare and execute the SQL statement to insert data into the loan_requests table
-    $query = "INSERT INTO loan_requests (loanType, loanAmount, loanPeriod) VALUES (?, ?, ?)";
+    $query = "INSERT INTO loan_requests (loanType, memberId, loanAmount, loanPeriod) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
         // Bind parameters and execute the statement
-        mysqli_stmt_bind_param($stmt, "sds", $loanType, $loanAmount, $loanPeriod);
+        mysqli_stmt_bind_param($stmt, "sdss", $loanType, $memberId, $loanAmount, $loanPeriod);
         mysqli_stmt_execute($stmt);
 
         // Check if the query was successful

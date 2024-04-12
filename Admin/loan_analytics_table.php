@@ -2,8 +2,8 @@
 require 'connection.php';
 
 // SQL query to calculate the total amount borrowed for each member
-$query = "SELECT l.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, m.email, SUM(l.loanAmount) AS totalAmountBorrowed
-          FROM loan l
+$query = "SELECT l.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, m.email, SUM(l.loan_amount) AS totalAmountBorrowed
+          FROM loan_history l
           JOIN members m ON l.member_id = m.memberId
           GROUP BY l.member_id
           ORDER BY totalAmountBorrowed DESC
@@ -46,7 +46,7 @@ if (mysqli_num_rows($result) > 0) {
 
 // Calculate frequent borrowers based on the number of times they borrowed
 $queryFrequentBorrowers = "SELECT l.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, m.email, COUNT(l.member_id) AS timesBorrowed
-                           FROM loan l
+                           FROM loan_history l
                            JOIN members m ON l.member_id = m.memberId
                            GROUP BY l.member_id
                            ORDER BY timesBorrowed DESC

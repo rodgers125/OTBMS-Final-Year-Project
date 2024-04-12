@@ -131,11 +131,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-group">
                     <label for="purpose">Purpose</label>
-                    <select id="purpose" name="purpose" required> 
+                    <select id="purpose" name="purpose" required onchange="toggleMemberIdInput()"> 
                     <option value="loanRepayment">Loan Repayment</option>
                         <option value="contribution">Contribution Payment</option>                       
 </select>                  
                 </div>
+                
+                <div class="form-group" id="memberIdField" style="display: none;">
+        <label for="memberId">Member Id for Contribution:</label>
+        <input type="number" id="member_id_for_contribution" name="member_id_for_contribution">
+    </div>
+
                 <div class="form-group">
                     <label for="payment_method">Payment Method:</label><br>
                     <select id="payment_method" name="payment_method" required>

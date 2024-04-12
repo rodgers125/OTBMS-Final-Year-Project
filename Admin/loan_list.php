@@ -137,6 +137,7 @@ include  'loan_list_db.php';
 
    
    <script src="js/chart.js"></script>
+   <script src="js/loans.js"></script>
    <script src="js/admin.js"></script>
 </body>
 </html>

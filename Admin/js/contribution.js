@@ -74,17 +74,28 @@ window.onclick = function(event) {
 
 function markComplete(contribution_id) {
     console.log("markComplete function called with contribution_id:", contribution_id);
+    
+    // Create a hidden form dynamically
+    var form = document.createElement('form');
+    form.method = 'post';
+    form.action = 'contribution_history_db.php'; // PHP script URL
+    form.style.display = 'none';
 
-    $.ajax({
-        url: 'contribution_history_db.php',
-        type: 'POST',
-        data: { contribution_id: contribution_id },
-        success: function(response) {
-            console.log("AJAX request successful. Response:", response);
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX request failed. Error:", error);
-        }
-    });
+    // Create a hidden input field to pass contribution_id
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'contribution_id';
+    input.value = contribution_id;
+    
+    // Append the input field to the form
+    form.appendChild(input);
+
+    // Append the form to the document body
+    document.body.appendChild(form);
+
+    // Submit the form
+    form.submit();
 }
+
+
 
