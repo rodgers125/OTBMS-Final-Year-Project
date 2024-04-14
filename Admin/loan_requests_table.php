@@ -10,7 +10,7 @@ $result = mysqli_query($conn, $query);
 
 // Check if there are any rows returned
 if (mysqli_num_rows($result) > 0) {
-    echo "<h2>Loan Requests</h2>";
+    
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
@@ -38,8 +38,9 @@ if (mysqli_num_rows($result) > 0) {
 
     echo "</tbody>";
     echo "</table>";
+    
 } else {
-    echo "No loan requests found.";
+    echo "No loan requests at the moment.";
 }
 
 // Close the database connection

@@ -77,63 +77,31 @@ require 'connection.php';
     <div class="loan-details">
         <!-- Loan Balance Card -->
         <div class="loan-card">
+        <?php
+// Include the loan_db.php file to access $total_loan_balance
+include 'loan_db.php';
+?>
         <h2>Loan Balance</h2> 
         <br>
-                        <p>KSH 20,600.50</p>  
+                        <p>KSH <?php echo $total_loan_balance; ?></p>  
                         <br>
-                        <h3>To Be Paid Before 12/4/2015</h3>
+                        
         </div>
 
         <!-- Loan Limit Card -->
         <div class="loan-card">
-        <h2>Loan Limit</h2> 
+        <h2>Loan Application</h2> 
         <br>
-                        <p>KSH 30,500.00</p>
+                        
                         <button class="btn-apply">Apply for a loan</button>
         </div>
         
     </div>
 <br>
 
-    <!--Applied  Loans Table-->
-    <div class="table">
-    <h2>Loan History</h2>
-   <table>
-    <thead>
-        <tr>
-          <th>Loan Id</th>
-          <th>Date Applied</th>
-          <th>Amount</th>
-          <th>Purpose</th>
-          <th>Status</th>          
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>1234</td>
-            <td>1/2/2023</td>
-            <td>20000</td>
-            <td>Business</td>
-            <td>Pending Approval</td>
-        </tr>
-        <tr>
-            <td>1234</td>
-            <td>1/2/2023</td>
-            <td>20000</td>
-            <td>Personal</td>
-            <td>Active</td>
-        </tr>
-        <tr>
-            <td>1234</td>
-            <td>1/2/2023</td>
-            <td>20000</td>
-            <td>Business</td>
-            <td>Paid</td>
-        </tr>
-    </tbody>
-   </table>
-            </div>
+   <?php
+   include 'loan_history.php';
+   ?>
 
     <!-- Loan Application Modal -->
 <div id="loanApplicationModal" class="modal">
@@ -158,7 +126,7 @@ require 'connection.php';
         </select>
       </div>
       <div class="form-group">
-    <label for="loanAmount">Enter The Amount</label>
+    <label for="loanAmount">Enter Amount you want to borrow</label>
     <input type="number" id="loanAmount" name="loanAmount">
 </div>
 

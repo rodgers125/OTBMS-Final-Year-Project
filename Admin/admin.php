@@ -120,7 +120,7 @@ require 'connection.php';
 
     <div class="recent-transactions">
         
-
+    <h2>Loan Requests</h2>
     <?php include 'loan_requests_table.php'; ?>
          
                

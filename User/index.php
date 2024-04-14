@@ -94,7 +94,11 @@ require 'connection.php';
                 <div class="middle">
                     <div class="left">
                         <h3>Loan Balance</h3> 
-                        <p><b>--|--</b></p>  
+                        <?php
+                       // Include the loan_db.php file to access $total_loan_balance
+                          include 'loan_db.php';
+                        ?>
+                        <p><b>KSH <?php echo $total_loan_balance; ?></b></p>  
                         <a href="loan.php"> 
                         <small>View More Details</small>
                         <img src="images/view.png" alt="Request Icon" class="view-icon"> 

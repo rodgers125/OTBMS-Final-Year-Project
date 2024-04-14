@@ -73,7 +73,7 @@ require 'connection.php';
         <br>
       
 <?php
-include 'recent_transactions_db.php'
+include 'transaction_db.php'
 ?>
     </main>
 

@@ -16,7 +16,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     echo '<thead>';
     echo '<tr>';
     echo '<th>Transaction Id</th>';
-    echo '<th>Transaction Date and Time</th>';
+    echo '<th>Transaction Date</th>';
     echo '<th>Amount</th>';
     echo '<th>Method</th>';
     echo '<th>Purpose</th>';
