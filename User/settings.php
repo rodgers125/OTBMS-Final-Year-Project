@@ -9,10 +9,10 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONLINE CHAMA - profile</title>
+    <title>ONLINE CHAMA - notifications</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/loan.css">
+    <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -37,10 +37,7 @@ require 'connection.php';
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Account Overview</h3>
             </a>
-            <a href="profile.php"  class="active">
-                <span class="material-icons-sharp">insights</span>
-                <h3>Profile</h3>
-            </a>
+           
             <a href="contribution.php">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Contributions</h3>
@@ -52,14 +49,18 @@ require 'connection.php';
             </a>
            
             <a href="transaction.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
+                <span class="material-icons-sharp">receipt</span>
                 <h3>Transactions</h3>
             </a>
-            <a href="notifications.php">
-                <span class="material-icons-sharp">inventory</span>
+            <a href="notifications.php" >
+                <span class="material-icons-sharp">notifications</span>
                 <h3>Notifications</h3>
             </a>
           
+            <a href="settings.php" class = "active">
+                <span class="material-icons-sharp">settings</span>
+                <h3>Settings</h3>
+            </a>
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -70,48 +71,35 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>► Personal Details</h1>
-        <br>
-        <div class="loan-details">
-            <div class="loan-card">
-                <h2><b>Personal Details:</b></h2>
-                <form action="update_profile.php" method="POST">
-                    <ul>            
-                        <p><b>Member ID :</b> 4</p>
-                        <p>
-                            <label for="First Name"><b>First Name :</b></label>
-                            <input type="text" id="fName" name="fName" value="" required>
-</p>
-<p>
-                            <label for="Last Name"><b>Last Name :</b></label>
-                            <input type="text" id="lName" name="lName" value="" required>
-</p>
-                        <p><b>Date Joined :</b> 1987/05/23</p>
-                        <p><b>Email :</b> fhdf@gmail.com</p>                  
-                        <p>
-                            <label for="phone_number"><b>Phone Number :</b></label>
-                            <input type="tel" id="phone_number" name="phone_number" value="0701163576" required>
-</p>
-                        <p><b>Gender :</b> Male</p>
-                        <small>Note: You can only edit your Name and Phone Number</small>
-                        <button type="submit" class="btn-edit">Update Personal Details</button>
-                    </ul>
-                </form>
-            </div>
-            </div>
+    <h1>► Settings</h1>
+    <br>
+    <h2>Update your login password here.</h2>
 <br>
-            <!--group details-->
-            <div class="loan-details">
-            <div class="loan-card">
-            <h2><b>Group Details:</b></h2>
-                       <br>                
-                <p><b>Group Name : </b> Roywea</p>
-                <p><b>Date You Joined : </b> 1/2/2023</p>
-                <p><b>Total Members : </b>55</p>
-                <p><b>Total Amount Contributed to Date : </b>100000</p>
-            
-        </div>
-        </div>
+    <div class="loan-details">
+        <!-- Card -->
+        <div class="loan-card">
+
+        <form id="editForm" action="update_password_db.php" method="POST">
+     
+      
+      <div class="form-group">
+        <label for="currentPassword">Enter Your Current Password</label>
+        <input type="password" id="currentPassword" name="currentPassword" required>
+      </div>
+      <div class="form-group">
+        <label for="newPassword">Enter New Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm  New Password</label>
+        <input type="password" id="ConfirmPassword" name="confirmPassword" required>
+      </div>
+      <button type="submit" class="btn-edit" id="updatePass">Update Password</button>
+</div>
+</div>
+
+
+    
     </main>
 
 <!--this ends main-->

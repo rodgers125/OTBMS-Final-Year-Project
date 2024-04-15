@@ -36,10 +36,7 @@ require 'connection.php';
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Account Overview</h3>
             </a>
-            <a href="profile.php">
-                <span class="material-icons-sharp">insights</span>
-                <h3>Profile</h3>
-            </a>
+            
             <a href="contribution.php">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Contributions</h3>
@@ -50,15 +47,20 @@ require 'connection.php';
                 <h3>Loans</h3>
             </a>
            
-            <a href="transaction.php"  class="active">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
+           
+            <a href="transaction.php" class = "active">
+                <span class="material-icons-sharp">receipt</span>
                 <h3>Transactions</h3>
             </a>
             <a href="notifications.php">
-                <span class="material-icons-sharp">inventory</span>
+                <span class="material-icons-sharp">notifications</span>
                 <h3>Notifications</h3>
             </a>
           
+            <a href="settings.php">
+                <span class="material-icons-sharp">settings</span>
+                <h3>Settings</h3>
+            </a>
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>

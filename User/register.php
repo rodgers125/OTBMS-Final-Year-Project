@@ -98,20 +98,6 @@ if (isset($_POST["submit"])) {
 
     </form>
 
-    <script>
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirmPassword").value;
-            var errorElement = document.getElementById("passwordError");
-
-            if (password !== confirmPassword) {
-                errorElement.textContent = "Passwords do not match!";
-                return false;
-            } else {
-                errorElement.textContent = "";
-                return true;
-            }
-        }
-    </script>
+    <script src="js/index.js"></script>
 </body>
 </html>

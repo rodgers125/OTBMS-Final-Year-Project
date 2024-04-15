@@ -12,6 +12,7 @@ require 'connection.php';
     <title>ONLINE CHAMA -dashboard</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -36,10 +37,7 @@ require 'connection.php';
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Account Overview</h3>
             </a>
-            <a href="profile.php">
-                <span class="material-icons-sharp">insights</span>
-                <h3>Profile</h3>
-            </a>
+            
             <a href="contribution.php">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Contributions</h3>
@@ -51,13 +49,19 @@ require 'connection.php';
             </a>
            
             <a href="transaction.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
+                <span class="material-icons-sharp">receipt</span>
                 <h3>Transactions</h3>
             </a>
             <a href="notifications.php">
-                <span class="material-icons-sharp">inventory</span>
+                <span class="material-icons-sharp">notifications</span>
                 <h3>Notifications</h3>
             </a>
+
+            <a href="settings.php">
+                <span class="material-icons-sharp">settings</span>
+                <h3>Settings</h3>
+            </a>
+          
           
                       
             <a href="logout.php" id="logoutLink">
@@ -130,6 +134,8 @@ require 'connection.php';
      <?php
      include 'user_details_db.php'
      ?>
+
+
        
 <!--Recent Transactions -->
 
@@ -183,10 +189,12 @@ include 'recent_transactions_db.php'
         <p>15</p>
       
     </div>
-    <a href="profile.php"> 
-        <small>View More Details</Details></small>
-        <img src="images/view.png" alt="Request Icon" class="view-icon"> 
-    </a>     
+    <div class="card-detail">
+    <h3>Total Contributions made:</h3>
+        <p>150000</p>
+      
+    </div>
+       
 </div>
 </div>
 
