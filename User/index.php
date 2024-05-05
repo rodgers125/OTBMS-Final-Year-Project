@@ -171,22 +171,25 @@ include 'recent_transactions_db.php'
 
 
 <div class="side-card">
+<?php
+     include 'group_details_db.php'
+     ?>
 <h2>Your Group Details</h2>
 <div class="side-card-info">
     <div class="card-detail">
         <h3>Group Name:</h3>
-        <p>Roywea</p>  
+        <p><?php echo $group_name; ?></p>  
             
        
     </div>
     <div class="card-detail">
     <h3>Date Joined:</h3>    
-        <p>12/5/2024</p>
+        <p><?php echo $date_joined; ?></p>
         
     </div>
     <div class="card-detail">
     <h3>Total Members:</h3>
-        <p>15</p>
+        <p><?php echo $total_members; ?></p>
       
     </div>
     <div class="card-detail">

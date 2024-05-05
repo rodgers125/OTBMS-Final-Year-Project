@@ -12,6 +12,7 @@ require 'connection.php';
     <title>ONLINE CHAMA - notifications</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/loan.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
@@ -72,41 +73,24 @@ require 'connection.php';
     <main>
     <h1>► Notifications</h1>
     <div class="user-details">
-        
-            <div class="details-card">
-                <h3><b>3 unread notifications</b></h3>
-                <div class="unread-notification-about">
-            <p><b>20/3/2024 09:30</b> Group Meeting
-            <button onclick="btnClear()" class="clear-btn">
-                 <img src="images/clear.png" alt="clear">
-                </button></
-            </p>
+        <div class="details-card" id="notificationList">             
+            <?php
+            include 'notification_db.php';
+            ?>
         </div>
-        <div class="unread-notification-about">
-            <p><b>20/3/2024 09:30</b> Group Meeting
-            <button onclick="btnClear()" class="clear-btn">
-                 <img src="images/clear.png" alt="clear">
-                </button></
-            </p>
-        </div>
-        <div class="unread-notification-about">
-            <p><b>20/3/2024 09:30</b> Group Meeting
-            <button onclick="btnClear()" class="clear-btn">
-                 <img src="images/clear.png" alt="clear">
-                </button></
-            </p>
-        </div>
-        <div class="notification-about">
-            <p><b>20/3/2024 09:30</b> Group Meeting
 
-             <button onclick="btnClear()" class="clear-btn">
-                 <img src="images/clear.png" alt="clear">
-                </button></p>
-            
+        <div class="details-card" id="notificationContent" style="display: none;">
+            <!-- This is where the notification content will be displayed -->
+            <button class="btn-back"><a href="notifications.php">Go Back</a></button> <!-- Button to go back to notifications list -->
+            <br>
+            <br>
+            <h2 id="notificationTitle"></h2> <!-- Title of the notification will be displayed here -->
+            <br>
+            <p id="notificationMessage"></p> <!-- Notification message will be displayed here -->
+          
         </div>
-            </div>
-        </div>
-    </main>
+    </div>
+</main>
 
 <!--this ends main-->
 
@@ -150,5 +134,7 @@ require 'connection.php';
    </div>
 
    <script src="js/index.js"></script>
+   <script src="js/notification.js"></script>
+
 </body>
 </html>

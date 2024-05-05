@@ -16,13 +16,13 @@ $result = mysqli_query($conn, $query);
 
 // Check for errors
 if (!$result) {
-    echo "Error: " . mysqli_error($conn);
+    // Handle the error gracefully
+    error_log("Error executing query: " . mysqli_error($conn));
+    echo "An unexpected error occurred. Please try again later.";
     exit;
 }
 
 $total_amount = 0;
-
-
 
 // Check if there are any rows returned
 if (mysqli_num_rows($result) > 0) {
@@ -54,27 +54,27 @@ if (mysqli_num_rows($result) > 0) {
     echo '</tbody>';
     echo '</table>';
 
-    
-     // Output the total amount paid as a JavaScript variable
-     echo '<script>';
-     echo 'const totalAmount = ' . $total_amount . ';';
-     echo 'updateProgressBar(totalAmount);'; // Pass the total amount to the JavaScript function
-     echo '</script>';
+    // Output the total amount paid as a JavaScript variable
+    echo '<script>';
+    echo 'const totalAmount = ' . $total_amount . ';';
+    echo 'updateProgressBar(totalAmount);'; // Pass the total amount to the JavaScript function
+    echo '</script>';
 
 } else {
     echo "No contributions found for the current month.";
 }
 
-
-
-
 // Insert retrieved data into the contribution_log table
-
-
 $query = "SELECT t.member_id, t.transaction_id, t.transaction_date, t.transaction_amount, t.member_id_for_contribution
           FROM transactions t
           WHERE t.transaction_purpose = 'contribution'";
 $result = mysqli_query($conn, $query);
+
+if (!$result) {
+    // Handle the error gracefully
+    error_log("Error executing query: " . mysqli_error($conn));
+    exit;
+}
 
 while ($row = mysqli_fetch_assoc($result)) {   
     $member_id = $row["member_id"];
@@ -89,14 +89,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     
     // Check for insertion errors
     if (!$insert_result) {
-        echo "Error inserting data into contribution_log: " . mysqli_error($conn);
+        // Handle the error gracefully
+        error_log("Error inserting data into contribution_log: " . mysqli_error($conn));
         exit;
     }
 }
 // Free result set
 mysqli_free_result($result);
 
-
-
 ?>
-

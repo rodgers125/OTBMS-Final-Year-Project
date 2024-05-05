@@ -1,23 +1,38 @@
-.unread-notification-about{
-    border: 1px solid #ffffff;
-    box-shadow: var(--box-shadow);
-    margin-bottom: 10px;
-    padding: 10px;
-    font-weight: bolder;   
-}
-.notification-about{  
-    border: 1px solid #ffffff;
-    box-shadow: var(--box-shadow);
-    margin-bottom: 10px;
-    padding: 10px;
+tr {
+    cursor: pointer; 
 }
 
-.clear-btn{
-    float: right;
+
+tr:hover {
+    background-color: var(--color-info-light);
+}
+.unread-notification-about {
+    text-align: right;
+}
+
+tr td {
+    padding: 10px; 
+}
+
+tr .clear-btn{
+    background-color: transparent;
+    border: none;
     cursor: pointer;
+    outline: none;    
+    margin-left: 40px;
 }
 .clear-btn img{
     width: 20px;
     height: 20px;
+   
+}
+
+.btn-back{
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    height: 20px;
+    width: 60px;
+    font-weight: bold;
+    color: var(--color-white);    
    
 }
