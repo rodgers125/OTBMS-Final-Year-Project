@@ -1,49 +1,85 @@
 <?php
-require 'connection.php';
+require_once 'connection.php';
 
-$response = array(); // Initialize response array
+// Query to retrieve data from the contribution_history table and sort by contribution_date
+$query = "SELECT ch.contribution_id, ch.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, 
+                 ch.contribution_amount, 
+                 ch.contribution_date
+          FROM contribution_history ch
+          JOIN members m ON ch.member_id = m.memberId
+          ORDER BY ch.contribution_date DESC"; // ASC for ascending order, DESC for descending order
+$result = mysqli_query($conn, $query);
 
-// Check if contribution_id is provided
-if (!isset($_POST['contribution_id'])) {
-    $response['error'] = "Contribution ID is missing.";
+// Check if there are any rows returned
+if (mysqli_num_rows($result) > 0) {
+    // Output table header
+    echo '<table>';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>Contribution ID</th>';
+    echo '<th>Member ID</th>';
+    echo '<th>Full Name</th>';
+    echo '<th>Total Contributions Made</th>';
+    echo '<th>Date Contributed</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+
+    // Loop through the fetched data and output each row in the table
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<tr>';
+        echo '<td>' . $row['contribution_id'] . '</td>';
+        echo '<td>' . $row['member_id'] . '</td>';
+        echo '<td>' . $row['fullName'] . '</td>';
+        echo '<td>' . $row['contribution_amount'] . '</td>';
+        echo '<td>' . $row['contribution_date'] . '</td>';
+        echo '</tr>';
+    }
+
+    echo '</tbody>';
+    echo '</table>';
 } else {
-    $contribution_id = $_POST['contribution_id'];
+    echo 'No contribution history found.';
+}
 
-    // SQL query to retrieve member_id, cont_dateline, and total contribution_amount for the given contribution_id
-    $query = "SELECT cs.member_id, cs.cont_dateline, SUM(cl.amount) AS contribution_amount
-              FROM contribution_schedule cs
-              INNER JOIN contribution_log cl ON cs.contribution_id = cl.contribution_id
-              WHERE cs.contribution_id = '$contribution_id'
-              AND MONTH(cs.cont_dateline) = MONTH(cl.contribution_date)
-              AND YEAR(cs.cont_dateline) = YEAR(cl.contribution_date)
-              GROUP BY cs.member_id, cs.cont_dateline";
 
-    $result = mysqli_query($conn, $query);
+if (isset($_REQUEST['contribution_id'])) {
+    // Sanitize the input to prevent SQL injection
+    $contribution_id = mysqli_real_escape_string($conn, $_REQUEST['contribution_id']);
 
-    if (!$result) {
-        $response['error'] = "Error: " . mysqli_error($conn);
-    } else {
-        // Fetch the first row only (assuming only one record is expected)
+    // Query to retrieve data from the contribution_schedule table
+    $query = "SELECT member_id, cont_amount, cont_dateline FROM contribution_schedule WHERE contribution_id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $contribution_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the data
         $row = mysqli_fetch_assoc($result);
 
+        // Extract the data
         $member_id = $row['member_id'];
-        $cont_dateline = $row['cont_dateline'];
-        $contribution_amount = $row['contribution_amount'];
+        $contribution_amount = $row['cont_amount'];
+        $contribution_date = $row['cont_dateline'];
 
-        // Insert values into contribution_history table
-        $insert_query = "INSERT INTO contribution_history (member_id, contribution_id, contribution_date, contribution_amount) 
-                         VALUES ('$member_id', '$contribution_id', '$cont_dateline', '$contribution_amount')";
-        $insert_result = mysqli_query($conn, $insert_query);
+        // Insert data into the contribution_history table
+        $insert_query = "INSERT INTO contribution_history (member_id, contribution_amount, contribution_date, contribution_id) 
+                         VALUES (?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $insert_query);
+        mysqli_stmt_bind_param($stmt, "iisi", $member_id, $contribution_amount, $contribution_date, $contribution_id);
+        $insert_result = mysqli_stmt_execute($stmt);
 
+        
         if (!$insert_result) {
-            $response['error'] = "Error inserting data into contribution_history: " . mysqli_error($conn);
-        } else {
-            $response['success'] = "Record added successfully into contribution_history table.";
+            // Handle insertion error
+            error_log("Error inserting data into contribution_history: " . mysqli_error($conn));
+            echo "Failed to mark contribution as complete.";
         }
+    } else {
+        // No data found for the provided contribution_id
+        echo "No contribution found for the provided contribution ID.";
     }
 }
 
-echo json_encode($response); // Output response as JSON
-
-mysqli_close($conn);
 ?>

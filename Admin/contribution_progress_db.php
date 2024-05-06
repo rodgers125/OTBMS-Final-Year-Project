@@ -81,11 +81,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     $member_id_for_contribution = $row["member_id_for_contribution"];
     $transaction_date = $row['transaction_date'];
     $transaction_amount = $row['transaction_amount'];
+    $transaction_id = $row['transaction_id'];
     
     // SQL query to insert data into the contribution_log table
-    $insert_query = "INSERT INTO contribution_log (memberId, contribution_id, contribution_date, amount) 
-                     VALUES ('$member_id', '$member_id_for_contribution', '$transaction_date', '$transaction_amount')";
-    $insert_result = mysqli_query($conn, $insert_query);
+    $insert_query = "INSERT IGNORE INTO contributionLog (member_id, contribution_id, contribution_date, amount, transaction_id) 
+    VALUES ('$member_id', '$member_id_for_contribution', '$transaction_date', '$transaction_amount', '$transaction_id')";
+$insert_result = mysqli_query($conn, $insert_query);
     
     // Check for insertion errors
     if (!$insert_result) {

@@ -94,7 +94,7 @@ require 'connection.php';
        
 
      <?php
-     include 'contribution_progress_db.php'
+     include 'contribution_progress_db.php';
      ?>
    
     </main>

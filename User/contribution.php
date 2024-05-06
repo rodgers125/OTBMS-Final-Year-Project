@@ -72,6 +72,10 @@ require 'connection.php';
     </aside>
 
     <!-- Main Content -->
+
+    <?php
+       include 'contribution_schedule_db.php';
+       ?>
     <main>
     <h1>► Contribution</h1>
     <br>
@@ -89,41 +93,46 @@ require 'connection.php';
         <div class="loan-card">
         <h2>Your Next Contribution</h2> 
         <br>
-                        <p>Not yet scheduled</p>
+                        <p><?php echo $yourContributionDate; ?></p>
                         
         </div>
         
     </div>
 <br>
-    <div class="loan-details">
-     
-        <div class="loan-card">
-            <h2>Current Member Being Contributed:</h2>
-                       <br>
-                <p><b>Member ID :</b>1234</li>
-                <p><b>Full Name :</b> Rodgers Kipkurui</p>
-                <p><b>Email :</b> dfkjfdk@gmail.com</p>
-                <p><b>Phone Number :</b> 0701163576</p>
-            
-        </div>
-
-        <div class="loan-card">
-            <h2>Contribution Details:</h2>
-            <br>
-                <p><b>Total Amount To Be Contributed By Each Member :</b> 2000</p>
-                <p><b>Payment Details :</p>
-                <li>
-                    <ul class="payment-options">
-                        <h3>Option 1</h3>
-                        <p>Mpesa Send Money - 0701163576</p>
-                        <h3>Option 2</h3>
-                        <p>Bank Deposit -  Account Holder: John Doe, Bank:  Barclays, Account No.: 1234567890123456</p>
-                    </ul>
-                </li>
-                <p><b>DateLine :</b> 1987/05/23</p>
-            
-        </div>
+<div class="loan-details">
+    <div class="loan-card">
+        <h2>Current Member Being Contributed:</h2>
+        <br>
+        <p><b>Member ID :</b><?php echo $member_id; ?></li>
+        <p><b>Full Name :</b><?php echo $fullName; ?></p>
+        <p><b>Email :</b><?php echo $email; ?></p>
+        <p><b>Phone Number :</b><?php echo $phone_number; ?></p>
     </div>
+
+    <div class="loan-card">
+        <h2>Contribution Details:</h2>
+        <br>
+        <p><b>Total Amount To Be Contributed By Each Member :</b> <?php echo $cont_amount; ?></p>
+        <p><b>Payment Details :</p>
+        <li>
+            <ul class="payment-options">
+                <h3>Option 1: Mpesa</h3>
+                <p>Mpesa Send Money - <?php echo $mpesa_number; ?></p>                
+                <p>or</p>
+                <p>Mpesa Till Number - <?php echo $mpesa_till; ?></p>
+                <h3>Option 2</h3>
+                <p>Bank Deposit.
+                    <br> 
+                     Account Holder: <?php echo $acc_holder; ?>.
+                     <br>
+                 Bank: <?php echo $bank_name; ?>.
+                 <br>
+                  Account No.: <?php echo $acc_number; ?></p>
+            </ul>
+        </li>
+        <p><b>DateLine :</b> <?php echo $cont_dateline; ?></p>
+    </div>
+</div>
 </main>
 
 
@@ -156,11 +165,13 @@ require 'connection.php';
 <h2>Next Contributions</h2>
 <div class="side-card-info">
     <div class="card-detail">
-       
+       <?php
+       include 'contribution_schedule_db.php';
+       ?>
         <ul>
-            <p><b>Next Member:</b> korir kipkurui</p>
+            <p><b>Next Member:</b> <?php echo $nextMember; ?></p>
             <br>
-            <p><b>Contribution Date:</b>12/5/2025 </p>
+            <p><b>Contribution Date:</b> <?php echo $contributionDate; ?> </p>
         </ul>
        
        

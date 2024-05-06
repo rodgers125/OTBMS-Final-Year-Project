@@ -84,47 +84,9 @@ require 'connection.php';
             <input type="text" id="search" name="search">
             <button class="form-btn" type="submit">Search</button>
           </form>
-        <table>
-          
-        <thead>
-       
-            <tr>
-           
-                <th>Contribution ID</th>
-                <th>Member ID</th>
-                <th>Full Name</th>
-                <th>Total Contributions Made</th>               
-                <th>Date Contributed</th>
-                           
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table rows will be dynamically generated here based on data from the database -->
-            <tr>
-                <td>1</td>
-                <td>4</td>
-                <td>John Doe</td>
-                <td>KSH 5000</td>             
-                <td>22/3/2025</td>                                
-               
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>KSH 5000</td>             
-                <td>22/3/2025</td>                                
-               
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>KSH 5000</td>             
-                <td>22/3/2025</td>                              
-               
-            </tr>
-        </tbody>
+        <?php
+        include 'contribution_history_db.php';
+        ?>
     </table>
    
 

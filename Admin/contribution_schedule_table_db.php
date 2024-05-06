@@ -21,7 +21,7 @@ function getContributionData($conn, $contribution_id) {
 $query = "SELECT cs.contribution_id, cs.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, cs.cont_amount, cs.cont_dateline
           FROM contribution_schedule cs
           JOIN members m ON cs.member_id = m.memberId
-          ORDER BY  cs.cont_dateline ASC";
+          ORDER BY  cs.cont_dateline DESC";
 $result = mysqli_query($conn, $query);
 
 // Check if there are any rows returned
@@ -40,6 +40,8 @@ if (mysqli_num_rows($result) > 0) {
 
     // Loop through each row in the result set
     while ($row = mysqli_fetch_assoc($result)) {
+        $member_id = $row['member_id'];
+
         echo '<tr>';
         echo '<td>' . $row['member_id'] . '</td>';
         echo '<td>' . $row['fullName'] . '</td>';
