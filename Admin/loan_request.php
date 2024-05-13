@@ -85,45 +85,7 @@ require 'connection.php';
         </div>
 
 
-     
-   <!-- Details Modal -->
-   <div class="details-modal" id="detailsModal">
-                <h2 class="details-heading">More Details</h2>
-                <div class="events" id="memberDetails">
-                <div class="detail">
-                        <h3>Full Name:</h3>
-                        <p class="full-name" id="fullName">John Doe</p>
-                    </div>
-                    <div class="detail">
-                        <h3>Date Joined:</h3>
-                        <p class="date" id="dateJoined">3/3/2014</p>
-                    </div>
-                    <div class="detail">
-                        <h3>Total Contributions made Upto Date:</h3>
-                        <p class="amount" id="totalContributions">KSH 10000 </p>
-                    </div>
-                    <div class="detail">
-                         <h3>Total Loans Borrowed Upto date:</h3>
-                         <p class="amount" id="totalLoansBorrowed">KSH 40000</p>
-                    </div>
-                    <div class="detail">
-                         <h3>Total Loans Repayed Upto Date:</h3>
-                         <p class="amount" id="totalLoansRepaid">KSH 30000</p>
-                    </div>
-                    <div class="detail">
-                         <h3>Loan Limit:</h3>
-                         <p class="amount" id="loanLimit">KSH 50000</p>
-                    </div>
-                    <div class="detail">
-                         <h3>Loan Balance:</h3>
-                         <p class="amount" id="loanBalance">KSH 6000</p>
-                     </div>
-
-                    </div>
-                <button class="close-modal-btn" onclick="closeDetailsModal()">Close</button>
-            </div>
-        
-
+  
     </main>
 <!--this ends main-->
 

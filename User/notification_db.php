@@ -5,7 +5,9 @@ require 'connection.php';
 $userID = $_SESSION['user_id'];
 
 // Query to fetch data from the notification table for a specific member
-$query = "SELECT notification_id, notification_date_time, title, message FROM notification WHERE member_id = ?";
+$query = "SELECT notification_id, notification_date_time, title, message 
+FROM notification WHERE member_id = ?
+ORDER BY notification_date_time DESC";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "i", $userID);
 mysqli_stmt_execute($stmt);

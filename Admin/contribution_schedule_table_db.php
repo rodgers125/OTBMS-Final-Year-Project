@@ -19,9 +19,10 @@ function getContributionData($conn, $contribution_id) {
 
 // SQL query to retrieve data from the contribution_schedule table
 $query = "SELECT cs.contribution_id, cs.member_id, CONCAT(m.fName, ' ', m.lName) AS fullName, cs.cont_amount, cs.cont_dateline
-          FROM contribution_schedule cs
+          FROM contribution_schedule cs 
           JOIN members m ON cs.member_id = m.memberId
-          ORDER BY  cs.cont_dateline DESC";
+          WHERE cs.status = 'pending'
+          ORDER BY cs.cont_dateline DESC";
 $result = mysqli_query($conn, $query);
 
 // Check if there are any rows returned
@@ -63,77 +64,6 @@ if (mysqli_num_rows($result) > 0) {
     echo 'No data found.';
     
 }
-
-// Modal for Editing Contribution Schedule
-echo '<div id="editModal" class="modal" style="display: none;">';
-echo '<div class="modal-content">';
-echo '<span class="close">&times;</span>';
-echo '<div class="events">';
-echo '<h3>Schedule Member Contribution</h3>';
-echo '<div class="form-container">';
-echo '<div class="events-form">';
-echo '<form id="editForm" action="schedule_contribution_db.php" method="post">';
-// form fields here
-echo '<div class="form-group">';
-echo '<label for="id">Members ID</label>';
-echo '<input type="number" id="memberId" name="memberId" value="' . $member_id . '"  required>';                    
-echo '</div>';
-
-echo'<div class="form-group">';
-echo '<label for="id">Contribution Amount From Each Member</label>';
-echo '<input type="number" id="contributionAmount" name="contributionAmount" required>';                                        
-echo '</div>';                
-echo '<div class="form-group">';               
-echo '<label for="payment_options">Payment Options:</label>';                
-echo '<select id="payment_options" name="payment_options">';                
-echo '<option value="">Select Payment Option</option>';                
-echo '<option value="mpesa">M-Pesa</option>';                
-echo '<option value="bank_deposit">Bank Deposit</option>';                
-echo '</select>';               
-echo '</div>';               
-
-echo '<div class = "form-group" id="mpesa_options" style="display: none;">';            
-echo '<label for="mpesa_sub_options">Select M-Pesa Options:</label>';                     
-echo '<select id="mpesa_sub_options" name="mpesa_sub_options">';                     
-echo '<option value="">Select M-Pesa Option</option>';                        
-echo '<option value="till_number">Till Number</option>';                        
-echo '<option value="send_money">Send Money</option>';                        
-echo '</select>';                     
-echo '<div id="mpesa_input" style="display: none;">';                     
-echo '<label for="mpesa_input_field">Enter Number:</label>';                        
-echo '<input type="text" id="mpesa_input_field" name = "mpesa_input_field" >';                   
-echo '</div>';                 
-echo '</div>';                
-
-echo '<div  class = "form-group" id="bank_deposit_options" style="display: none;">';                    
-echo '<label for="account_holder">Account Holder:</label>';               
-echo '<input type="text" id="account_holder" name = "account_holder">';              
-echo '<label for="bank">Bank:</label>';                 
-echo '<input type="text" id="bank" name = "bank">';             
-echo '<label for="account_number">Account Number:</label>';             
-echo '<input type="text" id="account_number" name ="account_number">';             
-echo '</div>';                
-              
-              
-    
-echo '<div class="form-group">';                
-echo '<label for="date">Contribution Dateline</label>';                    
-echo '<input type="date" id="contribution_date" name="contribution_date"/>';                                         
-echo '</div>';                
-             
-               
-echo '<div class="form-group">';                
-echo '<button type="submit" name="submit">Save Changes</button>';                  
-                 
-echo '</div>';  
-
-echo '</form>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-
 
 //delete contribution schedule record 
 // Function to delete a contribution

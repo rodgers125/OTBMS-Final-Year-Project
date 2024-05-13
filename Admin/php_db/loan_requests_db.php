@@ -34,7 +34,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['loanType'] . "</td>";
         echo "<td>" . $row['loanPeriod'] . "</td>";
         echo "<td>
-        <button class='view-btn' onclick='openDetailsModal()'>View Details</button>
+        
         <button class='btn-approve' onclick='approveLoan(" . $row['requestId'] . ")'>Approve</button>
         <button class='btn-reject' onclick='rejectLoan(" . $row['requestId'] . ")'>Reject</button>
         </td>";

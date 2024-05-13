@@ -33,7 +33,7 @@ require 'connection.php';
         </div>
 
         <div class="sidebar">
-            <a href="index.php">
+            <a href="member_dashboard.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Account Overview</h3>
             </a>
@@ -84,8 +84,7 @@ require 'connection.php';
         <div class="loan-card">
         <h2>Your Total Contributions</h2> 
         <br>
-                        <p>KSH 50,600.50</p>  
-                        
+             <p>KSH <?php echo $contributedAmount; ?></p>                         
                         
         </div>
 

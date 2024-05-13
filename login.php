@@ -6,7 +6,7 @@ if (isset($_POST["submit"])) {
     $password = $_POST['password'];
 
     // Use prepared statement to prevent SQL injection
-    $query = "SELECT memberid, password, status, role FROM members WHERE email = ?";
+    $query = "SELECT memberId, password, status, role FROM members WHERE email = ?";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
                 session_start();
 
                 // Set the session variables
-                $_SESSION['user_id'] = $user['memberid'];
+                $_SESSION['user_id'] = $user['memberId'];
 
                 // Check the user's role
                 if ($user['role'] === 'admin') {

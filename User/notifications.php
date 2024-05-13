@@ -33,7 +33,7 @@ require 'connection.php';
         </div>
 
         <div class="sidebar">
-            <a href="index.php">
+            <a href="member_dashboard.php">
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Account Overview</h3>
             </a>

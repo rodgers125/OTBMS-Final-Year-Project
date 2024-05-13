@@ -1,13 +1,3 @@
-// Function to open the details modal
-function openDetailsModal() {
-    document.getElementById('detailsModal').style.display = 'block';
-}
-
-// Function to close the details modal
-function closeDetailsModal() {
-    document.getElementById('detailsModal').style.display = 'none';
-}
-
 
 function approveLoan(requestId) {
     var confirmation = confirm("Are you sure you want to Approve this loan request?");

@@ -17,13 +17,34 @@ if (isset($_POST["submit"])) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
 
         $query = "INSERT INTO members (fName, lName, email, phone, gender, password, registration_date, role) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)";
-
         $preparedSql = mysqli_prepare($conn, $query);
 
         if ($preparedSql) {
             mysqli_stmt_bind_param($preparedSql, 'sssssss', $fName, $lName, $email, $phone, $gender, $hashedPassword, $role);
+            
             try {
                 if (mysqli_stmt_execute($preparedSql)) {
+                    // Retrieve memberId from members
+                    $getMemberIdQuery = "SELECT memberId FROM members WHERE email = ?";
+                    $stmt = mysqli_prepare($conn, $getMemberIdQuery);
+                    mysqli_stmt_bind_param($stmt, "s", $email);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_bind_result($stmt, $memberId);
+                    mysqli_stmt_fetch($stmt);
+                    mysqli_stmt_close($stmt);
+
+                    // Insert notification into the notification table
+                    $notificationQuery = "INSERT INTO notification (member_id, notification_date_time, title, message) VALUES (?, NOW(), ?, ?)";
+                    $notificationStmt = mysqli_prepare($conn, $notificationQuery);
+                    
+                    if ($notificationStmt) {
+                        $title = "Account Creation";
+                        $message = "Your account has been successfully created.";
+                        mysqli_stmt_bind_param($notificationStmt, 'iss', $memberId, $title, $message);
+                        mysqli_stmt_execute($notificationStmt);
+                        mysqli_stmt_close($notificationStmt);
+                    }
+
                     echo "<script>
                         if (confirm('Your Account has been Created Successfully. WELCOME!! Click OK to continue to login.')) {
                             window.location.href = 'login.php';
@@ -48,6 +69,8 @@ if (isset($_POST["submit"])) {
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -105,8 +128,8 @@ if (isset($_POST["submit"])) {
                         <div class="form-group">
                             <label for="role">Role:<span>*</span></label>
                             <select id="role" name="role" required>
-                                <option value="Admin">Admin</option>
-                                <option value="Member">Member</option>
+                                <option value="admin">Admin</option>
+                                <option value="member">Member</option>
                             </select>
                         </div>
                     </div>

@@ -30,7 +30,16 @@ if (isset($_POST['requestId']) && !empty($_POST['requestId'])) {
         $deleteResult = mysqli_stmt_execute($stmt);
 
         if ($insertResult && $deleteResult) {
-            // Send success response to the client
+            // Generate notification message with dynamic values
+            $notificationMessage = "Your loan request of KSH".$row['loanAmount']." for ".$row['loanType']." use has been approved. The loan is to be repaid in ".$row['loanPeriod'];
+
+            // Insert notification into the notification table
+            $notificationQuery = "INSERT INTO notification (member_id, notification_date_time, title, message) VALUES (?, NOW(), 'Loan Request Approved', ?)";
+            $stmt = mysqli_prepare($conn, $notificationQuery);
+            mysqli_stmt_bind_param($stmt, "is", $row['memberId'], $notificationMessage);
+            mysqli_stmt_execute($stmt);
+
+            //  success response to the Admin
             echo "<script>
             alert('Loan request Approved successfully and now visible in Loan List Page');
             // Redirect to loan_request.php
@@ -38,23 +47,19 @@ if (isset($_POST['requestId']) && !empty($_POST['requestId'])) {
             </script>";
         } else {
             // Send error response to the client
-            echo "Failed  to approve the loan.";
+            echo "Failed to approve the loan.";
         }
     } else {
         // Send error response to the client if loan request not found
         echo "Loan request not found.";
     }
+
+
 } else {
     // Send error response to the client if requestId is not provided
     echo "Request ID is missing.";
 }
 
-
-
-
-
 // Close the database connection
 mysqli_close($conn);
-
-
 ?>

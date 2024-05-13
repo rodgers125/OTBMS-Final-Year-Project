@@ -74,26 +74,31 @@ window.onclick = function(event) {
 
 function markComplete(contribution_id) {
     if (confirm('Are you sure you want to mark this contribution as complete?')) {
-        // Send AJAX request to mark_complete.php
-        fetch('contribution_history_db.php?contribution_id=' + contribution_id)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Oops! Something went wrong while marking the contribution as complete.');
-                }
-                // Show a success message
-                alert('Contribution marked as complete successfully!');
-                // Reload the page after successful completion
-                location.reload();
-            })
-            .catch(error => {
-                // Show an error message
-                alert(error.message);
-            });
+        // Create a hidden form element
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "mark_complete_db.php");
+
+        // Create a hidden input field to hold the contribution_id
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "contribution_id");
+        input.setAttribute("value", contribution_id);
+
+        // Append the input field to the form
+        form.appendChild(input);
+
+        // Append the form to the document body
+        document.body.appendChild(form);
+
+        // Submit the form
+        form.submit();
     } else {
         // Show a cancellation message
         alert('Marking as complete canceled.');
     }
 }
+
 
 
 
