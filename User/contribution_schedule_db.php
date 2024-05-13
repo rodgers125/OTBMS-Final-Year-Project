@@ -104,5 +104,25 @@ if (mysqli_num_rows($result) > 0) {
     $email = "Not Available";
     $phone_number = "Not Available";
 }
+// Query to check if the user's member_id exists in the contributionlog table
+$query = "SELECT SUM(amount) AS total_amount FROM contributionlog WHERE member_id = ?";
+$preparedQuery = mysqli_prepare($conn, $query);
 
+if ($preparedQuery) {
+    mysqli_stmt_bind_param($preparedQuery, "i", $user_id); // Binding parameters
+    mysqli_stmt_execute($preparedQuery); // Executing the prepared statement
+    $result = mysqli_stmt_get_result($preparedQuery); // Getting the result set
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $contributedAmount = $row['total_amount']; // Fetching the total contributed amount
+    } else {
+        // If no rows found, set the contributed amount to 0
+        $contributedAmount = 0;
+    }
+    
+ } else {
+     // Handle the case where the prepared statement fails
+     $contributedAmount = 0;
+ }
 ?>

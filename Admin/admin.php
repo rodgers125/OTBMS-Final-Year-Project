@@ -57,7 +57,7 @@ require 'connection.php';
             </a>
           
                       
-            <a href="logout.php" id="logoutLink">
+            <a href="../logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
                 <h3>Logout</h3>
             </a>

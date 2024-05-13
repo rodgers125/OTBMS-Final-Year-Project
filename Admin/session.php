@@ -1,30 +1,28 @@
 <?php
-session_start();
+session_start(); // Starting the session
 
-// Check if the user is not logged in, redirect to the login page
+// Checking if the user is not logged in, redirecting to the login page
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
-// Additional session-related tasks or user data retrieval can go here
-// For example, fetching the user's name from the database based on the user_id
-require 'connection.php';
+require 'connection.php'; // Including the connection file to establish database connection
 
-$user_id = $_SESSION['user_id'];
-$query = "SELECT fName, lName FROM members WHERE memberId = ?";
-$preparedQuery = mysqli_prepare($conn, $query);
+$user_id = $_SESSION['user_id']; // Getting the user ID from the session
+$query = "SELECT fName, lName FROM members WHERE memberId = ?"; // Query to retrieve user's first and last name
+$preparedQuery = mysqli_prepare($conn, $query); // Preparing the SQL statement
 
-if ($preparedQuery) {
-    mysqli_stmt_bind_param($preparedQuery, "i", $user_id);
-    mysqli_stmt_execute($preparedQuery);
-    $result = mysqli_stmt_get_result($preparedQuery);
-    $user = mysqli_fetch_assoc($result);
+if ($preparedQuery) { // Checking if the SQL statement is prepared successfully
+    mysqli_stmt_bind_param($preparedQuery, "i", $user_id); // Binding parameters
+    mysqli_stmt_execute($preparedQuery); // Executing the prepared statement
+    $result = mysqli_stmt_get_result($preparedQuery); // Getting the result set
+    $user = mysqli_fetch_assoc($result); // Fetching user data
 
-    // Close the statement
+    // Closing the prepared statement
     mysqli_stmt_close($preparedQuery);
 
-    // Assign user's name to a session variable or use it as needed
+    // Assigning user's name to a session variable or using it as needed
     $_SESSION['user_name'] = isset($user['fName']) ? $user['fName'] : '';
 }
 

@@ -82,9 +82,13 @@ require 'connection.php';
                 
                 <div class="middle">
                     <div class="left">
-                        <h3>Your Contribution To Date</h3> 
-                        <p><b>--|--</b></p> 
-                        <a href="loan.php"> 
+                        <h3>Your Contributions To Date</h3> 
+                        <?php
+                       // Include the loan_db.php file to access $total_loan_balance
+                          include 'contribution_schedule_db.php';
+                        ?>
+                        <p><b>KSH <?php echo $contributedAmount; ?></b></p> 
+                        <a href="contribution.php"> 
                         <small>View More Details</Details></small>
                         <img src="images/view.png" alt="Request Icon" class="view-icon"> 
                         </a>                         
@@ -172,7 +176,7 @@ include 'recent_transactions_db.php'
 
 <div class="side-card">
 <?php
-     include 'group_details_db.php'
+     include 'group_details_db.php';
      ?>
 <h2>Your Group Details</h2>
 <div class="side-card-info">

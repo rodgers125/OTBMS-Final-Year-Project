@@ -1,12 +1,12 @@
 <?php
-require 'connection.php';
+require 'User/connection.php';
 
 if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Use prepared statement to prevent SQL injection
-    $query = "SELECT memberid, password, status FROM members WHERE email = ?";
+    $query = "SELECT memberid, password, status, role FROM members WHERE email = ?";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
@@ -23,12 +23,18 @@ if (isset($_POST["submit"])) {
                 // Set the session variables
                 $_SESSION['user_id'] = $user['memberid'];
 
-                // Close the prepared statement
-                mysqli_stmt_close($stmt);
-
-                // Redirect to the admin dashboard
-                header("Location: index.php");
-                exit;
+                // Check the user's role
+                if ($user['role'] === 'admin') {
+                    // Redirect to the admin dashboard
+                    header("Location: Admin/admin.php");
+                    exit;
+                } elseif ($user['role'] === 'member') {
+                    // Redirect to the member dashboard
+                    header("Location: User/member_dashboard.php");
+                    exit;
+                } else {
+                    echo "<script>alert('Unknown user role');</script>";
+                }
             } else {
                 echo "<script>alert('This account is inactive. Please contact the administrator.');</script>";
             }
@@ -45,19 +51,20 @@ if (isset($_POST["submit"])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="User/css/login.css">
+    <link rel="stylesheet" href="User/css/admin.css">
     <title>Login</title>
 </head>
 <body>
     <div class="login-container">
         <div class="image-container">
-            <img src="images/hero.png" alt="Login Image">
+            <img src="User/images/hero.png" alt="Login Image">
         </div>
         <div class="form-container">
             <div class="login-form">
@@ -75,6 +82,11 @@ if (isset($_POST["submit"])) {
                         <button type="submit" name="submit">Login</button>
                     </div>
                 </form>
+                <div class="acc">
+                     <a href="email_submit.php">Forgot Password?</a>
+                   
+                </div>
+                <br>
                 <div class="acc">
                     Don't have an account? <a href="register.php">Register Now</a>
                 </div>
