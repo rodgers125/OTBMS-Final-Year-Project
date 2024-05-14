@@ -2,7 +2,7 @@
 require 'connection.php';
 
 // Fetch data from the loan_history table
-$query = "SELECT lh.loan_history_id, m.fName, m.lName, lh.loan_amount, lh.loan_purpose, lh.date_cleared
+$query = "SELECT lh.loan_history_id, m.fName, m.lName, lh.loan_amount, lh.loan_purpose, lh.date_cleared, lh.loanId
           FROM loan_history lh
           INNER JOIN members m ON lh.member_id = m.memberId";
 $result = mysqli_query($conn, $query);
@@ -35,7 +35,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <td>{$row['loan_purpose']}</td>
                 <td>{$row['date_cleared']}</td>
                 <td>
-                    <button class='view-btn' onclick='openDetailsModal()'>View Details</button>
+                <button class='view-btn' onclick='openDetailsModal({$row['loanId']})'>View Details</button>
                 </td>
               </tr>";
     }

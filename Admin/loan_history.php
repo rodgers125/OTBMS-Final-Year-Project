@@ -54,8 +54,8 @@ require 'connection.php';
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Receipts</h3>
             </a>
             <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
@@ -82,12 +82,15 @@ require 'connection.php';
      include 'php_db/loan_history_db.php';
      ?>
 
-     
+<?php
+   include 'transactions_details_db.php';
+   ?>
      
    <!-- Transaction Details Modal -->
    <div class="details-modal" id="detailsModal">
                 <h2 class="details-heading">More Details</h2>
                 <div class="events" id="memberDetails">
+     
                 <table>
                     <tr>
                         <th>Transaction ID:</th>
@@ -97,16 +100,18 @@ require 'connection.php';
                     </tr>
 
                     <tr>
-                        <td>ID001</td>
-                        <td>24/7/2025</td>
-                        <td>KSH 5000.00</td>  
-                        <td>MPESA</td>              
+                        <td><?php echo $transaction_id ?></td>
+
+                        <td><?php echo $transaction_date ?></td>
+
+                        <td><?php echo $transaction_amount ?></td>  
+                        <td><?php echo $transaction_method ?></td>              
                     
                     </tr>
-                </table>
+   
+      </table>
                 <button class="close-modal-btn" onclick="closeDetailsModal()">Close</button>
-            </div>
-        
+            </div>  
 
 
     </main>

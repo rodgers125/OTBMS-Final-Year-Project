@@ -53,7 +53,7 @@ require 'connection.php';
             
             <a href="transaction.php">
                 <span class="material-icons-sharp">receipt</span>
-                <h3>Transactions</h3>
+                <h3>Payment Receipts</h3>
             </a>
             <a href="notifications.php">
                 <span class="material-icons-sharp">notifications</span>
@@ -117,6 +117,7 @@ include 'loan_db.php';
       <div class="form-group">
         <label for="loanType">Loan Type:</label>
         <select id="loanType" name="loanType">
+        <option value="Default">Click to Select Type</option>
           <option value="personal">Personal</option>
           <option value="business">Business</option>
         </select>

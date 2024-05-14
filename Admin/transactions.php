@@ -49,8 +49,8 @@ require 'session.php';
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php" class="active">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Receipts</h3>
             </a>
            
             <a href="events.php">
@@ -67,7 +67,7 @@ require 'session.php';
 
     <!-- Main Content -->
     <main>
-        <h1>► Transactions</h1>
+        <h1>► Payment Receipts</h1>
 
       
         <div class="insights">

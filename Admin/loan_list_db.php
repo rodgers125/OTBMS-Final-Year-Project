@@ -67,13 +67,14 @@ if (isset($_POST['loanId']) && !empty($_POST['loanId'])) {
     $loanId = mysqli_real_escape_string($conn, $_POST['loanId']);
 
     // Get loan data from the loan table
-    $query = "SELECT member_id, loanPurpose, loanAmount, repayment_period FROM loan WHERE loanId = $loanId";
+    $query = "SELECT loanId, member_id, loanPurpose, loanAmount, repayment_period FROM loan WHERE loanId = $loanId";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
 
         // Prepare data for insertion into loan_history table
+        $loanId = $row['loanId'];
         $memberId = $row['member_id'];
         $loanPurpose = $row['loanPurpose'];
         $loanAmount = $row['loanAmount'];
@@ -81,7 +82,7 @@ if (isset($_POST['loanId']) && !empty($_POST['loanId'])) {
         $dateCleared = date('Y-m-d'); // Current date
 
         // Insert data into loan_history table
-        $insertQuery = "INSERT INTO loan_history (member_id, loan_purpose, loan_amount, repayment_period, date_cleared) VALUES ('$memberId', '$loanPurpose', '$loanAmount', '$repaymentPeriod', '$dateCleared')";
+        $insertQuery = "INSERT INTO loan_history (member_id, loan_purpose, loan_amount, repayment_period, date_cleared, loanId) VALUES ('$memberId', '$loanPurpose', '$loanAmount', '$repaymentPeriod', '$dateCleared', '$loanId')";
         $insertResult = mysqli_query($conn, $insertQuery);
 
          // Delete record from loan table

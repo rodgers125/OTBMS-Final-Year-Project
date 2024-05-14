@@ -48,8 +48,8 @@ require 'session.php';
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Receipts</h3>
             </a>
            
             <a href="events.php" class="active">
@@ -97,7 +97,7 @@ require 'session.php';
             <a href="all_events.php"><h3>View Scheduled Events</h3>
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
-            <small class="text-muted">25 Total Events and Meetings</small>
+            
           
         </div>
        

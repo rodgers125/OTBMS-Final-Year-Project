@@ -11,7 +11,7 @@ $result = mysqli_query($conn, $query);
 if ($result && mysqli_num_rows($result) > 0) {
     // Output the fetched data in a table
     echo '<div class="table">';
-    echo '<h3><b>Recent Transactions</b></h3>';
+    echo '<h3><b>Recent Payments</b></h3>';
     echo '<table>';
     echo '<thead>';
     echo '<tr>';

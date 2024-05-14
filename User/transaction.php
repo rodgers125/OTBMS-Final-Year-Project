@@ -50,7 +50,7 @@ require 'connection.php';
            
             <a href="transaction.php" class = "active">
                 <span class="material-icons-sharp">receipt</span>
-                <h3>Transactions</h3>
+                <h3>Payment Receipts</h3>
             </a>
             <a href="notifications.php">
                 <span class="material-icons-sharp">notifications</span>

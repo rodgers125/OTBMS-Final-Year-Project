@@ -9,14 +9,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $purpose = $_POST["purpose"];
     $payment_method = $_POST["payment_method"];
     $member_id_for_contribution = $_POST["member_id_for_contribution"];
+    $loan_id_for_payment = $_POST["loan_id_for_payment"];
 
     // Prepare and execute the SQL statement to insert data into the transactions table
-    $query = "INSERT INTO transactions (member_id, transaction_date, transaction_amount, transaction_purpose, transaction_method, member_id_for_contribution) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO transactions (member_id, transaction_date, transaction_amount, transaction_purpose, transaction_method, member_id_for_contribution, loan_id_for_payment) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
         // Bind parameters and execute the statement
-        mysqli_stmt_bind_param($stmt, "isdsss", $member_id, $date, $amount, $purpose, $payment_method, $member_id_for_contribution);
+        mysqli_stmt_bind_param($stmt, "isdssss", $member_id, $date, $amount, $purpose, $payment_method, $member_id_for_contribution, $loan_id_for_payment);
         if (mysqli_stmt_execute($stmt)) {
             echo "<script>alert('Transaction recorded successfully');</script>";
             echo "<script>window.location.href = 'record_transaction.php';</script>";

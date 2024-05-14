@@ -53,8 +53,8 @@ require 'connection.php';
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php" class="active">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Receipts</h3>
             </a>
            
             <a href="events.php">
@@ -71,12 +71,12 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>► Transactions</h1>
+        <h1>► Payment Receipts</h1>
         <button class="btn-back"><a href="transactions.php">Back</a></button>
 
       
     <div class="recent-transactions">
-        <h2>Transaction Records</h2>      
+        <h2>Payment Receipts</h2>      
         <form action="" method="get">
             <label for="search">Search:</label>
             <input type="text" id="search" name="search">
@@ -118,7 +118,7 @@ require 'connection.php';
 <h2>Related Pages</h2>
 <div class="events">
 <ul>
-        <li><a href="record_transaction.php">Record Transactions</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="record_transaction.php">Record a Payment</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
       </ul>
 </div>
 </div>

@@ -53,8 +53,8 @@ require 'connection.php';
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Receipts</h3>
             </a>
            
             <a href="events.php">
@@ -77,7 +77,7 @@ require 'connection.php';
 
        
         <?php
-            $query = "SELECT memberId, fName, lName, phone, email, status FROM members";
+            $query = "SELECT memberId, fName, lName, phone, email, gender, role, status FROM members";
             $result = mysqli_query($conn, $query);
 
 if ($result) {
@@ -95,7 +95,8 @@ if ($result) {
                     <th>Last Name</th>
                     <th>Phone Number</th>
                     <th>Email</th>
-                 
+                    <th>Gender</th>
+                    <th>Role</th>
                     <th>Actions</th>                                   
                 </tr>
             </thead>
@@ -109,10 +110,13 @@ if ($result) {
         echo '<td>' . $row['lName'] . '</td>';
         echo '<td>' . $row['phone'] . '</td>';
         echo '<td>' . $row['email'] . '</td>';
+        echo '<td>' . $row['gender'] . '</td>';
+        echo '<td>' . $row['role'] . '</td>';
        
         echo '<td>                
-                <button class="view-btn" onclick="openDetailsModal(' . $row['memberId'] . ')">More Details</button>
+                
                 <button class="edit-btn" onclick="editMember(' . $row['memberId'] . ')">Edit</button>';
+                
 
         if ($row['status'] === 'active') {
             echo '<button class="deactivate-btn" onclick="toggleStatus(' . $row['memberId'] . ', \'deactivate\')">Deactivate</button>';
@@ -144,46 +148,7 @@ if ($result) {
 mysqli_close($conn);
 ?>
 
-   
-   <!-- Details Modal -->
-   <div class="details-modal" id="detailsModal">
-                <h2 class="details-heading">More Details</h2>
-                <div class="events" id="memberDetails">
-                <div class="detail">
-                        <h3>Full Name:</h3>
-                        <p class="full-name" id="fullName">John Doe</p>
-                    </div>
-                    <div class="detail">
-                        <h3>Date Joined:</h3>
-                        <p class="date" id="dateJoined">3/3/2014</p>
-                    </div>
-                    <div class="detail">
-                        <h3>Total Contributions made Upto Date:</h3>
-                        <p class="amount" id="totalContributions">KSH 10000 </p>
-                    </div>
-                    <div class="detail">
-                         <h3>Total Loans Borrowed Upto date:</h3>
-                         <p class="amount" id="totalLoansBorrowed">KSH 40000</p>
-                    </div>
-                    <div class="detail">
-                         <h3>Total Loans Repayed Upto Date:</h3>
-                         <p class="amount" id="totalLoansRepaid">KSH 30000</p>
-                    </div>
-                    <div class="detail">
-                         <h3>Loan Limit:</h3>
-                         <p class="amount" id="loanLimit">KSH 50000</p>
-                    </div>
-                    <div class="detail">
-                         <h3>Loan Balance:</h3>
-                         <p class="amount" id="loanBalance">KSH 6000</p>
-                     </div>
-
-                    </div>
-                <button class="close-modal-btn" onclick="closeDetailsModal()">Close</button>
-            </div>
-        
-      
-    
+ 
         
    
     </main>

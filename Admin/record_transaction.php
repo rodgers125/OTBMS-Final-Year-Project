@@ -86,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php" class="active">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Receipts</h3>
             </a>
            
             <a href="events.php">
@@ -104,12 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <main>
-        <h1>► Transactions</h1>
+        <h1>► Payment Receipts</h1>
         <button class="btn-back"><a href="transactions.php">Back</a></button>
 
       
     <div class="recent-transactions">
-        <h2>Record a Transaction</h2>               
+        <h2>Record a Payment</h2>               
         <div class="form-container">
             <div class="contribution-form">                
                 <form action="record_transaction_db.php" method="post">
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                
                 <div class="form-group">
-                    <label for="date">Date of Transaction:</label><br>
+                    <label for="date">Date of Payment:</label><br>
                     <input type="date" id="date" name="date"/>                 
                                        
                 </div>
@@ -132,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group">
                     <label for="purpose">Purpose</label>
                     <select id="purpose" name="purpose" required onchange="toggleMemberIdInput()"> 
+                    <option value="default"><small>Click to Select Purpose</small></option>
                     <option value="loanRepayment">Loan Repayment</option>
                         <option value="contribution">Contribution Payment</option>                       
 </select>                  
@@ -140,6 +141,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group" id="memberIdField" style="display: none;">
         <label for="memberId">Member Id for Contribution:</label>
         <input type="number" id="member_id_for_contribution" name="member_id_for_contribution">
+    </div>
+
+    <div class="form-group" id="loanIdField" style="display: none;">
+        <label for="loanId">Loan Id for Payment:</label>
+        <input type="number" id="loan_id_for_payment" name="loan_id_for_payment">
     </div>
 
                 <div class="form-group">
@@ -191,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h2>Related Pages</h2>
 <div class="events">
 <ul>
-        <li><a href="transactions_history.php">View Transactions</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="transactions_history.php">View Payment Receipts</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
       </ul>
 </div>
 </div>

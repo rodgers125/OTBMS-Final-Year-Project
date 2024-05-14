@@ -32,7 +32,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['requestDate'] . "</td>";
         echo "<td>KSH " . number_format($row['loanAmount'], 2) . "</td>"; // Format loan amount with currency symbol and commas
         echo "<td>" . $row['loanType'] . "</td>";
-        echo "<td><button class='btn-view'>View</button></td>";
+        echo "<td><button class='btn-view'><a href='loan_request.php'>View</a></button></td>";
         echo "</tr>";
     }
 
