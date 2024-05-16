@@ -24,12 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         // User details updated successfully
         echo "<script>alert(' Your Personal Details has been Updated successfuly');</script>";
-            echo "<script>window.location.href = 'index.php';</script>";
+            echo "<script>window.location.href = 'member_dashboard.php';</script>";
             exit();
     } else {
         // Failed to update user details
         echo "<script>alert('Error While  Updating your Personal Details');</script>";
-            echo "<script>window.location.href = 'index.php';</script> ";
+            echo "<script>window.location.href = 'member_dashboard.php';</script> ";
             exit();
     }
 } 

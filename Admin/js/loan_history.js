@@ -4,29 +4,52 @@ function printTable() {
 }
 
 // Function to open the details modal
+// Function to open the details modal and load transaction details via AJAX
 function openDetailsModal(loanId) {
+    // Display the modal
     document.getElementById('detailsModal').style.display = 'block';
 
+    // Create an AJAX request
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'transactions_details_db.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    var form = document.createElement("form");
-        form.setAttribute("method", "post");
-        form.setAttribute("action", "transactions_details_db.php");
+    // Handle AJAX response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Parse JSON response from the PHP script
+                var response = JSON.parse(xhr.responseText);
 
-        // Create a hidden input field to hold loanId
-        var input = document.createElement("input");
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", "loanId");
-        input.setAttribute("value", loanId);
+                // Update modal content with transaction details
+                var memberDetails = document.getElementById('memberDetails');
+                memberDetails.innerHTML = `
+                    <table>
+                        <tr>
+                            <th>Transaction ID:</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Method</th>
+                        </tr>
+                        <tr>
+                            <td>${response.transaction_id}</td>
+                            <td>${response.transaction_date}</td>
+                            <td>${response.transaction_amount}</td>
+                            <td>${response.transaction_method}</td>
+                        </tr>
+                    </table>
+                `;
+            } else {
+                // Handle AJAX error
+                alert('Failed to fetch transaction details.');
+            }
+        }
+    };
 
-        // Append the input field to the form
-        form.appendChild(input);
-
-        // Append the form to the document body
-        document.body.appendChild(form);
-
-        // Submit the form
-        form.submit();
+    // Send AJAX request with loanId data
+    xhr.send('loanId=' + loanId);
 }
+
 
 
 

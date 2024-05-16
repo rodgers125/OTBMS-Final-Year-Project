@@ -79,7 +79,7 @@ require 'connection.php';
                         <a href="loan_request.php"><h3>View Loan Requests</h3>
                         <img src="images/view.png" alt="Request Icon" class="view-icon">
                         </a>
-                        <small class="text-muted">25 pending requests</small>
+                        <small class="text-muted">All pending requests</small>
                     </div>
                    
                 </div>
@@ -96,7 +96,7 @@ require 'connection.php';
                         <a href="loan_list.php"><h3>View Active Loan List and Details</h3>
                         <img src="images/view.png" alt="Request Icon" class="view-icon">
                         </a>
-                        <small class="text-muted">25 Total Active Loans</small>
+                        <small class="text-muted">All Total Active Loans</small>
                       
                     </div>
                    
@@ -131,7 +131,7 @@ require 'connection.php';
                         <a href="loan_history.php"><h3>View Loan History</h3>
                         <img src="images/view.png" alt="Request Icon" class="view-icon">
                         </a>
-                        <small class="text-muted">25 Total all time Loans</small>
+                        <small class="text-muted">Total all time Loans</small>
                     </div>
                    
                 </div>
@@ -171,16 +171,7 @@ require 'connection.php';
 <!--end of top-->
 
 
-<div class="upcoming-events">
-<h2>Upcoming Events</h2>
-<div class="events">
-    
-<?php
-include 'upcoming_events_db.php'
-?>
 
-</div>
-</div>
 
 </div>
     

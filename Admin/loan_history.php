@@ -82,36 +82,24 @@ require 'connection.php';
      include 'php_db/loan_history_db.php';
      ?>
 
-<?php
-   include 'transactions_details_db.php';
-   ?>
+
      
    <!-- Transaction Details Modal -->
-   <div class="details-modal" id="detailsModal">
-                <h2 class="details-heading">More Details</h2>
-                <div class="events" id="memberDetails">
-     
-                <table>
-                    <tr>
-                        <th>Transaction ID:</th>
-                        <th>Date</th>
-                        <th>Amount</th>       
-                        <th>Method</th>             
-                    </tr>
-
-                    <tr>
-                        <td><?php echo $transaction_id ?></td>
-
-                        <td><?php echo $transaction_date ?></td>
-
-                        <td><?php echo $transaction_amount ?></td>  
-                        <td><?php echo $transaction_method ?></td>              
-                    
-                    </tr>
-   
-      </table>
-                <button class="close-modal-btn" onclick="closeDetailsModal()">Close</button>
-            </div>  
+   <!-- Transaction Details Modal -->
+<div class="details-modal" id="detailsModal">
+    <h2 class="details-heading">More Details</h2>
+    <div class="events" id="memberDetails">
+        <table>
+            <tr>
+                <th>Transaction ID:</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Method</th>
+            </tr>
+        </table>
+    </div>
+    <button class="close-modal-btn" onclick="closeDetailsModal()">Close</button>
+</div>
 
 
     </main>

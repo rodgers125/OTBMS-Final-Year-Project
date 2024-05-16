@@ -33,7 +33,7 @@ if (mysqli_num_rows($result) > 0) {
     echo '<th>Member ID</th>';
     echo '<th>Full Name</th>';
     echo '<th>Amount by Each Member</th>';
-    echo '<th>Date to be Contributed</th>';
+    echo '<th>Contribution Dateline</th>';
     echo '<th>Action</th>';
     echo '</tr>';
     echo '</thead>';

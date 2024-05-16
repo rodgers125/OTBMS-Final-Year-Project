@@ -10,22 +10,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lName = $_POST['lName'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $role = $_POST['role'];
    
 
    
     // Update member information in the database
-    $query = "UPDATE members SET fName = '$fName', lName = '$lName', phone = '$phone', email = '$email' WHERE memberId = $memberId";
+    $query = "UPDATE members SET fName = '$fName', lName = '$lName', phone = '$phone', email = '$email', gender = '$gender', role = '$role' WHERE memberId = $memberId";
 
     // Execute the query
     $result = mysqli_query($conn, $query);
 
     // Display a success or error message
     if ($result) {
-        $message = 'User information updated successfully!';
-        $color = 'var(--color-success)';
+        echo "<script> alert('User details Updated successfully'); </script>";
     } else {
-        $message = 'Error updating member: ' . mysqli_error($conn);
-        $color = 'red';
+        echo "<script> alert('Error updating user details'); </script>";
     }
 }
 
@@ -96,19 +96,19 @@ if (isset($_GET['memberId'])) {
                 <span class="material-icons-sharp">insights</span>
                 <h3>Contributions</h3>
             </a>
-            <a href="loans.php">
+            <a href="loans.php" >
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Receipts</h3>
             </a>
-           
             <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
-            </a>           
+            </a>
+           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -134,10 +134,18 @@ if (isset($_GET['memberId'])) {
         <input type="text" id="lName" name="lName" value="<?php echo $memberData['lName']; ?>" required><br>
 
         <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" value="<?php echo $memberData['phone']; ?>" required><br>
+        <input type="phone" id="phone" name="phone" value="<?php echo $memberData['phone']; ?>" required><br>
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="<?php echo $memberData['email']; ?>" required><br>
+
+        <label for="gender">Gender:</label>
+        <input type="gender" id="gender" name="gender" value="<?php echo $memberData['gender']; ?>" required><br>
+
+        <label for="role">Email:</label>
+        <input type="role" id="role" name="role" value="<?php echo $memberData['role']; ?>" required><br>
+
+
 
        
 

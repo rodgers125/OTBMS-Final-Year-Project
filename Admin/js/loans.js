@@ -27,3 +27,4 @@ function markAsPaid(loanId) {    // Display a confirmation dialog
         form.submit();
     }
 }
+//

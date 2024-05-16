@@ -1,39 +1,47 @@
 <?php
 require 'session.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+require 'connection.php';
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
+    $event_id = $_POST['event_id'];
     $event_title = $_POST['event_title'];
     $event_description = $_POST['event_description'];
     $event_type = $_POST['event_type'];
     $event_date = $_POST['event_date'];
 
-    // SQL query to insert data into the "events" table
-    $query = "INSERT INTO events (event_title, event_description, event_type, event_date) VALUES (?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
+    // Update 'events' table in db
+    $query = "UPDATE events SET event_title = '$event_title', event_description = '$event_description', event_type = '$event_type', event_date = '$event_date' WHERE event_id = '$event_id'";
 
-    if ($stmt) {
-        // Bind parameters and execute the statement
-        mysqli_stmt_bind_param($stmt, "ssss", $event_title, $event_description, $event_type, $event_date);
-        mysqli_stmt_execute($stmt);
+    // Execute the query
+    $result = mysqli_query($conn, $query);
 
-        // Check for success
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "<script>alert('Event has been scheduled successfully');</script>";
-        } else {
-            echo "<script>alert('Failed to Schedule the event');</script>";
-        }
-
-        // Close the statement
-        mysqli_stmt_close($stmt);
+    // Display a success or error message
+    if ($result) {
+        echo "<script> alert('Event updated successfully!');</script>";
     } else {
-        echo "<script>alert('Error in prepared statement');</script>";
+        echo "<script> alert('Error Updating the Event!');</script>";
     }
-
-    // Close the database connection
-    mysqli_close($conn);
 }
 
+// Fetching event details from the database based on event_id
+if (isset($_GET['event_id'])) {
+    $event_id = $_GET['event_id'];
 
+    $query = "SELECT * FROM events WHERE event_id = $event_id";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $eventData = mysqli_fetch_assoc($result);
+    } else {
+        echo "<script> alert('The event wasn't found!');</script>";
+        exit();
+    }
+} else {
+    echo "<script> alert('The event wasn't found!');</script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,11 +49,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-events</title>
+    <title>Admin-contributions</title>    
+    <link rel="stylesheet" href="css/edit_member.css">    
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/event.css">
-    <link rel="stylesheet" href="css/members.css">
+    <link rel="stylesheet" href="css/contribution.css">   
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+
+    <style>
+        .message {
+            color: <?php echo $color; ?>;
+        }
+    </style>
 
 </head>
 <body>
@@ -87,8 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="events.php" class="active">
                 <span class="material-icons-sharp">inventory</span>
                 <h3>Events</h3>
-            </a>
-           
+            </a>           
                       
             <a href="logout.php" id="logoutLink">
                 <span class="material-icons-sharp">logout</span>
@@ -98,25 +111,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </aside>
 
     <!-- Main Content -->
-    <main>
-        <h1>► All Events</h1>
-        <button class="btn-back"><a href="events.php">Back</a></button>
-        
-        <form action="" method="get">
-            <label for="search">Search:</label>
-            <input type="text" id="search" name="search">
-            <button class="form-btn" type="submit">Search</button>
-          </form>
+    <main>    
 
-        <div class="all-events">
-            
-          
-            <?php
-            include 'all_events_db.php'
-            ?>
-   
-</div>
-      
+<!-- edit event-->
+<h2>► Edit Event</h2>
+
+    
+    <!-- Form to edit member information -->
+    <form action="" method="post">
+        <input type="hidden" name="event_id" value="<?php echo $eventData['event_id']; ?>">
+        <label for="event_title">Title</label>
+        <input type="text" id="event_title" name="event_title" value="<?php echo $eventData['event_title']; ?>" required><br>
+
+        <label for="event_description">Description</label>
+        <input type="text" id="event_description" name="event_description" value="<?php echo $eventData['event_description']; ?>" required><br>
+
+        <label for="event_type">Event Type</label>
+        <input type="text" id="event_type" name="event_type" value="<?php echo $eventData['event_type']; ?>" required><br>
+
+        <label for="event_date">When?</label>
+        <input type="date" id="event_date" name="event_date" value="<?php echo $eventData['event_date']; ?>" required><br>
+
+       
+        <button type="submit">Update</button>
+        
+    </form>
+    <button class="back">
+        <a href="all_events.php">Back</a>
+    </button> 
    
     </main>
 <!--this ends main-->
@@ -144,27 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--end of top-->
 
 
-<div class="upcoming-events">
-<h2>Upcoming Events</h2>
-<div class="events">
-<?php
-include 'upcoming_events_db.php'
-?>
 
-    
-    
+
+ </div>
 </div>
-</div>
-
-</div>
-    
-   </div>  
-
-   
-
-
-<!--footer starts here-->
-
 
    <div class="footer">
     <div class="row">
@@ -173,10 +178,9 @@ include 'upcoming_events_db.php'
         </div>
     </div>
    </div>
-   <script src="js/events.js"></script>
-   <script src="js/admin.js"></script>
-   <script src="js/members.js"></script>
-
-  
+                
+   
+   
+   
 </body>
 </html>

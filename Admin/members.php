@@ -133,15 +133,7 @@ require 'session.php';
 <!--end of top-->
 
 
-<div class="upcoming-events">
-<h2>Upcoming Events</h2>
-<div class="events">
-    
-<?php
-include 'upcoming_events_db.php'
-?>
 
-</div>
 </div>
 
 </div>

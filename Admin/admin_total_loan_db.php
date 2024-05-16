@@ -14,6 +14,12 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);
     $total_loan_amount = $row['total_loan_amount'];
 
+    // Check if total loan amount is null (no data)
+    if ($total_loan_amount === null) {
+        // Set total loan amount to 0.00
+        $total_loan_amount = 0.00;
+    }
+
     // Format the total loan amount with currency symbol and commas
     $formatted_total_loan_amount = number_format($total_loan_amount, 2);
 

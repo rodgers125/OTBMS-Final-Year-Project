@@ -61,7 +61,7 @@ mysqli_free_result($result);
 
 
 
-// Check if loanId is set and not empty
+// Check if loanId is set and not empty.
 if (isset($_POST['loanId']) && !empty($_POST['loanId'])) {
     // Sanitize input (optional)
     $loanId = mysqli_real_escape_string($conn, $_POST['loanId']);

@@ -29,7 +29,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         // Output table row with loan data
         echo "<tr>
-                <td>{$row['loan_history_id']}</td>
+                <td>{$row['loanId']}</td>
                 <td>{$row['fName']} {$row['lName']}</td>
                 <td>{$formattedLoanAmount}</td>
                 <td>{$row['loan_purpose']}</td>
