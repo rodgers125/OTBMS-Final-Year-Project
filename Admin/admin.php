@@ -12,6 +12,7 @@ require 'connection.php';
     <title>Admin-dashboard</title>
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/loan_request.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>

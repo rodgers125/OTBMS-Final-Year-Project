@@ -13,8 +13,13 @@ $result = mysqli_stmt_get_result($stmt);
 if ($result && mysqli_num_rows($result) > 0) {
     // Fetch total loan balance from the result
     $row = mysqli_fetch_assoc($result);
-    $total_loan_balance = $row['total_loan_balance'];
-
+    // $total_loan_balance = $row['total_loan_balance'];
+    if ($row['total_loan_balance']==0) {
+        $total_loan_balance = 0;
+    } else {
+        $total_loan_balance = $row['total_loan_balance'];
+    }
+    
    
 }
 else {

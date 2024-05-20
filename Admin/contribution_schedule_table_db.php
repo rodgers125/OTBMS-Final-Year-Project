@@ -50,7 +50,7 @@ if (mysqli_num_rows($result) > 0) {
         echo '<td>' . $row['cont_dateline'] . '</td>';
         echo '<td>';
         echo '<button class="btn-complete" onclick="markComplete(' . $row['contribution_id'] . ')">Mark Complete</button>';
-        echo '<button class="edit-btn" onclick="openEditModal(' . $row['contribution_id'] . ')">Edit</button>';
+        echo '<button class="edit-btn" onclick="editContribution(' . $row['contribution_id'] . ')">Edit</button>';
         echo '<button class="btn-delete" onclick="deleteContribution(' . $row['contribution_id'] . ')">Delete</button>';
         echo '</td>';
        

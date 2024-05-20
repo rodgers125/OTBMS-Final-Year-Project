@@ -78,7 +78,7 @@ require 'session.php';
    
     <div class="middle">
         <div class="left">
-            <a href="record_transaction.php"><h3>Record a Transaction</h3>
+            <a href="record_transaction.php"><h3>Record a Payment</h3>
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
             <small class="text-muted">Loans and Contribution</small>
@@ -95,10 +95,10 @@ require 'session.php';
    
     <div class="middle">
         <div class="left">
-            <a href="transactions_history.php"><h3>View Transactions</h3>
+            <a href="transactions_history.php"><h3>View Payment Receipts</h3>
             <img src="images/view.png" alt="Request Icon" class="view-icon">
             </a>
-            <small class="text-muted">25 Total Transactions</small>
+            <small class="text-muted"> Total Transactions</small>
           
         </div>
        

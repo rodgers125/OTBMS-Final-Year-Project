@@ -21,7 +21,7 @@ if ($result) {
                 </thead>
                 <tbody>';
 
-    // Loop through the result set and display each event's details
+    // Loop through the result set and display each event's details.
     while ($row = mysqli_fetch_assoc($result)) {
         echo '<tr>';
         echo '<td>' . $row['event_id'] . '</td>';

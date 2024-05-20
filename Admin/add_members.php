@@ -150,7 +150,7 @@ require 'connection.php';
 
 
 <div class="upcoming-events">
-<h2>Related Pages</h2>
+
 <div class="events">
 <ul>
         <li><a href="members_list.php">View Members List</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>

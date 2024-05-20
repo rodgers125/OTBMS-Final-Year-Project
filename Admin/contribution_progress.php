@@ -76,6 +76,13 @@ require 'connection.php';
     <h1>► Contribution Progress</h1>
         <button class="btn-back"><a href="contributions.php">Back</a></button>
 <br>
+
+<br>
+<!--current member being contributed-->
+
+   
+
+
 <!--contribution progress bar-->
 
         <div class="progress-container">
@@ -124,7 +131,7 @@ require 'connection.php';
 <!--end of top-->
 
 <div class="upcoming-events">
-<h2>Related Pages</h2>
+
 <div class="events">
     <ul>
         <li><a href="schedule_contribution.php">Schedule Contribution</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
@@ -139,7 +146,7 @@ require 'connection.php';
 </div>
                 </div>
             
-<!--end of upcoming events-->
+
 
 
 </div>

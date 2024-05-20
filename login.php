@@ -24,7 +24,7 @@ if (isset($_POST["submit"])) {
                 $_SESSION['user_id'] = $user['memberId'];
 
                 // Check the user's role
-                if ($user['role'] === 'admin') {
+                if ($user['role'] === 'Admin') {
                     // Redirect to the admin dashboard
                     header("Location: Admin/admin.php");
                     exit;

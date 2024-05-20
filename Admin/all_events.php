@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Admin-events</title>
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/event.css">
+    <link rel="stylesheet" href="css/icons.css"> 
     <link rel="stylesheet" href="css/members.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
@@ -153,6 +154,14 @@ include 'upcoming_events_db.php'
 
     
     
+</div>
+</div>
+<div class="upcoming-events">
+
+<div class="events">
+<ul>
+        <li><a href="schedule_event.php">Schedule Event</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+      </ul>
 </div>
 </div>
 

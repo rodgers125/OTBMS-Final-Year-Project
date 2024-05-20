@@ -113,7 +113,7 @@ require 'connection.php';
 <!--end of top-->
 
 <div class="upcoming-events">
-<h2>Related Pages</h2>
+
 <div class="events">
     <ul>
         <li><a href="loan_list.php">View Loan List and Details</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>

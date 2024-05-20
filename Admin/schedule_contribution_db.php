@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $acc_holder = $_POST['account_holder'];
     $bank_name = $_POST['bank'];
     $acc_number = $_POST['account_number'];
-    $mpesa_number = $_POST['mpesa_input_field'];
-    $mpesa_till = $_POST['mpesa_sub_options'];
+    $mpesa_number = $_POST['mpesa_number'];
+    $mpesa_till = $_POST['till_number'];
 
     // Prepare and execute SQL statement to insert data into the table
     $stmt = $conn->prepare("INSERT INTO contribution_schedule (cont_amount, cont_dateline, payment_option, member_id, acc_holder, bank_name, acc_number, mpesa_number, mpesa_till) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");

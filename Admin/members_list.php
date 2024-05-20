@@ -177,7 +177,7 @@ mysqli_close($conn);
 <!--end of top-->
 
 <div class="upcoming-events">
-<h2>Related Pages</h2>
+
 <div class="events">
 <ul>
         <li><a href="add_members.php">Add User</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>

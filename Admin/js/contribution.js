@@ -17,9 +17,12 @@ document.getElementById('payment_options').addEventListener('change', function()
 document.getElementById('mpesa_sub_options').addEventListener('change', function() {
     var mpesaInput = document.getElementById('mpesa_input');
 
-    if (this.value === 'till_number' || this.value === 'send_money') {
-        mpesaInput.style.display = 'block';
-    } else {
+    if (this.value === 'till_number') {
+        mpesa_till.style.display = 'block';
+    }else if(this.value === 'send_money'){
+        mpesa_number.style.display = 'block';
+
+    }else {
         mpesaInput.style.display = 'none';
     }
 });
@@ -45,30 +48,13 @@ function deleteContribution(contribution_id) {
     }
 }
 //edit contribution
-// Function to open the edit modal
-function openEditModal(contributionId) {
-    // Get the modal element
-    var modal = document.getElementById('editModal');
-    
-    // Display the modal
-    modal.style.display = 'block';
-    
-    
-}
+function editContribution(contribution_id) {
+ 
+    alert('Edit Contribution with ID: ' + contribution_id);
+    window.location.href = 'edit_contribution.php?contribution_id=' + contribution_id;
+  }
 
-// Function to close the modal when the close button is clicked
-document.getElementsByClassName('close')[0].onclick = function() {
-    var modal = document.getElementById('editModal');
-    modal.style.display = 'none';
-};
 
-// Close the modal if the user clicks outside of it
-window.onclick = function(event) {
-    var modal = document.getElementById('editModal');
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-};
 
 //to mark complete
 

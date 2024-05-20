@@ -1,5 +1,58 @@
 <?php
 require 'session.php';
+require 'connection.php';
+
+
+// Fetching contribution_schedule details from the database based on contribution_id
+if (isset($_GET['contribution_id'])) {
+    $contribution_id = $_GET['contribution_id'];
+
+    $query = "SELECT * FROM contribution_schedule WHERE contribution_id = $contribution_id";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $scheduleData = mysqli_fetch_assoc($result);
+    } else {
+        echo "<script> alert('The Contribution Schedule wasn't found!');</script>";
+        exit();
+    }
+} else {
+    echo "<script> alert('The Contribution Schedule wasn't found!');</script>";
+    exit();
+}
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    
+    $member_id = $_POST['member_id'];
+    $cont_amount = $_POST['cont_amount'];
+    $payment_option = $_POST['payment_option'];
+    $mpesa_till = $_POST['mpesa_till'];
+    $mpesa_number = $_POST['mpesa_number'];
+    $acc_holder = $_POST['acc_holder'];
+    $bank_name = $_POST['bank_name'];
+    $acc_number = $_POST['acc_number'];
+    $cont_dateline = $_POST['cont_dateline'];
+
+
+    // Update 'events' table in db
+    $query = "UPDATE contribution_schedule SET member_id = '$member_id', cont_amount = '$cont_amount',
+     payment_option = '$payment_option', mpesa_till = '$mpesa_till', mpesa_number = '$mpesa_number',
+      acc_holder = '$acc_holder', bank_name = '$bank_name', acc_number = '$acc_number',
+       cont_dateline = '$cont_dateline' WHERE contribution_id = '$contribution_id'";
+
+    // Execute the query
+    $result = mysqli_query($conn, $query);
+
+    // Display a success or error message
+    if ($result) {
+        echo "<script> alert('Contribution Schedule updated successfully!');</script>";
+    } else {
+        echo "<script> alert('Error Updating the Contribution Schedule!');</script>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -7,12 +60,13 @@ require 'session.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-schedule-contribution</title>
+    <title>Admin-contributions</title>    
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/event.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
+    
 </head>
 <body>
    <div class="container">
@@ -64,34 +118,36 @@ require 'session.php';
     </aside>
 
     <!-- Main Content -->
-    <main>
-        <h1> Schedule Contribution</h1>
-        <button class="btn-back"><a href="contributions.php">Back</a></button>
-        <div class="events">
-            <h3>Schedule Member Contribution</h3>
-            <div class="form-container">
+    <main>    
+
+<!-- edit event-->
+<h2>► Edit Member Contribution Schedule</h2>
+
+    
+    <!-- Form to edit member information -->
+    <div class="form-container">
             <div class="events-form">                
-                <form action="schedule_contribution_db.php" method="post">
+                <form action="" method="post">
                
                 <div class="form-group">
                     <label for="id">Member's ID</label>
-                    <input type="number" id="memberId" name="memberId" required>                    
+                    <input type="number" id="member_id" name="member_id" value="<?php echo $scheduleData['member_id']; ?>" required>                    
                 </div>
 
                 <div class="form-group">
                     <label for="id">Contribution Amount From Each Member</label>
-                    <input type="number" id="contributionAmount" name="contributionAmount" required>                    
+                    <input type="number" id="cont_amount" name="cont_amount" value="<?php echo $scheduleData['cont_amount']; ?>" required>                    
                 </div>
                 <div class="form-group">
                 <label for="payment_options">Payment Options:</label>
-                <select id="payment_options" name="payment_options">
+                <select id="payment_options" name="payment_option">
                 <option value="">Select Payment Option</option>
                 <option value="mpesa">M-Pesa</option>
                 <option value="bank_deposit">Bank Deposit</option>
                </select>
                 </div>
 
-            <div class = "form-group" id="mpesa_options" style="display: none;">
+                <div class = "form-group" id="mpesa_options" style="display: none;">
                      <label for="mpesa_sub_options">Select M-Pesa Options:</label>
                      <select id="mpesa_sub_options" name="mpesa_sub_options">
                         <option value="">Select M-Pesa Option</option>
@@ -100,43 +156,42 @@ require 'session.php';
                      </select>
                      <div id="mpesa_till" style="display: none;">
                         <label for="mpesa_input_field">Enter Till Number:</label>
-                   <input type="number" id="till_number" name = "till_number">
+                   <input type="number" id="mpesa_till" name = "mpesa_till" value="<?php echo $scheduleData['mpesa_till']; ?>">
                  </div>
                  <div id="mpesa_number" style="display: none;">
                         <label for="mpesa_input_field">Enter Mpesa Number:</label>
-                   <input type="number" id="mpesa_number" name = "mpesa_number">
+                   <input type="number" id="mpesa_number" name = "mpesa_number" value="<?php echo $scheduleData['mpesa_number']; ?>">
                  </div>
                 </div>
 
                     <div  class = "form-group" id="bank_deposit_options" style="display: none;">
                <label for="account_holder">Account Holder:</label>
-              <input type="text" id="account_holder" name = "account_holder">
+              <input type="text" id="acc_holder" name = "acc_holder" value="<?php echo $scheduleData['acc_holder']; ?>">
                  <label for="bank">Bank:</label>
-             <input type="text" id="bank" name = "bank">
+             <input type="text" id="bank_name" name = "bank_name" value="<?php echo $scheduleData['bank_name']; ?>">
              <label for="account_number">Account Number:</label>
-             <input type="text" id="account_number" name ="account_number">
+             <input type="text" id="acc_number" name ="acc_number" value="<?php echo $scheduleData['acc_number']; ?>">
                 </div>
               
               
     
                 <div class="form-group">
                     <label for="date">Contribution Dateline</label>
-                    <input type="date" id="contribution_date" name="contribution_date" required>                     
+                    <input type="date" id="cont_dateline" name="cont_dateline" value="<?php echo $scheduleData['cont_dateline']; ?>" required>                     
                 </div>
              
                
                 <div class="form-group">
-                    <button type="submit" name="submit">Schedule</button>
+                    <button type="submit" name="submit">Update</button>
                 </div>
                 </form>
                 
             </div>
            
     </div>
-
-        </div>
-
-      
+    <button class="back">
+        <a href="contribution_schedule.php">Back</a>
+    </button> 
    
     </main>
 <!--this ends main-->
@@ -165,31 +220,9 @@ require 'session.php';
 
 
 
-<div class="upcoming-events">
 
-<div class="events">
-    <ul>
-        <li><a href="contribution_progress.php">Contribution Progress</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
-        <li><a href="contribution_history.php">View Contribution History</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
-        <li><a href="contribution_schedule.php">Contribution Schedule</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
-          </ul>
-          </ul>
-   
-    
-    
-    
+ </div>
 </div>
-                </div>
-
-</div>
-    
-   </div>  
-
-   
-
-
-<!--footer starts here-->
-
 
    <div class="footer">
     <div class="row">
@@ -198,8 +231,11 @@ require 'session.php';
         </div>
     </div>
    </div>
+                
+   
    <script src="js/contribution.js"></script>
    <script src="js/admin.js"></script>
-  
+    
+   
 </body>
 </html>
