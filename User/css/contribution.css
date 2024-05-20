@@ -3,3 +3,22 @@
         padding-left: 20px;    
     }
     
+.btn-submit{
+    padding: 8px 16px;
+    background-color:var(--color-success);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}   
+input{
+    
+        background-color: var(--color-light);
+        color: black;
+        width: 50%; /* Set width to 100% */
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; 
+        font-weight: bold;
+      
+} 

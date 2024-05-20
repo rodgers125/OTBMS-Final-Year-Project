@@ -1,7 +1,7 @@
 <?php
-
 require 'session.php';
 require 'connection.php';
+
 
 ?>
 
@@ -10,13 +10,13 @@ require 'connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-add-member</title>
+    <title>Admin-transactions-history</title>
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/record_transaction.css">
+    <link rel="stylesheet" href="css/contribution.css">
     <link rel="stylesheet" href="css/loan_analytics.css">
-    <link rel="stylesheet" href="css/members.css"> 
     <link rel="stylesheet" href="css/icons.css"> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet" href="css/members.css"> 
 
 </head>
 <body>
@@ -38,7 +38,7 @@ require 'connection.php';
                 <span class="material-icons-sharp">grid_view</span>
                 <h3>Dashboard</h3>
             </a>
-            <a href="members.php"  class="active">
+            <a href="members.php">
                 <span class="material-icons-sharp">person_outline</span>
                 <h3>Members</h3>
             </a>
@@ -52,9 +52,9 @@ require 'connection.php';
                 <span class="material-icons-sharp">insights</span>
                 <h3>Loans</h3>
             </a>
-            <a href="transactions.php">
+            <a href="transactions.php" class="active">
                 <span class="material-icons-sharp">receipt</span>
-                <h3>Payment Records</h3>
+                <h3>Payment Receipts</h3>
             </a>
            
             <a href="events.php">
@@ -71,56 +71,19 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>Members Form</h1>
+        <h1>► Payment Receipts</h1>
+        <button class="btn-back"><a href="transactions.php">Back</a></button>
 
       
     <div class="recent-transactions">
-        <h2>Add Member</h2>               
-        <div class="form-container">
-            <div class="contribution-form">                
-                <form action="add_member_db.php" method="post">
-                <div class="form-group">
-                    <label for="firstname">First Name<span>*</span></label>
-                    <input type="text" id="fName" name="fName" placeholder="e.g Andrew" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastname">Last Name<span>*</span></label>
-                    <input type="text" id="lName" name="lName" placeholder="e.g maina" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email<span>*</span></label>
-                    <input type="email" id="email" name="email" placeholder="e.g abc@gmail.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number<span>*</span></label>
-                    <input type="text" id="phone" name="phone" pattern="07\d{8}" placeholder="e.g 0712345678" required>
-                    <small class="text-muted">Please enter a 10-digit phone number starting with '07'.</small>
-                </div>
-                <div class="form-group">
-        <label for="gender">Gender</label>
-        <select id="gender" name="gender">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
-                <div class="form-group">
-                    <label for="password">Default Password<span>*</span></label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Confirm Password</label>
-                    <input type="password" id="ConfirmPassword" name="confirmPassword" required>
-                    <p class="error-message" id="passwordError"></p>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" name="submit">Record</button>
-                </div>
-                </form>
-                
-            </div>
-           
-    </div>
+        <h2>Payment Codes</h2>      
+        <form action="" method="get">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search">
+            <button class="form-btn" type="submit">Search</button>
+          </form>
+       
+        
         
     </div>
     </main>
@@ -153,7 +116,7 @@ require 'connection.php';
 
 <div class="events">
 <ul>
-        <li><a href="members_list.php">View Members List</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="record_transaction.php">Record a Payment</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
       </ul>
 </div>
 </div>
@@ -172,7 +135,6 @@ require 'connection.php';
    </div>
 
    <script src="js/admin.js"></script>
-   <script src="js/record_transaction.js"></script>
-
+   <script src="js/members.js"></script>
 </body>
 </html>

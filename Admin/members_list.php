@@ -54,7 +54,7 @@ require 'connection.php';
             </a>
             <a href="transactions.php">
                 <span class="material-icons-sharp">receipt</span>
-                <h3>Payment Receipts</h3>
+                <h3>Payment Records</h3>
             </a>
            
             <a href="events.php">

@@ -102,7 +102,7 @@ if (isset($_GET['memberId'])) {
             </a>
             <a href="transactions.php">
                 <span class="material-icons-sharp">receipt</span>
-                <h3>Payment Receipts</h3>
+                <h3>Payment Records</h3>
             </a>
             <a href="events.php">
                 <span class="material-icons-sharp">inventory</span>

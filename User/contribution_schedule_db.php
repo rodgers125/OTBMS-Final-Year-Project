@@ -65,7 +65,8 @@ $current_year = date('Y');
 $query = "SELECT cs.contribution_id, cs.cont_amount, cs.cont_dateline, cs.payment_option, cs.member_id, cs.acc_holder, cs.bank_name, cs.acc_number, cs.mpesa_number, cs.mpesa_till, m.fName, m.lName, m.email, m.phone
           FROM contribution_schedule cs
           JOIN members m ON cs.member_id = m.memberId
-          WHERE MONTH(cs.cont_dateline) = $current_month AND YEAR(cs.cont_dateline) = $current_year";
+          WHERE MONTH(cs.cont_dateline) = $current_month AND YEAR(cs.cont_dateline) = $current_year
+          AND cs.status = 'pending'";
 $result = mysqli_query($conn, $query);
 
 // Check if there are any rows returned

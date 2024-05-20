@@ -50,7 +50,7 @@ require 'session.php';
             </a>
             <a href="transactions.php" class="active">
                 <span class="material-icons-sharp">receipt</span>
-                <h3>Payment Receipts</h3>
+                <h3>Payment Records</h3>
             </a>
            
             <a href="events.php">
@@ -67,10 +67,26 @@ require 'session.php';
 
     <!-- Main Content -->
     <main>
-        <h1>► Payment Receipts</h1>
+        <h1>► Payment Records</h1>
 
       
         <div class="insights">
+            <!--submitted proof of payments-->
+<div class="groups">               
+    <img src="images/proof.png" alt="Request Icon" class="icon">   
+   
+    <div class="middle">
+        <div class="left">
+            <a href="payment_codes.php"><h3>Payment Codes</h3>
+            <img src="images/view.png" alt="Request Icon" class="view-icon">
+            </a>
+            <small class="text-muted">Submitted Payment Codes</small>
+        </div>
+       
+    </div>
+    <br>
+ 
+</div>
 
 <!--record a transaction-->
 <div class="groups">               

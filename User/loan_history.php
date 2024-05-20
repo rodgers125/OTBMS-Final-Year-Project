@@ -27,7 +27,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                         <th>Loan Purpose</th>
                         <th>Amount</th>
                         <th>Repayment Period</th>
-                        <th>Loan Status</th>                   
+                        <th>Loan Status</th> 
+                        <th>Action</th>                  
                     </tr>
                 </thead>
                 <tbody>';
@@ -40,6 +41,9 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <td>' . $row['loanAmount'] . '</td>
                 <td>' . $row['repayment_period'] . '</td>
                 <td>' . $row['loanStatus'] . '</td>
+                <td>
+                <button class="btn-submit" onclick="btnRepay(' . $row['loanId'] . ')">Repay</button>
+                </td>
               </tr>';
     }
 

@@ -49,7 +49,7 @@ require 'session.php';
             </a>
             <a href="transactions.php">
                 <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <h3>Payment Records</h3>
             </a>
            
             <a href="events.php" class="active">

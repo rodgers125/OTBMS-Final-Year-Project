@@ -138,6 +138,62 @@ include 'loan_db.php';
   </div>
 </div>
 
+<!-- Payment Modal -->
+<div id="contPaymentModal" class="modal">
+  <div class="modal-content">
+  <form id="paymentProof" action="paymentProof_loan.php" method="post">
+    <span class="close">&times;</span>
+    <h2>Payment Proof for Loan Repayment:</h2>
+    <br>
+    <div class="form-group">
+        
+      <label for="payment_method">Loan Type:</label>
+      <select id="payment_method" name="payment_method" onchange="showPaymentDetails()">
+        <option value="Default">Click to Select Payment Method</option>
+        
+        <option value="Mpesa">Mpesa Paybill</option>
+        <option value="Bank">Bank Transfer</option>
+      </select>
+      <br>
+      <br>
+      
+      <!-- Mpesa paybill option -->
+      <div id="mpesa" style="display:none">
+        <h3>Mpesa Paybill</h3>
+        <ul>
+          <li>Paybill - <b>247247</b></li>
+          <li>Account Number - <b>1840179997117</b></li>
+        </ul>
+      </div>
+      <!-- Bank transfer option -->
+      <div id="bank_transfer" style="display:none">
+        <h3>Bank Transfer</h3>
+        <ul>
+          <li>Bank Name - <b>Equity Bank</b></li>
+          <li>Account Number - <b>1840179997117</b></li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <small id="paymentCodeLabel" style="display:none">Enter the Payment Code here (Mpesa or Bank Code you received after paying).</small>
+    
+      <div class="form-group">
+        <input type="hidden" id="memberId" name="memberId" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
+      </div>
+      <div class="form-group">
+        <input type="hidden" id="loanId" name="loanId" value="<?php echo $loanId; ?>">
+      </div>
+      <div class="form-group" id="paymentCodeGroup" style="display:none">
+        <input type="text" id="paymentCode" name="paymentCode" placeholder="Payment Code">
+      </div>
+      <div class="form-group">
+        <input type="hidden" id="purpose" name="purpose" value="loan Repayment">
+      </div>
+      <button type="submit" id="submitButton" style="display:none">Submit</button>
+    </form>
+  </div>
+</div>
+
 </main>
 
 <!--this ends main-->
@@ -183,5 +239,6 @@ include 'loan_db.php';
 
    <script src="js/index.js"></script>
    <script src="js/loan.js"></script>
+   <script src="js/repay.js"></script>
 </body>
 </html>

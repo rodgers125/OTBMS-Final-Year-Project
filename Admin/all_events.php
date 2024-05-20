@@ -82,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Loans</h3>
             </a>
             <a href="transactions.php">
-                <span class="material-icons-sharp">report_gmailerrorred</span>
-                <h3>Transactions</h3>
+                <span class="material-icons-sharp">receipt</span>
+                <h3>Payment Records</h3>
             </a>
             <a href="events.php" class="active">
                 <span class="material-icons-sharp">inventory</span>

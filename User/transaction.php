@@ -71,7 +71,7 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>► Transactions</h1>
+        <h1>► Payment Receipts</h1>
         <br>
       
 <?php

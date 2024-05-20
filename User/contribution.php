@@ -112,26 +112,81 @@ require 'connection.php';
         <h2>Contribution Details:</h2>
         <br>
         <p><b>Total Amount To Be Contributed By Each Member :</b> <?php echo $cont_amount; ?></p>
-        <p><b>Payment Details :</p>
-        <li>
-            <ul class="payment-options">
-                <h3>Option 1: Mpesa</h3>
-                <p>Mpesa Send Money - <?php echo $mpesa_number; ?></p>                
-                <p>or</p>
-                <p>Mpesa Till Number - <?php echo $mpesa_till; ?></p>
-                <h3>Option 2</h3>
-                <p>Bank Deposit.
-                    <br> 
-                     Account Holder: <?php echo $acc_holder; ?>.
-                     <br>
-                 Bank: <?php echo $bank_name; ?>.
-                 <br>
-                  Account No.: <?php echo $acc_number; ?></p>
-            </ul>
-        </li>
+        
+        
         <p><b>DateLine :</b> <?php echo $cont_dateline; ?></p>
+        <br>
+    <button class="btn-submit">Contribute Now</button>
     </div>
+    
+
+    <!-- Payment Modal -->
+<div id="contPaymentModal" class="modal">
+  <div class="modal-content">
+  <form id="paymentProof" action="paymentProof_contribution.php" method="post">
+    <span class="close">&times;</span>
+    <h2>Payment Proof for Your Contribution:</h2>
+    <br>
+    <div class="form-group">
+        
+      <label for="payment_method">Loan Type:</label>
+      <select id="payment_method" name="payment_method" onchange="showPaymentDetails()">
+        <option value="Default">Click to Select Payment Method</option>
+        
+        <option value="Mpesa">Mpesa Paybill</option>
+        <option value="Bank">Bank Transfer</option>
+      </select>
+      <br>
+      <br>
+      
+      <!-- Mpesa paybill option -->
+      <div id="mpesa" style="display:none">
+        <h3>Mpesa Paybill</h3>
+        <ul>
+          <li>Paybill - <b>247247</b></li>
+          <li>Account Number - <b>1840179997117</b></li>
+        </ul>
+      </div>
+      <!-- Bank transfer option -->
+      <div id="bank_transfer" style="display:none">
+        <h3>Bank Transfer</h3>
+        <ul>
+          <li>Bank Name - <b>Equity Bank</b></li>
+          <li>Account Number - <b>1840179997117</b></li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <small id="paymentCodeLabel" style="display:none">Enter the Payment Code here (Mpesa or Bank Code you received after paying).</small>
+    
+      <div class="form-group">
+        <input type="hidden" id="memberId" name="memberId" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
+      </div>
+      <div class="form-group">
+        <input type="hidden" id="contribution_id" name="contribution_id" value="<?php echo $contribution_id; ?>">
+      </div>
+      <div class="form-group" id="paymentCodeGroup" style="display:none">
+        <input type="text" id="paymentCode" name="paymentCode" placeholder="e.g. SEK7TJJD2Z">
+      </div>
+      <div class="form-group">
+        <input type="hidden" id="purpose" name="purpose" value="contribution">
+      </div>
+      <button type="submit" id="submitButton" style="display:none">Submit</button>
+    </form>
+  </div>
 </div>
+        
+        
+
+
+
+
+
+
+
+
+
+
 </main>
 
 
@@ -196,5 +251,7 @@ require 'connection.php';
    </div>
 
    <script src="js/index.js"></script>
+   <script src="js/contribution.js"></script>
+   <script src="js/repay.js"></script>
 </body>
 </html>
