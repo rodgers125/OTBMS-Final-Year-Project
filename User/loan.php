@@ -2,7 +2,8 @@
 require 'session.php';
 require 'connection.php';
 
-
+      include 'loan_limit.php';
+    
 
 ?>
 
@@ -16,6 +17,11 @@ require 'connection.php';
     <link rel="stylesheet" href="css/loan.css">
     <link rel="stylesheet" href="css/contribution.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+
+    <script>
+        // Make the loan limit available in JavaScript
+        var loanLimit = <?php echo $loan_limit; ?>;
+    </script>
 
 </head>
 <body>
@@ -130,8 +136,13 @@ include 'loan_db.php';
           
         </select>
       </div>
+      
+        
+         
+    
       <div class="form-group">
     <label for="loanAmount">Enter Amount you want to borrow</label>
+    <p>Your Loan Limit is at <?php echo $loan_limit; ?> </p>
     <input type="number" id="loanAmount" name="loanAmount">
 </div>
 

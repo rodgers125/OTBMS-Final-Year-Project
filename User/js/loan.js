@@ -46,3 +46,13 @@ document.getElementById('loanType').addEventListener('change', () => {
     });
   }
 });
+
+document.getElementById('loanApplicationForm').addEventListener('submit', function(event) {
+  var loanAmount = document.getElementById('loanAmount').value;
+
+  // Client-side validation
+  if (loanAmount > loanLimit) {
+      event.preventDefault(); // Prevent form submission
+      alert('The amount exceeds your loan limit of KSH ' + loanLimit);
+  }
+});
