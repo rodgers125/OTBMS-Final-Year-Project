@@ -142,7 +142,7 @@ if (isset($_GET['memberId'])) {
         <label for="gender">Gender:</label>
         <input type="gender" id="gender" name="gender" value="<?php echo $memberData['gender']; ?>" required><br>
 
-        <label for="role">Email:</label>
+        <label for="role">Role:</label>
         <input type="role" id="role" name="role" value="<?php echo $memberData['role']; ?>" required><br>
 
 

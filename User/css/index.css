@@ -202,12 +202,17 @@ aside .sidebar a:hover span{
 margin-left: 1rem;
 }
 
-aside .sidebar .message-count{
-    background: var(--color-danger);
+.notification-counter {
+    background-color: var(--color-warning);
     color: var(--color-white);
-    padding: 2px 10px;
-    font-size: 11px;
-    border-radius: var(--border-radius-1);
+    border-radius: 50%;
+    height: 16px;  /* Fixed height */
+    width: 16px;   /* Fixed width */    
+    line-height: 16px;  /* Match height to vertically center text */
+    display: inline-block;  /* Keep it inline with other elements */
+    text-align: center;  /* Center the number horizontally */
+    vertical-align: middle;
+    
 }
 
 main{

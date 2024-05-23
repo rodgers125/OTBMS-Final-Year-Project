@@ -13,13 +13,17 @@ require 'connection.php';
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/contribution.css">
+    <link rel="stylesheet" href="css/loan.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
 </head>
 <body>
 
    <div class="container">
-  
+  <?php
+  include 'notification_counter.php';
+  ?>
     <!--sidebar menu-->
     <aside>
         <div class="top">
@@ -54,7 +58,7 @@ require 'connection.php';
             </a>
             <a href="notifications.php">
                 <span class="material-icons-sharp">notifications</span>
-                <h3>Notifications</h3>
+                <h3>Notifications <span class="notification-counter"><?= $notificationCount ?></span></h3>
             </a>
 
             <a href="settings.php">
@@ -103,7 +107,7 @@ require 'connection.php';
                     <div class="left">
                         <h3>Loan Balance</h3> 
                         <?php
-                       // Include the loan_db.php file to access $total_loan_balance
+                       //  to access $total_loan_balance
                           include 'loan_db.php';
                         ?>
                         <p><b>KSH <?php echo $total_loan_balance; ?></b></p>  
@@ -120,7 +124,11 @@ require 'connection.php';
                 <div class="middle">
                     <div class="left">
                         <h3>Loan Limit</h3> 
-                        <p><b>--|--</b></p>
+                        <?php
+                       //  to access $loan_limit
+                          include 'loan_limit.php';
+                        ?>
+                        <p><b>KSH <?php echo $loan_limit; ?></b></p>
                         <a href="loan.php"> 
                         <small>Apply now</small>
                         <img src="images/view.png" alt="Request Icon" class="view-icon"> 
@@ -133,12 +141,13 @@ require 'connection.php';
           
         </div>
 
-        <!---personal details -->
-
-     <?php
-     include 'user_details_db.php'
-     ?>
-
+        <!---Current member details -->
+<br>
+        <?php
+       include 'current_contribution.php';
+       ?>
+</div>
+<br>
 
        
 <!--Recent Transactions -->
@@ -152,9 +161,7 @@ include 'recent_transactions_db.php'
 
 <div class="right">
     <div class="top">
-        <button id="menu-btn">
-            <span class="material-icons-sharp">menu</span>
-        </button>
+        
       
         <div class="profile">
             <div class="info">
@@ -166,7 +173,7 @@ include 'recent_transactions_db.php'
                 <small class="text-muted">Member</small>
             </div>
             <div class="profile-photo">
-                <img src="./images/profile-1.png" alt="">
+                <a href="settings.php"><img src="./images/profile-1.png" alt=""></a>
             </div>
         </div>
     </div>
@@ -198,7 +205,8 @@ include 'recent_transactions_db.php'
     </div>
     <div class="card-detail">
     <h3>Total Contributions made:</h3>
-        <p>150000</p>
+        <p><?php echo $total_contributions;  ?></p>
+
       
     </div>
        
@@ -230,5 +238,7 @@ include 'upcoming_events_db.php'
    </div>
 
    <script src="js/index.js"></script>
+   <script src="js/contribution.js"></script>
+   <script src="js/repay.js"></script>
 </body>
 </html>

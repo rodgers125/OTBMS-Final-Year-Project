@@ -62,7 +62,7 @@ $current_month = date('m');
 $current_year = date('Y');
 
 // Query to retrieve contribution details for the current month and year
-$query = "SELECT cs.contribution_id, cs.cont_amount, cs.cont_dateline, cs.payment_option, cs.member_id, cs.acc_holder, cs.bank_name, cs.acc_number, cs.mpesa_number, cs.mpesa_till, m.fName, m.lName, m.email, m.phone
+$query = "SELECT cs.contribution_id, cs.cont_amount, cs.cont_dateline, cs.member_id, m.fName, m.lName, m.email, m.phone
           FROM contribution_schedule cs
           JOIN members m ON cs.member_id = m.memberId
           WHERE MONTH(cs.cont_dateline) = $current_month AND YEAR(cs.cont_dateline) = $current_year
@@ -77,14 +77,8 @@ if (mysqli_num_rows($result) > 0) {
     // Extract the contribution details
     $contribution_id = $row['contribution_id'];
     $cont_amount = $row['cont_amount'];
-    $cont_dateline = $row['cont_dateline'];
-    $payment_option = $row['payment_option'];
-    $member_id = $row['member_id'];
-    $acc_holder = $row['acc_holder'];
-    $bank_name = $row['bank_name'];
-    $acc_number = $row['acc_number'];
-    $mpesa_number = $row['mpesa_number'];
-    $mpesa_till = $row['mpesa_till'];
+    $cont_dateline = $row['cont_dateline'];    
+    $member_id = $row['member_id'];    
     $fullName = $row['fName'] . ' ' . $row['lName'];
     $email = $row['email'];
     $phone_number = $row['phone'];

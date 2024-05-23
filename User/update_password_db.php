@@ -4,9 +4,6 @@ require 'connection.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-
-    // Get the current user's ID from the session
     $userID = $_SESSION['user_id'];
 
     // Retrieve the current password from the database for the user
@@ -19,16 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $currentPasswordDB = $row['password'];
-
-        // Verify if the current password matches the one provided in the form
         $currentPassword = $_POST['currentPassword'];
+
+        // Verify current password
         if (password_verify($currentPassword, $currentPasswordDB)) {
-            // Check if the new password and the confirm password match
             $newPassword = $_POST['password'];
             $confirmPassword = $_POST['confirmPassword'];
 
+            // Check if new password and confirm password match
             if ($newPassword === $confirmPassword) {
-                // Hash the new password before storing it in the database
                 $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
                 // Update the password in the database
@@ -38,35 +34,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $updateResult = mysqli_stmt_execute($updateStmt);
 
                 if ($updateResult) {
-                    // Password updated successfully
-                    echo "<script>alert(' Password has been Updated successfuly');</script>";
-            echo "<script>window.location.href = 'settings.php';</script>";
-            exit();}                
+                    echo "<script>
+                            alert('Password has been updated successfully.');
+                            window.location.href = 'settings.php';
+                          </script>";
+                    exit();
+                } else {
+                    $errorMessage = "Failed to update password. Please try again.";
+                }
             } else {
-                // New password and confirm password do not match
-              
-                echo "<script>alert(' New password and confirm password do not match. Please try again');</script>";
-            echo "<script>window.location.href = 'settings.php';</script>";
-            exit();
+                $errorMessage = "New password and confirm password do not match. Please try again.";
             }
         } else {
-            // Current password provided does not match the one in the database            
-            echo "<script>alert(' Current password you provided is incorrect. Please try again');</script>";
-            echo "<script>window.location.href = 'settings.php';</script>";
-            exit();
-            
+            $errorMessage = "Current password is incorrect. Please try again.";
         }
     } else {
-        // Unable to fetch current password from the database
-       
-        echo "<script>alert(' Unable to fetch current password. Please try again later');</script>";
-        echo "<script>window.location.href = 'settings.php';</script>";
-        exit();
-        
-        
+        $errorMessage = "Unable to fetch current password. Please try again later.";
     }
 
-    // Close database connection
-    mysqli_close($conn);
-} 
+    echo "<script>
+            alert('$errorMessage');
+            window.location.href = 'settings.php';
+          </script>";
+    exit();
+}
+
+// Close database connection
+mysqli_close($conn);
 ?>
+

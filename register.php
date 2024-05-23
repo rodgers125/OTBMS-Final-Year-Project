@@ -1,6 +1,13 @@
 <?php
 require 'User/connection.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
 if (isset($_POST["submit"])) {    
     $fName = $_POST["fName"];
     $lName = $_POST["lName"];
@@ -15,47 +22,53 @@ if (isset($_POST["submit"])) {
         echo "<script>alert('Passwords do not match');</script>";
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+        $verificationCode = bin2hex(random_bytes(16)); // Generate verification code
 
-        $query = "INSERT INTO members (fName, lName, email, phone, gender, password, registration_date, role) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)";
+        $query = "INSERT INTO members (fName, lName, email, phone, gender, password, registration_date, role, verification_code) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, ?)";
         $preparedSql = mysqli_prepare($conn, $query);
 
         if ($preparedSql) {
-            mysqli_stmt_bind_param($preparedSql, 'sssssss', $fName, $lName, $email, $phone, $gender, $hashedPassword, $role);
+            mysqli_stmt_bind_param($preparedSql, 'ssssssss', $fName, $lName, $email, $phone, $gender, $hashedPassword, $role, $verificationCode);
             
             try {
                 if (mysqli_stmt_execute($preparedSql)) {
-                    // Retrieve memberId from members
-                    $getMemberIdQuery = "SELECT memberId FROM members WHERE email = ?";
-                    $stmt = mysqli_prepare($conn, $getMemberIdQuery);
-                    mysqli_stmt_bind_param($stmt, "s", $email);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_bind_result($stmt, $memberId);
-                    mysqli_stmt_fetch($stmt);
-                    mysqli_stmt_close($stmt);
+                    // Send verification email
+                    $verificationLink = "http://localhost/project/verify.php?code=$verificationCode";
 
-                    // Insert notification into the notification table
-                    $notificationQuery = "INSERT INTO notification (member_id, notification_date_time, title, message) VALUES (?, NOW(), ?, ?)";
-                    $notificationStmt = mysqli_prepare($conn, $notificationQuery);
+                    $subject = "Email Verification";
+                    $message = "Hello $fName,\n\nPlease click the following link to verify your email:\n$verificationLink\n\nThank you!";
                     
-                    if ($notificationStmt) {
-                        $title = "Account Creation";
-                        $message = "Your account has been successfully created.";
-                        mysqli_stmt_bind_param($notificationStmt, 'iss', $memberId, $title, $message);
-                        mysqli_stmt_execute($notificationStmt);
-                        mysqli_stmt_close($notificationStmt);
-                    }
+                    // Set headers
+                    $headers = "From: OTBMS <kipkuruikorir968@gmail.com>\r\n";
+                    $headers .= "Reply-To: kipkuruikorir968@gmail.com\r\n";
+
+                    $mail = new PHPMailer(true);
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'kipkuruikorir968@gmail.com';
+                    $mail->Password = 'strlujcjgyzvkvnf';
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Port = 465;
+                    
+                    $mail->setFrom('kipkuruikorir968@gmail.com');
+                    $mail->addAddress($email);
+                    $mail->isHTML(true);
+                    
+                    $mail->Subject = $subject;
+                    $mail->Body = $message;
+                    
+                    $mail->send();
 
                     echo "<script>
-                        if (confirm('Your Account has been Created Successfully. WELCOME!! Click OK to continue to login.')) {
-                            window.location.href = 'login.php';
-                        }
+                        alert('Your account has been created. Please check your email to verify your account.');
+                        window.location.href = 'login.php';
                     </script>";
                 } else {
                     echo "<script>alert('Error in registration');</script>";
                 }
             } catch (mysqli_sql_exception $exception) {
-                // Handle duplicate entry error
-                if ($exception->getCode() == 1062) { // MySQL error code for duplicate entry
+                if ($exception->getCode() == 1062) {
                     echo "<script>alert('The email entered already exists. Please try again!');</script>";
                 } else {
                     echo "<script>alert('An unexpected error occurred');</script>";

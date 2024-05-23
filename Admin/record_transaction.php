@@ -153,8 +153,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <select id="payment_method" name="payment_method" required>
                         <option value="Mpesa">Mpesa</option>
                         <option value="Bank Payment">Bank Payment</option>                        
-                        <option value="Cash Payment">Cash Payment</option>
+                        
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentCode">Payment Code</label>
+                    <input type="text" id="payment_code" name="payment_code" required>                    
                 </div>
 
                 <div class="form-group">
@@ -198,6 +203,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="events">
 <ul>
         <li><a href="transactions_history.php">View Payment Receipts</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="payment_codes.php">Payment Codes</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+
       </ul>
 </div>
 </div>

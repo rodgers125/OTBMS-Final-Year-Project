@@ -61,13 +61,7 @@ if (mysqli_num_rows($result) > 0) {
                          VALUES ('$member_id', '$contribution_date', '$amount', '$member_id_for_contribution', '$transaction_id')";
         $insert_result = mysqli_query($conn, $insert_query);
 
-        if (!$insert_result) {
-            // Handle insertion error
-            error_log("Error inserting data into contributionLog: " . mysqli_error($conn));
-            // Optionally, you can continue processing other rows even if one fails
-            // or exit the script entirely
-            // exit;
-        }
+       
     }
 
     echo '</tbody>';

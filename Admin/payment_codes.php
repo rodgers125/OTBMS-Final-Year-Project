@@ -71,19 +71,21 @@ require 'connection.php';
 
     <!-- Main Content -->
     <main>
-        <h1>► Payment Receipts</h1>
+        <h1>► Payment Codes</h1>
         <button class="btn-back"><a href="transactions.php">Back</a></button>
 
       
     <div class="recent-transactions">
-        <h2>Payment Codes</h2>      
+        <h2>Submitted Payment Codes</h2>      
         <form action="" method="get">
             <label for="search">Search:</label>
             <input type="text" id="search" name="search">
             <button class="form-btn" type="submit">Search</button>
           </form>
        
-        
+        <?php
+        include 'php_db/payment_codes_db.php';
+        ?>
         
     </div>
     </main>
@@ -117,6 +119,7 @@ require 'connection.php';
 <div class="events">
 <ul>
         <li><a href="record_transaction.php">Record a Payment</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="transactions_history.php">View Payment Records</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
       </ul>
 </div>
 </div>

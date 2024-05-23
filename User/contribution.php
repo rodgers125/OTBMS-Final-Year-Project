@@ -19,7 +19,9 @@ require 'connection.php';
 <body>
 
    <div class="container">
-  
+   <?php
+  include 'notification_counter.php';
+  ?>
     <!--sidebar menu-->
     <aside>
         <div class="top">
@@ -55,7 +57,7 @@ require 'connection.php';
             </a>
             <a href="notifications.php">
                 <span class="material-icons-sharp">notifications</span>
-                <h3>Notifications</h3>
+                <h3>Notifications <span class="notification-counter"><?= $notificationCount ?></span></h3>
             </a>
             <a href="settings.php">
                 <span class="material-icons-sharp">settings</span>
@@ -98,85 +100,9 @@ require 'connection.php';
         
     </div>
 <br>
-<div class="loan-details">
-    <div class="loan-card">
-        <h2>Current Member Being Contributed:</h2>
-        <br>
-        <p><b>Member ID :</b><?php echo $member_id; ?></li>
-        <p><b>Full Name :</b><?php echo $fullName; ?></p>
-        <p><b>Email :</b><?php echo $email; ?></p>
-        <p><b>Phone Number :</b><?php echo $phone_number; ?></p>
-    </div>
-
-    <div class="loan-card">
-        <h2>Contribution Details:</h2>
-        <br>
-        <p><b>Total Amount To Be Contributed By Each Member :</b> <?php echo $cont_amount; ?></p>
-        
-        
-        <p><b>DateLine :</b> <?php echo $cont_dateline; ?></p>
-        <br>
-    <button class="btn-submit">Contribute Now</button>
-    </div>
-    
-
-    <!-- Payment Modal -->
-<div id="contPaymentModal" class="modal">
-  <div class="modal-content">
-  <form id="paymentProof" action="paymentProof_contribution.php" method="post">
-    <span class="close">&times;</span>
-    <h2>Payment Proof for Your Contribution:</h2>
-    <br>
-    <div class="form-group">
-        
-      <label for="payment_method">Loan Type:</label>
-      <select id="payment_method" name="payment_method" onchange="showPaymentDetails()">
-        <option value="Default">Click to Select Payment Method</option>
-        
-        <option value="Mpesa">Mpesa Paybill</option>
-        <option value="Bank">Bank Transfer</option>
-      </select>
-      <br>
-      <br>
-      
-      <!-- Mpesa paybill option -->
-      <div id="mpesa" style="display:none">
-        <h3>Mpesa Paybill</h3>
-        <ul>
-          <li>Paybill - <b>247247</b></li>
-          <li>Account Number - <b>1840179997117</b></li>
-        </ul>
-      </div>
-      <!-- Bank transfer option -->
-      <div id="bank_transfer" style="display:none">
-        <h3>Bank Transfer</h3>
-        <ul>
-          <li>Bank Name - <b>Equity Bank</b></li>
-          <li>Account Number - <b>1840179997117</b></li>
-        </ul>
-      </div>
-    </div>
-    <br>
-    <small id="paymentCodeLabel" style="display:none">Enter the Payment Code here (Mpesa or Bank Code you received after paying).</small>
-    
-      <div class="form-group">
-        <input type="hidden" id="memberId" name="memberId" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
-      </div>
-      <div class="form-group">
-        <input type="hidden" id="contribution_id" name="contribution_id" value="<?php echo $contribution_id; ?>">
-      </div>
-      <div class="form-group" id="paymentCodeGroup" style="display:none">
-        <input type="text" id="paymentCode" name="paymentCode" placeholder="e.g. SEK7TJJD2Z">
-      </div>
-      <div class="form-group">
-        <input type="hidden" id="purpose" name="purpose" value="contribution">
-      </div>
-      <button type="submit" id="submitButton" style="display:none">Submit</button>
-    </form>
-  </div>
-</div>
-        
-        
+<?php
+       include 'current_contribution.php';
+       ?>
 
 
 
@@ -194,9 +120,7 @@ require 'connection.php';
 
 <div class="right">
     <div class="top">
-        <button id="menu-btn">
-            <span class="material-icons-sharp">menu</span>
-        </button>
+        
       
         <div class="profile">
             <div class="info">
@@ -208,7 +132,7 @@ require 'connection.php';
                 <small class="text-muted">Member</small>
             </div>
             <div class="profile-photo">
-                <img src="./images/profile-1.png" alt="">
+                <a href="settings.php"><img src="./images/profile-1.png" alt=""></a>
             </div>
         </div>
     </div>

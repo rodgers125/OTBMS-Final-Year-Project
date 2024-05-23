@@ -301,8 +301,7 @@ main .recent-transactions table:hover{
     box-shadow: none;
 }
 th {
-    background-color: green;
-    color: white;
+   
     padding: 2px;
     
 }

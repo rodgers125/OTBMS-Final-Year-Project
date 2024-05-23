@@ -119,6 +119,8 @@ require 'connection.php';
 <div class="events">
 <ul>
         <li><a href="record_transaction.php">Record a Payment</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+        <li><a href="payment_codes.php">Payment Codes</a><img src="images/view.png" alt="Request Icon" class="view-icon"></li>
+
       </ul>
 </div>
 </div>

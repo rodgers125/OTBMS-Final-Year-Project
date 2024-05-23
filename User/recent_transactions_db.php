@@ -41,7 +41,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     echo '</div>';
 } else {
     // Handle case when no transactions found or query fails
-    echo 'No recent transactions found.';
+    echo '';
 }
 
 // Close the database connection

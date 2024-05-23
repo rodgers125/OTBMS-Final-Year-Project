@@ -1,5 +1,14 @@
 <?php
-require_once 'User/connection.php'; // Include your database connection file
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
+
+require 'User/connection.php';
+
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "sss", $token, $expirationTime, $email);
         if (mysqli_stmt_execute($stmt)) {
-            echo "<script>alert('Token generated successfully. Check your email for instructions.');</script>";
+            echo "";
         } else {
-            echo "Error generating token: " . mysqli_error($conn);
+            echo "" . mysqli_error($conn);
         }
         mysqli_stmt_close($stmt);
 
@@ -36,22 +45,42 @@ $message = "Dear User,\n\n";
 $message .= "You have requested to reset your password. Please click on the following link to reset your password:\n";
 $message .= $resetLink; // Append the reset link to the message
 $message .= "\n\nIf you did not request a password reset, you can safely ignore this email.\n\n";
-$message .= "Regards,\nYour Website";
+$message .= "Regards,\nROYWEA";
 
 // Set headers
 $headers = "From: OTBMS <kipkuruikorir968@gmail.com>\r\n";
 $headers .= "Reply-To: kipkuruikorir968@gmail.com\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-// Send the email
+$mail = new PHPMailer(true);
+
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'kipkuruikorir968@gmail.com';
+$mail->Password = 'strlujcjgyzvkvnf';
+$mail->SMTPSecure = 'ssl';
+$mail->Port = 465;
+
+$mail->setFrom('kipkuruikorir968@gmail.com');
+$mail->addAddress($email);
+$mail->isHTML(true);
+
+$mail->Subject = $subject;
+$mail->Body = $message;
+
+$mail->send();
+
+
+/// Send the email
 if (mail($email, $subject, $message, $headers)) {
-    echo "<script> alert('Password reset link sent successfully!') </script>";
+    echo "<script> alert('Password reset link sent successfully! Check your Email Inbox.') </script>";
 } else {
     echo "<script> alert('Failed to send password reset link.') </script>";
 }
     }
 }
 ?>
+
 
 
 

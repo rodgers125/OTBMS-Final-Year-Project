@@ -5,20 +5,14 @@ require_once 'connection.php'; // Include your database connection file
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     // Get form data
     $cont_amount = $_POST['contributionAmount'];
-    $cont_dateline = $_POST['contribution_date'];
-    $payment_option = $_POST['payment_options'];
+    $cont_dateline = $_POST['contribution_date'];    
     $member_id = $_POST['memberId'];
-    $acc_holder = $_POST['account_holder'];
-    $bank_name = $_POST['bank'];
-    $acc_number = $_POST['account_number'];
-    $mpesa_number = $_POST['mpesa_number'];
-    $mpesa_till = $_POST['till_number'];
-
+  
     // Prepare and execute SQL statement to insert data into the table
-    $stmt = $conn->prepare("INSERT INTO contribution_schedule (cont_amount, cont_dateline, payment_option, member_id, acc_holder, bank_name, acc_number, mpesa_number, mpesa_till) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO contribution_schedule (cont_amount, cont_dateline, member_id) VALUES (?, ?, ?)");
     
     // Bind parameters
-    $stmt->bind_param("dssisssss", $cont_amount, $cont_dateline, $payment_option, $member_id, $acc_holder, $bank_name, $acc_number, $mpesa_number, $mpesa_till);
+    $stmt->bind_param("dsi", $cont_amount, $cont_dateline, $member_id);
     
     // Execute the statement
     if ($stmt->execute()) {

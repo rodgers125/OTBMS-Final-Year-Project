@@ -6,7 +6,7 @@ if (isset($_POST["submit"])) {
     $password = $_POST['password'];
 
     // Use prepared statement to prevent SQL injection
-    $query = "SELECT memberId, password, status, role FROM members WHERE email = ?";
+    $query = "SELECT memberId, password, status, role, verification FROM members WHERE email = ?";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
         $user = mysqli_fetch_assoc($result);
 
         if ($user && password_verify($password, $user['password'])) {
-            if ($user['status'] === 'active') {
+            if ($user['status'] === 'active' && $user['verification'] === 'verified') {
                 // Start the session
                 session_start();
 

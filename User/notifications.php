@@ -19,7 +19,9 @@ require 'connection.php';
 <body>
 
    <div class="container">
-  
+   <?php
+  include 'notification_counter.php';
+  ?>
     <!--sidebar menu-->
     <aside>
         <div class="top">
@@ -54,7 +56,7 @@ require 'connection.php';
             </a>
             <a href="notifications.php" class = "active">
                 <span class="material-icons-sharp">notifications</span>
-                <h3>Notifications</h3>
+                <h3>Notifications <span class="notification-counter"><?= $notificationCount ?></span></h3>
             </a>
           
             <a href="settings.php">
@@ -96,9 +98,7 @@ require 'connection.php';
 
 <div class="right">
     <div class="top">
-        <button id="menu-btn">
-            <span class="material-icons-sharp">menu</span>
-        </button>
+        
       
         <div class="profile">
             <div class="info">
@@ -110,7 +110,7 @@ require 'connection.php';
                 <small class="text-muted">Member</small>
             </div>
             <div class="profile-photo">
-                <img src="./images/profile-1.png" alt="">
+                <a href="settings.php"><img src="./images/profile-1.png" alt=""></a>
             </div>
         </div>
     </div>
